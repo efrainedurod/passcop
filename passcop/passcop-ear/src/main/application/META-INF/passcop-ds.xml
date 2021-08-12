@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<datasources xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.ironjacamar.org/schema/datasources_3_0.xsd">
+  <datasource jndi-name="java:jboss/datasources/passcopDS" pool-name="OracleDS">
+    <connection-url>jdbc:oracle:thin:@localhost:1521/ORCL</connection-url>
+    <connection-property name="v$session.program">PASSCOP</connection-property>
+    <driver>oracle7</driver>
+    <security>
+      <user-name>PASSCOP</user-name>
+      <password>PASSCOP2021</password>
+    </security>
+    <pool>
+      <min-pool-size>20</min-pool-size>
+      <max-pool-size>100</max-pool-size>
+      <prefill>true</prefill>
+    </pool>
+    <timeout>
+      <blocking-timeout-millis>20000</blocking-timeout-millis>
+      <idle-timeout-minutes>4</idle-timeout-minutes>
+      <set-tx-query-timeout/>
+      <query-timeout>120</query-timeout>
+      <use-try-lock>100</use-try-lock>
+      <allocation-retry>2</allocation-retry>
+      <allocation-retry-wait-millis>3000</allocation-retry-wait-millis>
+      <xa-resource-timeout>120</xa-resource-timeout>
+    </timeout>
+  </datasource>
+</datasources>
