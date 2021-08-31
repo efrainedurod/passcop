@@ -20,13 +20,13 @@ import javax.xml.bind.annotation.XmlType;
 public class EnviarDatosOperacionResponse {
 
     @XmlElement(name = "return")
-    private java.lang.String _return;
+    private com.passcop.source.request.RespuestaSolicitud _return;
 
-    public java.lang.String getReturn() {
+    public com.passcop.source.request.RespuestaSolicitud getReturn() {
         return this._return;
     }
 
-    public void setReturn(java.lang.String new_return)  {
+    public void setReturn(com.passcop.source.request.RespuestaSolicitud new_return)  {
         this._return = new_return;
     }
 

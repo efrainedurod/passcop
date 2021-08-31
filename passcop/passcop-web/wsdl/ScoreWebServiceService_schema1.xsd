@@ -1,19 +1,26 @@
-<xs:schema xmlns:tns="http://soap.source.passcop.com/" xmlns:xs="http://www.w3.org/2001/XMLSchema" attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="http://soap.source.passcop.com/">
+<xs:schema xmlns:tns="http://soap.source.passcop.com/" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://soap.source.passcop.com/" version="1.0">
+
   <xs:element name="ConsultarServicioPersona" type="tns:ConsultarServicioPersona"></xs:element>
+
   <xs:element name="ConsultarServicioPersonaResponse" type="tns:ConsultarServicioPersonaResponse"></xs:element>
+
   <xs:element name="EnviarDatosOperacion" type="tns:EnviarDatosOperacion"></xs:element>
+
   <xs:element name="EnviarDatosOperacionResponse" type="tns:EnviarDatosOperacionResponse"></xs:element>
+
   <xs:complexType name="ConsultarServicioPersona">
     <xs:sequence>
       <xs:element minOccurs="0" name="identificacion" type="xs:string"></xs:element>
       <xs:element minOccurs="0" name="UsuarioID" type="xs:short"></xs:element>
     </xs:sequence>
   </xs:complexType>
+
   <xs:complexType name="ConsultarServicioPersonaResponse">
     <xs:sequence>
       <xs:element minOccurs="0" name="return" type="tns:persona"></xs:element>
     </xs:sequence>
   </xs:complexType>
+
   <xs:complexType name="persona">
     <xs:sequence>
       <xs:element minOccurs="0" name="apellidoMaterno" type="xs:string"></xs:element>
@@ -55,11 +62,13 @@
       <xs:element name="viviendaHipotecada" type="xs:boolean"></xs:element>
     </xs:sequence>
   </xs:complexType>
+
   <xs:complexType name="EnviarDatosOperacion">
     <xs:sequence>
       <xs:element minOccurs="0" name="operacion" type="tns:respuesta"></xs:element>
     </xs:sequence>
   </xs:complexType>
+
   <xs:complexType name="respuesta">
     <xs:sequence>
       <xs:element minOccurs="0" name="antiguedadNegocio" type="xs:int"></xs:element>
@@ -215,6 +224,7 @@
       <xs:element name="viviendaHipotecada" type="xs:boolean"></xs:element>
     </xs:sequence>
   </xs:complexType>
+
   <xs:complexType name="respuestaCentralRiesgo">
     <xs:sequence>
       <xs:element minOccurs="0" name="calificacionRiesgoCOD" type="xs:string"></xs:element>
@@ -234,6 +244,7 @@
       <xs:element minOccurs="0" name="totalCarteraVigente" type="xs:decimal"></xs:element>
     </xs:sequence>
   </xs:complexType>
+
   <xs:complexType name="detallePatrimonial">
     <xs:sequence>
       <xs:element minOccurs="0" name="cantidad" type="xs:int"></xs:element>
@@ -248,6 +259,7 @@
       <xs:element minOccurs="0" name="valorDetallePatrimonial" type="xs:decimal"></xs:element>
     </xs:sequence>
   </xs:complexType>
+
   <xs:complexType name="detalleDeCuentas">
     <xs:sequence>
       <xs:element name="circulante" type="xs:boolean"></xs:element>
@@ -263,6 +275,7 @@
       <xs:element minOccurs="0" name="valorDetalleCuentas" type="xs:decimal"></xs:element>
     </xs:sequence>
   </xs:complexType>
+
   <xs:complexType name="garantiasReales">
     <xs:sequence>
       <xs:element minOccurs="0" name="anioFabricacionConstruccion" type="xs:int"></xs:element>
@@ -298,6 +311,7 @@
       <xs:element minOccurs="0" name="valor" type="xs:decimal"></xs:element>
     </xs:sequence>
   </xs:complexType>
+
   <xs:complexType name="referenciasComerciales">
     <xs:sequence>
       <xs:element minOccurs="0" name="descripcion" type="xs:string"></xs:element>
@@ -310,6 +324,7 @@
       <xs:element minOccurs="0" name="valor" type="xs:decimal"></xs:element>
     </xs:sequence>
   </xs:complexType>
+
   <xs:complexType name="referenciasPersonales">
     <xs:sequence>
       <xs:element minOccurs="0" name="mensaje" type="xs:string"></xs:element>
@@ -321,15 +336,21 @@
       <xs:element minOccurs="0" name="tipoReferenciaPersonalCOD" type="xs:string"></xs:element>
     </xs:sequence>
   </xs:complexType>
+
   <xs:complexType name="EnviarDatosOperacionResponse">
     <xs:sequence>
-      <xs:element minOccurs="0" name="return" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="return" type="tns:respuestaSolicitud"></xs:element>
     </xs:sequence>
   </xs:complexType>
-  <xs:element name="Exception" type="tns:Exception"></xs:element>
-  <xs:complexType name="Exception">
+
+  <xs:complexType name="respuestaSolicitud">
     <xs:sequence>
-      <xs:element minOccurs="0" name="message" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="mensaje" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="mensajePersonalizado" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="mensajeTecnico" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="respuestaCOD" type="xs:string"></xs:element>
+      <xs:element name="tieneError" type="xs:boolean"></xs:element>
     </xs:sequence>
   </xs:complexType>
+
 </xs:schema>

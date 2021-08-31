@@ -17,10 +17,6 @@
     <wsdl:part name="parameters" element="tns:EnviarDatosOperacion">
     </wsdl:part>
   </wsdl:message>
-  <wsdl:message name="Exception">
-    <wsdl:part name="Exception" element="tns:Exception">
-    </wsdl:part>
-  </wsdl:message>
   <wsdl:message name="EnviarDatosOperacionResponse">
     <wsdl:part name="parameters" element="tns:EnviarDatosOperacionResponse">
     </wsdl:part>
@@ -37,8 +33,6 @@
     </wsdl:input>
       <wsdl:output name="EnviarDatosOperacionResponse" message="tns:EnviarDatosOperacionResponse">
     </wsdl:output>
-      <wsdl:fault name="Exception" message="tns:Exception">
-    </wsdl:fault>
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="ScoreWebServiceServiceSoapBinding" type="tns:ScoreWebService">
@@ -60,9 +54,6 @@
       <wsdl:output name="EnviarDatosOperacionResponse">
         <soap:body use="literal"/>
       </wsdl:output>
-      <wsdl:fault name="Exception">
-        <soap:fault name="Exception" use="literal"/>
-      </wsdl:fault>
     </wsdl:operation>
   </wsdl:binding>
   <wsdl:service name="ScoreWebServiceService">

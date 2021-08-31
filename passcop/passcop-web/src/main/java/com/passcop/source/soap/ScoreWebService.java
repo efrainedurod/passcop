@@ -10,18 +10,15 @@ import javax.jws.WebService;
 
 import org.slf4j.Logger;
 
-import com.fitbank.common.FileHelper;
-
 import com.fitbank.dto.management.Detail;
-
-import com.fitbank.dto.management.Record;
 import com.fitbank.dto.management.Table;
 import com.passcop.source.dao.VpersonaDao;
 import com.passcop.source.request.Persona;
 import com.passcop.source.model.Vpersona;
 import com.passcop.source.request.Respuesta;
-import com.passcop.source.util.Response;
-import com.passcop.source.util.UCIClient;
+import com.passcop.source.request.RespuestaSolicitud;
+import com.passcop.source.util.DetailProcessor;
+import com.passcop.source.util.HelperResponse;
 
 @WebService()
 public class ScoreWebService {
@@ -33,7 +30,6 @@ public class ScoreWebService {
 	@SuppressWarnings("unused")
 	private Logger log;
 
-	
 	@WebMethod
 	public Persona ConsultarServicioPersona(@WebParam(name = "identificacion") String identificacion,
 			@WebParam(name = "UsuarioID") Short usuarioID) {
@@ -42,7 +38,7 @@ public class ScoreWebService {
 			log.info("Iniciando Consulta para la identificacion: " + identificacion);
 			List<Vpersona> personas = personaDao.findAllByIdentificacion(identificacion);
 			if (personas.size() > 0) {
-				Response response = new Response();
+				HelperResponse response = new HelperResponse();
 				Persona persona = response.consultarPersona(personas);
 				log.info("PersonaId: " + personas.get(0).getPersonaid().intValueExact());
 				log.info("Consulta exitosa para la identificación: " + identificacion);
@@ -56,7 +52,7 @@ public class ScoreWebService {
 			}
 		} catch (Exception ex) {
 			log.error(ex.getMessage(), ex);
-			//e.printStackTrace();
+			// e.printStackTrace();
 			Persona persona = new Persona();
 			persona.setTieneError(true);
 			persona.setMensaje("D411");
@@ -64,52 +60,87 @@ public class ScoreWebService {
 		}
 	}
 
-/*	@WebMethod
-	public List<Persona> consultarPersonaNuevo2(@WebParam(name = "identificacion") String identificacion) {
-
-		System.out.println(personaDao != null ? "Esta instanciado" : "nulo");
-		List<Vpersona> personas = personaDao.findAll();
-		System.out.println("Numero personas: " + personas.size());
-
-		Response response = new Response();
-		List<Persona> persona = response.consultarPersona2(personas);
-
-		return persona;
-
-	}
-
 	@WebMethod
-	public String contultaDetail(@WebParam(name = "identificacion") String identificacion) throws Exception {
-		String nombre = "";
-		// Detail de entrada
-		String message = FileHelper.readFile("/home/fitbank/FitBank/score/in.xml");
-		Detail inDetail = Detail.valueOf(message);
-		Table table = inDetail.findTableByName("TPERSONA");
-		if (table != null) {
-			table.findCriterionByName("identificacion").setValue(identificacion);
-			System.out.println("Seteando el valor del criterio con: " + identificacion);
-		}
-		System.out.println("Detail IN: " + inDetail.toErrorXml());
-		// Detail de salida
-		String res = (String) UCIClient.send(inDetail.toErrorXml(), "127.0.0.1", 20090, 30);
-		Detail outDetail = Detail.valueOf(res);
-		System.out.println("Detail OUT: " + inDetail.toErrorXml());
-		Table outTable = outDetail.findTableByName("TPERSONA");
-		if (outTable != null) {
-			for (Record record : outTable.getRecords()) {
-				nombre = record.findFieldByNameCreate("nombrelegal").getStringValue();
+	public RespuestaSolicitud EnviarDatosOperacion(@WebParam(name = "operacion") Respuesta operacion) {
+		try {
+			log.info("INICIO - CREACIÓN DE SOLICITUD PARA LA PESONA: " + operacion.getIdentificacion());
+			HelperResponse helper = new HelperResponse();
+			// 1) Verifica Si el producto existe en el mapeo
+			String[] productFit = helper.getProduct(operacion.getProductoID());
+			if (productFit == null) {
+				return helper.getResponseNotFoundProduct();
 			}
+			log.info("CGRUPOPRODUCTO: " + productFit[0] + ", CPRODUCTO: " + productFit[1]);
+			
+			// 2) Verifica el valor del Destino de Fondos
+			DetailProcessor detailProcessor = new DetailProcessor();
+			RespuestaSolicitud destinoFodos = detailProcessor.getDestinoFondos(productFit,
+					operacion.getDestinoEconomicoCOD());
+			if (destinoFodos.isTieneError() == true) {
+				return destinoFodos;
+			}
+			log.info("CDESTINOFONDOS: " + destinoFodos.getMensaje());
+			
+			// 3) Consulta la clacificación contable
+			RespuestaSolicitud clasificacionCon = detailProcessor.getClasificacionContable(productFit, destinoFodos.getMensaje());
+			if (clasificacionCon.isTieneError() == true) {
+				return destinoFodos;
+			}
+			log.info("CCLASIFICACIONCONTABLE: " + clasificacionCon.getMensaje());
+			
+			// 4) Consulta la tproductoCuotas contable
+			Short numeroCuotas = operacion.getPlazo();
+			Integer plazo = (operacion.getPlazo() != 0) ? new Short(operacion.getPlazo()).intValue() * 30 : 0;
+			Table tproductoCuotas = detailProcessor.getTproductoCuotas(productFit, destinoFodos.getMensaje(),
+					clasificacionCon.getMensaje(), operacion, numeroCuotas, plazo);
+			if (tproductoCuotas == null) {
+				RespuestaSolicitud resSol = new RespuestaSolicitud();
+				resSol.setTieneError(true);
+				resSol.setRespuestaCOD("D503");
+				resSol.setMensaje("No existe una tasa registrada para los parametros de la solicitud");
+				resSol.setMensajePersonalizado("Error de validacion de entidades de la base de datos");
+				resSol.setMensajeTecnico("No existe una tasa registrada para los parametros de la solicitud");
+				return resSol;
+			}
+			log.info("TASA:"
+					+ tproductoCuotas.getRecords().iterator().next().findFieldByNameCreate("TASA").getStringValue());
+			
+			// 5) Envía las transacción 062100 al CORE
+			Detail outDetail = detailProcessor.solicitudProcess(operacion, productFit, destinoFodos.getMensaje(),
+					clasificacionCon.getMensaje(), tproductoCuotas, numeroCuotas, plazo);
+			
+			RespuestaSolicitud resSol = new RespuestaSolicitud();
+			if (outDetail.getResponse().getCode().trim().equals("0")) {
+				resSol.setTieneError(false);
+				resSol.setRespuestaCOD("D205");
+				resSol.setMensaje("Proceso Exitoso");
+				resSol.setMensajePersonalizado("Proceso Exitoso");
+				resSol.setMensajeTecnico("Proceso Exitoso");
+				log.info("CSOLICITUD:" + outDetail.findTableByName("TSOLICITUD").getRecords().iterator().next()
+						.findFieldByNameCreate("CSOLICITUD").getStringValue());
+			} else {
+				resSol.setTieneError(false);
+				resSol.setRespuestaCOD("D411");
+				resSol.setMensaje(outDetail.getResponse().getUserMessage().toUpperCase());
+				resSol.setMensajePersonalizado("Error de validacion de entidades de la base de datos");
+				resSol.setMensajeTecnico(outDetail.getResponse().getTechnicalMessage());
+
+				log.info("CSOLICITUD:" + outDetail.findTableByName("TSOLICITUD").getRecords().iterator().next()
+						.findFieldByNameCreate("CSOLICITUD").getStringValue());
+			}
+			log.info("FIN - CREACIÓN DE SOLICITUD PARA LA PESONA: " + operacion.getIdentificacion());
+
+			return resSol;
+		} catch (Exception ex) {
+			log.error(ex.getMessage(), ex);
+			RespuestaSolicitud resSol = new RespuestaSolicitud();
+			resSol.setTieneError(true);
+			resSol.setRespuestaCOD("D504");
+			resSol.setMensaje("Error de Sistema");
+			resSol.setMensajePersonalizado("Error de Sistema");
+			resSol.setMensajeTecnico(ex.getMessage());
+
+			return resSol;
 		}
-		return nombre;
 	}
-*/
-	
-	
-	@WebMethod
-	public String EnviarDatosOperacion(@WebParam(name = "operacion") Respuesta operacion) throws Exception {
-		String nombre = "EjecuciónCorrecta";
-
-		return nombre;
-	}
-
 }

@@ -6,14 +6,12 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
-import javax.inject.Inject;
-import org.slf4j.Logger;
-
 import com.passcop.source.model.Vpersona;
 import com.passcop.source.request.Persona;
+import com.passcop.source.request.RespuestaSolicitud;
 
 
-public class Response implements Serializable {
+public class HelperResponse implements Serializable {
 	
 	public Persona consultarPersona(List<Vpersona> personas) throws Exception {
 		Vpersona vper = personas.get(0);
@@ -127,5 +125,96 @@ public class Response implements Serializable {
 		calendar.setTime(date);
 		return calendar;
 
+	}
+	
+	public String[] getProduct(Integer pId) throws Exception {
+		String product = null;
+		switch (pId) {
+
+		case 1610:
+			product = "01-610";
+			break;
+		case 1611:
+			product = "01-611";
+			break;
+		case 2620:
+			product = "02-620";
+			break;
+		case 2621:
+			product = "02-621";
+			break;
+		case 2622:
+			product = "02-622";
+			break;
+		case 3630:
+			product = "03-630";
+			break;
+		case 4640:
+			product = "04-640";
+			break;
+		case 4641:
+			product = "01-641";
+			break;
+		case 4642:
+			product = "01-642";
+			break;
+		case 4643:
+			product = "01-643";
+			break;
+		case 4644:
+			product = "01-644";
+			break;
+		case 4645:
+			product = "01-645";
+			break;
+		case 4646:
+			product = "04-646";
+			break;
+		case 4647:
+			product = "04-647";
+			break;
+		case 4648:
+			product = "4-648";
+			break;
+		case 4649:
+			product = "04-649";
+			break;
+		case 4650:
+			product = "04-650";
+			break;
+		case 4651:
+			product = "04-651";
+			break;
+		case 4652:
+			product = "04-652";
+			break;
+		case 4653:
+			product = "04-653";
+			break;
+		case 4654:
+			product = "04-654";
+			break;
+		case 5655:
+			product = "05-655";
+			break;
+		case 7670:
+			product = "07-670";
+			break;
+		case 9690:
+			product = "09-690";
+			break;
+		}
+		return (product != null) ? product.split("-") : null;
+	}
+	
+	
+	public RespuestaSolicitud getResponseNotFoundProduct() {
+		RespuestaSolicitud resSol = new RespuestaSolicitud();
+		resSol.setTieneError(true);
+		resSol.setRespuestaCOD("D404");
+		resSol.setMensaje("Validacion No Exitosa No se puede identificar el Producto");
+		resSol.setMensajePersonalizado("Validacion No Exitosa No se puede identificar el Producto");
+		resSol.setMensajeTecnico("Validacion No Exitosa No se puede identificar el Producto");
+		return resSol;
 	}
 }
