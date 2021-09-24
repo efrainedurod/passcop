@@ -63,7 +63,11 @@ public class ScoreWebService {
 	@WebMethod
 	public RespuestaSolicitud EnviarDatosOperacion(@WebParam(name = "operacion") Respuesta operacion) {
 		try {
+
+			log.debug("PARAMETROS DE ENTRADA");
+			log.debug("TRAMA: " + operacion.toString());
 			log.info("INICIO - CREACIÓN DE SOLICITUD PARA LA PESONA: " + operacion.getIdentificacion());
+
 			HelperResponse helper = new HelperResponse();
 			// 1) Verifica Si el producto existe en el mapeo
 			String[] productFit = helper.getProduct(operacion.getProductoID());
@@ -71,7 +75,7 @@ public class ScoreWebService {
 				return helper.getResponseNotFoundProduct();
 			}
 			log.info("CGRUPOPRODUCTO: " + productFit[0] + ", CPRODUCTO: " + productFit[1]);
-			
+
 			// 2) Verifica el valor del Destino de Fondos
 			DetailProcessor detailProcessor = new DetailProcessor();
 			RespuestaSolicitud destinoFodos = detailProcessor.getDestinoFondos(productFit,
@@ -80,14 +84,15 @@ public class ScoreWebService {
 				return destinoFodos;
 			}
 			log.info("CDESTINOFONDOS: " + destinoFodos.getMensaje());
-			
+
 			// 3) Consulta la clacificación contable
-			RespuestaSolicitud clasificacionCon = detailProcessor.getClasificacionContable(productFit, destinoFodos.getMensaje());
+			RespuestaSolicitud clasificacionCon = detailProcessor.getClasificacionContable(productFit,
+					destinoFodos.getMensaje());
 			if (clasificacionCon.isTieneError() == true) {
 				return destinoFodos;
 			}
 			log.info("CCLASIFICACIONCONTABLE: " + clasificacionCon.getMensaje());
-			
+
 			// 4) Consulta la tproductoCuotas contable
 			Short numeroCuotas = operacion.getPlazo();
 			Integer plazo = (operacion.getPlazo() != 0) ? new Short(operacion.getPlazo()).intValue() * 30 : 0;
@@ -104,11 +109,11 @@ public class ScoreWebService {
 			}
 			log.info("TASA:"
 					+ tproductoCuotas.getRecords().iterator().next().findFieldByNameCreate("TASA").getStringValue());
-			
+
 			// 5) Envía las transacción 062100 al CORE
 			Detail outDetail = detailProcessor.solicitudProcess(operacion, productFit, destinoFodos.getMensaje(),
 					clasificacionCon.getMensaje(), tproductoCuotas, numeroCuotas, plazo);
-			
+
 			RespuestaSolicitud resSol = new RespuestaSolicitud();
 			if (outDetail.getResponse().getCode().trim().equals("0")) {
 				resSol.setTieneError(false);

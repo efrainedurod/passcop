@@ -333,4 +333,14 @@ public class ReferenciasPersonales  implements java.io.Serializable {
             _javaType, _xmlType, typeDesc);
     }
 
+	@Override
+	public String toString() {
+		return "ReferenciasPersonales [solicitudID=" + solicitudID + ", nombre=" + nombre
+				+ ", tipoReferenciaPersonalCOD=" + tipoReferenciaPersonalCOD + ", telefono=" + telefono
+				+ ", observacion=" + observacion + ", tieneError=" + tieneError + ", mensaje=" + mensaje
+				+ ", __equalsCalc=" + __equalsCalc + ", __hashCodeCalc=" + __hashCodeCalc + "]";
+	}
+    
+    
+
 }

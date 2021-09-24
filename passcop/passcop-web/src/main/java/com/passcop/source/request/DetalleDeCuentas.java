@@ -446,4 +446,15 @@ public class DetalleDeCuentas  implements java.io.Serializable {
             _javaType, _xmlType, typeDesc);
     }
 
+	@Override
+	public String toString() {
+		return "DetalleDeCuentas [infEconFamiliarID=" + infEconFamiliarID + ", personaID=" + personaID + ", cuentaID="
+				+ cuentaID + ", valorDetalleCuentas=" + valorDetalleCuentas + ", institucionID=" + institucionID
+				+ ", grupoCuentaCODE=" + grupoCuentaCODE + ", nombreDetalleCuenta=" + nombreDetalleCuenta
+				+ ", detallar=" + detallar + ", circulante=" + circulante + ", inventario=" + inventario + ", orden="
+				+ orden + ", __equalsCalc=" + __equalsCalc + ", __hashCodeCalc=" + __hashCodeCalc + "]";
+	}
+    
+    
+
 }

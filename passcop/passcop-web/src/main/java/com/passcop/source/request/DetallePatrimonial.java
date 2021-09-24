@@ -423,4 +423,15 @@ public class DetallePatrimonial  implements java.io.Serializable {
             _javaType, _xmlType, typeDesc);
     }
 
+	@Override
+	public String toString() {
+		return "DetallePatrimonial [cuentaIDDetallePatrimonial=" + cuentaIDDetallePatrimonial
+				+ ", cuentaDetallePatrimonial=" + cuentaDetallePatrimonial + ", grupoCuentaCODEDetallePatrimonial="
+				+ grupoCuentaCODEDetallePatrimonial + ", detallar=" + detallar + ", circulante=" + circulante
+				+ ", inventario=" + inventario + ", orden=" + orden + ", descripcion=" + descripcion + ", cantidad="
+				+ cantidad + ", valorDetallePatrimonial=" + valorDetallePatrimonial + ", __equalsCalc=" + __equalsCalc
+				+ ", __hashCodeCalc=" + __hashCodeCalc + "]";
+	}
+
+    
 }

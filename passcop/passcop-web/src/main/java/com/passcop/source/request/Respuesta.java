@@ -7,6 +7,8 @@
 
 package com.passcop.source.request;
 
+import java.util.Arrays;
+
 public class Respuesta  implements java.io.Serializable {
     private ReferenciasPersonales[] referenciasPersonales;
 
@@ -5628,4 +5630,92 @@ public class Respuesta  implements java.io.Serializable {
             _javaType, _xmlType, typeDesc);
     }
 
+	@Override
+	public String toString() {
+		return "Respuesta [referenciasPersonales=" + Arrays.toString(referenciasPersonales) + ", nombreModulo="
+				+ nombreModulo + ", solicitudID=" + solicitudID + ", productoID=" + productoID + ", moduloID="
+				+ moduloID + ", tipoCuotaCOD=" + tipoCuotaCOD + ", montoSolicitud=" + montoSolicitud + ", tasa=" + tasa
+				+ ", plazo=" + plazo + ", unidadTiempoPlazoCOD=" + unidadTiempoPlazoCOD + ", formaPagoCOD="
+				+ formaPagoCOD + ", primerInteres=" + primerInteres + ", primeraCuota=" + primeraCuota
+				+ ", tipoGarantiaCOD=" + tipoGarantiaCOD + ", destinoEconomicoCOD=" + destinoEconomicoCOD
+				+ ", destinoDetalle=" + destinoDetalle + ", cuotaCreditoVigente=" + cuotaCreditoVigente
+				+ ", decisionCOD=" + decisionCOD + ", observacion=" + observacion + ", IVA=" + IVA + ", periodoGracia="
+				+ periodoGracia + ", interesesAmortizacion=" + interesesAmortizacion + ", usuarioIDSolicitud="
+				+ usuarioIDSolicitud + ", identificacionSolicitud=" + identificacionSolicitud + ", personaID="
+				+ personaID + ", fechaSolicitud=" + fechaSolicitud + ", relacionCOD=" + relacionCOD
+				+ ", identificacion=" + identificacion + ", identificacionConyuge=" + identificacionConyuge
+				+ ", tipoPersonaCOD=" + tipoPersonaCOD + ", tipoIdentificacionCOD=" + tipoIdentificacionCOD
+				+ ", apellidoPaterno=" + apellidoPaterno + ", apellidoMaterno=" + apellidoMaterno + ", nombres="
+				+ nombres + ", fechaNacimiento=" + fechaNacimiento + ", estadoCivilCOD=" + estadoCivilCOD + ", sexoCOD="
+				+ sexoCOD + ", numeroCarga=" + numeroCarga + ", separacionBienes=" + separacionBienes
+				+ ", nacionalidadCOD=" + nacionalidadCOD + ", nivelEducacionCOD=" + nivelEducacionCOD
+				+ ", ocupacionCOD=" + ocupacionCOD + ", correo=" + correo + ", fechaApertura=" + fechaApertura
+				+ ", localidadCOD=" + localidadCOD + ", direccion=" + direccion + ", tipoViviendaCOD=" + tipoViviendaCOD
+				+ ", situacionViviendaCOD=" + situacionViviendaCOD + ", viviendaHipotecada=" + viviendaHipotecada
+				+ ", duenoCasa=" + duenoCasa + ", telefonoDuenoCasa=" + telefonoDuenoCasa + ", tiempoViviendaActual="
+				+ tiempoViviendaActual + ", unidadTiempoViviendaActualCOD=" + unidadTiempoViviendaActualCOD
+				+ ", referenciaUbicacion=" + referenciaUbicacion + ", tiempoViviendaAnterior=" + tiempoViviendaAnterior
+				+ ", unidadTiempoViviendaAnteriorCOD=" + unidadTiempoViviendaAnteriorCOD + ", telefonoDomicilio="
+				+ telefonoDomicilio + ", telefonoCelular=" + telefonoCelular + ", socio=" + socio
+				+ ", identificacionSocio=" + identificacionSocio + ", garante=" + garante + ", identificacionGarante="
+				+ identificacionGarante + ", conyugeGarante=" + conyugeGarante + ", conyugeSocio=" + conyugeSocio
+				+ ", identificacionInformacionNegocio=" + identificacionInformacionNegocio
+				+ ", nombreInformacionNegocio=" + nombreInformacionNegocio + ", sectorEconomicoCOD="
+				+ sectorEconomicoCOD + ", descripcion=" + descripcion + ", antiguedadNegocio=" + antiguedadNegocio
+				+ ", unidadAntiguedadNegocioCOD=" + unidadAntiguedadNegocioCOD + ", numeroEmpleados=" + numeroEmpleados
+				+ ", direccionInformacionNegocio=" + direccionInformacionNegocio + ", referencia=" + referencia
+				+ ", telefono=" + telefono + ", direccionTrabajoConyuge=" + direccionTrabajoConyuge
+				+ ", telefonoTrabajoConyuge=" + telefonoTrabajoConyuge + ", antiguedadNegocioMismoLugar="
+				+ antiguedadNegocioMismoLugar + ", unidadAntiguedadNegocioMismoLugarCOD="
+				+ unidadAntiguedadNegocioMismoLugarCOD + ", tipoLocalCOD=" + tipoLocalCOD + ", comercio=" + comercio
+				+ ", ingreso=" + ingreso + ", estado=" + estado + ", latitud=" + latitud + ", longitud=" + longitud
+				+ ", detalledeCuentasSocio=" + Arrays.toString(detalledeCuentasSocio) + ", detalledeCuentasGarante="
+				+ Arrays.toString(detalledeCuentasGarante) + ", totalValorPatrimonioACTIVOSocio="
+				+ totalValorPatrimonioACTIVOSocio + ", totalValorPatrimonioPASIVOSocio="
+				+ totalValorPatrimonioPASIVOSocio + ", totalValorDetalleDeCuentasINGRESOSSocio="
+				+ totalValorDetalleDeCuentasINGRESOSSocio + ", totalValorDetalleDeCuentasEGRESOSSocio="
+				+ totalValorDetalleDeCuentasEGRESOSSocio + ", totalValorPatrimonioACTIVOGarante="
+				+ totalValorPatrimonioACTIVOGarante + ", totalValorPatrimonioPASIVOGarante="
+				+ totalValorPatrimonioPASIVOGarante + ", totalValorDetalleDeCuentasINGRESOSGarante="
+				+ totalValorDetalleDeCuentasINGRESOSGarante + ", totalValorDetalleDeCuentasEGRESOSGarante="
+				+ totalValorDetalleDeCuentasEGRESOSGarante + ", detallePatrimonialSocio="
+				+ Arrays.toString(detallePatrimonialSocio) + ", totalValorDetallePatrimonial="
+				+ totalValorDetallePatrimonial + ", detallePatrominialGarante="
+				+ Arrays.toString(detallePatrominialGarante) + ", totalValorDetallePatrimonialGarante="
+				+ totalValorDetallePatrimonialGarante + ", garantiasReales=" + Arrays.toString(garantiasReales)
+				+ ", referenciasPersonales2=" + Arrays.toString(referenciasPersonales2) + ", referenciasComerciales="
+				+ Arrays.toString(referenciasComerciales) + ", tipoReferenciaComercialCOD=" + tipoReferenciaComercialCOD
+				+ ", descripcionRererenciasComerciales=" + descripcionRererenciasComerciales
+				+ ", valorReferenciasComerciales=" + valorReferenciasComerciales + ", telefonoReferenciasComerciales="
+				+ telefonoReferenciasComerciales + ", observacionReferenciasComerciales="
+				+ observacionReferenciasComerciales + ", patrimonioMontos=" + patrimonioMontos + ", ventasMontos="
+				+ ventasMontos + ", costototal=" + costototal + ", totalIngresosFlujo=" + totalIngresosFlujo
+				+ ", ingresosFamiliar=" + ingresosFamiliar + ", ingresosNegocio=" + ingresosNegocio + ", totalEgresos="
+				+ totalEgresos + ", egresosFamiliar=" + egresosFamiliar + ", egresosNegocio=" + egresosNegocio
+				+ ", disponibilidadAntesCredito=" + disponibilidadAntesCredito + ", cuoraCredito=" + cuoraCredito
+				+ ", disponibleNeto=" + disponibleNeto + ", ventasTotalesPerdidasYGanancias="
+				+ ventasTotalesPerdidasYGanancias + ", costosTotalesPerdidasYGanancias="
+				+ costosTotalesPerdidasYGanancias + ", gastosTotalesPerdidasYGanancias="
+				+ gastosTotalesPerdidasYGanancias + ", gastosFinancierosPerdidasYGanancias="
+				+ gastosFinancierosPerdidasYGanancias + ", utilidadNegocioTotalPerdidasYGanancias="
+				+ utilidadNegocioTotalPerdidasYGanancias + ", egresosNegocioPerdidasYGanancias="
+				+ egresosNegocioPerdidasYGanancias + ", ingresosFamiliaresTotalPerdidasYGanancias="
+				+ ingresosFamiliaresTotalPerdidasYGanancias + ", egresosFamiliaresTotalPerdidasYGanancias="
+				+ egresosFamiliaresTotalPerdidasYGanancias + ", utilidadNetaPersidasYGanancias="
+				+ utilidadNetaPersidasYGanancias + ", centralRiesgoSocio=" + centralRiesgoSocio
+				+ ", centralRiesgoConyugeSocio=" + centralRiesgoConyugeSocio + ", centralRiesgoGarante="
+				+ centralRiesgoGarante + ", centralRiesgoConyugeGarante=" + centralRiesgoConyugeGarante
+				+ ", montoTotalEndeudamiento=" + montoTotalEndeudamiento + ", totalCarteraVigente="
+				+ totalCarteraVigente + ", carteraRiesgo=" + carteraRiesgo + ", calificacionRiesgoCOD="
+				+ calificacionRiesgoCOD + ", castigoDemanda=" + castigoDemanda + ", peorCalificacion12MesesCOD="
+				+ peorCalificacion12MesesCOD + ", castigoDemanda12Meses=" + castigoDemanda12Meses
+				+ ", numeroCreditosIFI=" + numeroCreditosIFI + ", numeroOperaciones=" + numeroOperaciones
+				+ ", reciprocidad=" + reciprocidad + ", estadoCentralRiesgo=" + estadoCentralRiesgo + ", usuarioID="
+				+ usuarioID + ", personaIdCentralRiesgo=" + personaIdCentralRiesgo + ", tieneError=" + tieneError
+				+ ", mensaje=" + mensaje + ", respuestaCOD=" + respuestaCOD + ", segmento=" + segmento + ", metodo="
+				+ metodo + ", mensajePersonalizado=" + mensajePersonalizado + ", mensajeTecnico=" + mensajeTecnico
+				+ ", __equalsCalc=" + __equalsCalc + ", __hashCodeCalc=" + __hashCodeCalc + "]";
+	}
+
+    
 }

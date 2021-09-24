@@ -1201,4 +1201,22 @@ public class GarantiasReales  implements java.io.Serializable {
             _javaType, _xmlType, typeDesc);
     }
 
+	@Override
+	public String toString() {
+		return "GarantiasReales [identificacion=" + identificacion + ", tipoGarantiaCOD=" + tipoGarantiaCOD
+				+ ", descripcion=" + descripcion + ", valor=" + valor + ", personaID=" + personaID
+				+ ", microEmpresario=" + microEmpresario + ", cuotaCreditoVigente=" + cuotaCreditoVigente + ", ingreso="
+				+ ingreso + ", estado=" + estado + ", usuarioID=" + usuarioID + ", comercio=" + comercio
+				+ ", estadoCOD=" + estadoCOD + ", direccion=" + direccion + ", nombrePropietario=" + nombrePropietario
+				+ ", seriePrincipalMotor=" + seriePrincipalMotor + ", serieSecundariaMotor=" + serieSecundariaMotor
+				+ ", marca=" + marca + ", modelo=" + modelo + ", placa=" + placa + ", anioFabricacionConstruccion="
+				+ anioFabricacionConstruccion + ", fechaAvaluo=" + fechaAvaluo + ", nombrePerito=" + nombrePerito
+				+ ", avaluoComercial=" + avaluoComercial + ", numeroRegistro=" + numeroRegistro
+				+ ", grupoTipoGarantiaCOD=" + grupoTipoGarantiaCOD + ", longitud=" + longitud + ", latitud=" + latitud
+				+ ", descripcionGarantiasReales=" + descripcionGarantiasReales + ", direccionGarantiasReales="
+				+ direccionGarantiasReales + ", tieneError=" + tieneError + ", mensaje=" + mensaje + ", __equalsCalc="
+				+ __equalsCalc + ", __hashCodeCalc=" + __hashCodeCalc + "]";
+	}
+
+    
 }
