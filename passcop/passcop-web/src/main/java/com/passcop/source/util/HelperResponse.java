@@ -10,12 +10,11 @@ import com.passcop.source.model.Vpersona;
 import com.passcop.source.request.Persona;
 import com.passcop.source.request.RespuestaSolicitud;
 
-
 public class HelperResponse implements Serializable {
-	
+
 	public Persona consultarPersona(List<Vpersona> personas) throws Exception {
 		Vpersona vper = personas.get(0);
-		
+
 		Persona persona = new Persona();
 		persona.setPersonaID(vper.getPersonaid().intValueExact());
 		persona.setRelacionCOD(vper.getRelacioncod());
@@ -126,88 +125,108 @@ public class HelperResponse implements Serializable {
 		return calendar;
 
 	}
-	
-	public String[] getProduct(Integer pId) throws Exception {
+
+	public String[] getProduct(String pId) throws Exception {
 		String product = null;
 		switch (pId) {
 
-		case 1610:
-			product = "01-610";
-			break;
-		case 1611:
-			product = "01-611";
-			break;
-		case 2620:
+		case "2620":
 			product = "02-620";
 			break;
-		case 2621:
-			product = "02-621";
-			break;
-		case 2622:
+		case "2622":
 			product = "02-622";
 			break;
-		case 3630:
-			product = "03-630";
+		case "4642":
+			product = "04-642";
 			break;
-		case 4640:
+		case "4645":
+			product = "04-645";
+			break;
+		case "4640 AA":
 			product = "04-640";
 			break;
-		case 4641:
-			product = "01-641";
+		case "4640 AS":
+			product = "04-640";
 			break;
-		case 4642:
-			product = "01-642";
+		case "4640 MIN":
+			product = "04-640";
 			break;
-		case 4643:
-			product = "01-643";
+		case "4644 AA":
+			product = "04-644";
 			break;
-		case 4644:
-			product = "01-644";
+		case "4644 AS":
+			product = "04-644";
 			break;
-		case 4645:
-			product = "01-645";
+		case "4644 MIN":
+			product = "04-644";
 			break;
-		case 4646:
-			product = "04-646";
+		case "4648 AA":
+			product = "04-648";
 			break;
-		case 4647:
-			product = "04-647";
+		case "4648 AS":
+			product = "04-648";
 			break;
-		case 4648:
-			product = "4-648";
+		case "4648 MIN":
+			product = "04-648";
 			break;
-		case 4649:
-			product = "04-649";
-			break;
-		case 4650:
-			product = "04-650";
-			break;
-		case 4651:
-			product = "04-651";
-			break;
-		case 4652:
+		case "4652 AA":
 			product = "04-652";
 			break;
-		case 4653:
-			product = "04-653";
+		case "4652 AS":
+			product = "04-652";
 			break;
-		case 4654:
-			product = "04-654";
-			break;
-		case 5655:
-			product = "05-655";
-			break;
-		case 7670:
-			product = "07-670";
-			break;
-		case 9690:
-			product = "09-690";
+		case "4652 MIN":
+			product = "04-652";
 			break;
 		}
 		return (product != null) ? product.split("-") : null;
 	}
-	
-	
+
+	public String getTipoCuota(String pId) throws Exception {
+		String product = "";
+		switch (pId) {
+
+		case "F":
+			product = "AMG";
+			break;
+		case "D":
+			product = "CAP";
+			break;
+		}
+		return product;
+	}
+
+	public String getFrecuencia(String pId) throws Exception {
+		String frecuencia = "";
+		switch (pId) {
+		case "360":
+			frecuencia = "8";
+			break;
+		case "60":
+			frecuencia = "10";
+			break;
+		case "1":
+			frecuencia = "1";
+			break;
+		case "30":
+			frecuencia = "5";
+			break;
+		case "15":
+			frecuencia = "4";
+			break;
+		case "7":
+			frecuencia = "2";
+			break;
+		case "180":
+			frecuencia = "7";
+			break;
+		case "90":
+			frecuencia = "6";
+			break;
+		}
+		return frecuencia;
+	}
+
 	public RespuestaSolicitud getResponseNotFoundProduct() {
 		RespuestaSolicitud resSol = new RespuestaSolicitud();
 		resSol.setTieneError(true);
@@ -215,6 +234,28 @@ public class HelperResponse implements Serializable {
 		resSol.setMensaje("Validacion No Exitosa No se puede identificar el Producto");
 		resSol.setMensajePersonalizado("Validacion No Exitosa No se puede identificar el Producto");
 		resSol.setMensajeTecnico("Validacion No Exitosa No se puede identificar el Producto");
+		return resSol;
+	}
+
+	public RespuestaSolicitud verifyParameters(Short pPlazo, String pFormaPago) {
+		RespuestaSolicitud resSol = new RespuestaSolicitud();
+
+		if (pPlazo == null || pPlazo == 0) {
+			resSol.setTieneError(true);
+			resSol.setRespuestaCOD("D503");
+			resSol.setMensaje("Parámetro Plazo no enviado o igual a cero");
+			resSol.setMensajePersonalizado("Parámetro Plazo no enviado o igul a cero ");
+			resSol.setMensajeTecnico("Parámetro Plazo no enviado o igul a cero");
+		}
+		
+
+		if (pFormaPago == null || pFormaPago == "") {
+			resSol.setTieneError(true);
+			resSol.setRespuestaCOD("D503");
+			resSol.setMensaje("Parámetro FormaPago no enviado");
+			resSol.setMensajePersonalizado("Parámetro FormaPago no enviado");
+			resSol.setMensajeTecnico("Parámetro FormaPago no enviado");
+		}
 		return resSol;
 	}
 }

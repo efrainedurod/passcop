@@ -16,7 +16,7 @@ public class Respuesta  implements java.io.Serializable {
 
     private int solicitudID;
 
-    private java.lang.Integer productoID;
+    private java.lang.String productoID;
 
     private int moduloID;
 
@@ -319,7 +319,7 @@ public class Respuesta  implements java.io.Serializable {
            ReferenciasPersonales[] referenciasPersonales,
            java.lang.String nombreModulo,
            int solicitudID,
-           java.lang.Integer productoID,
+           java.lang.String productoID,
            int moduloID,
            java.lang.String tipoCuotaCOD,
            java.math.BigDecimal montoSolicitud,
@@ -686,7 +686,7 @@ public class Respuesta  implements java.io.Serializable {
      * 
      * @return productoID
      */
-    public java.lang.Integer getProductoID() {
+    public java.lang.String getProductoID() {
         return productoID;
     }
 
@@ -696,7 +696,7 @@ public class Respuesta  implements java.io.Serializable {
      * 
      * @param productoID
      */
-    public void setProductoID(java.lang.Integer productoID) {
+    public void setProductoID(java.lang.String productoID) {
         this.productoID = productoID;
     }
 

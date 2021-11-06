@@ -3,7 +3,6 @@
 	<name>passcop-ear</name>
 	<comment></comment>
 	<projects>
-		<project>passcop-client-vis</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>

@@ -94,10 +94,26 @@ public class ScoreWebService {
 			log.info("CCLASIFICACIONCONTABLE: " + clasificacionCon.getMensaje());
 
 			// 4) Consulta la tproductoCuotas contable
-			Short numeroCuotas = operacion.getPlazo();
-			Integer plazo = (operacion.getPlazo() != 0) ? new Short(operacion.getPlazo()).intValue() * 30 : 0;
-			Table tproductoCuotas = detailProcessor.getTproductoCuotas(productFit, destinoFodos.getMensaje(),
-					clasificacionCon.getMensaje(), operacion, numeroCuotas, plazo);
+			RespuestaSolicitud validaParametros = helper.verifyParameters(operacion.getPlazo(),
+					operacion.getFormaPagoCOD());
+			if (validaParametros.isTieneError() == true) {
+				return validaParametros;
+			}
+
+			Integer plazoMeses = new Short(operacion.getPlazo()).intValue();
+			Integer plazoDias = plazoMeses * 30;
+			String frecuencia = helper.getFrecuencia(operacion.getFormaPagoCOD());
+			Integer frecuenciaDias = Integer.parseInt(operacion.getFormaPagoCOD());
+			Integer numCuotas = (int) (plazoDias / frecuenciaDias);
+
+			log.debug("FORMA DE PAGO: " + operacion.getFormaPagoCOD());
+			log.debug("PLAZO EN MESES: " + plazoMeses);
+			log.debug("PLAZO EN DÍAS: " + plazoDias);
+			log.debug("FRECUENCIA FIT: " + frecuencia);
+			log.debug("NUMEROCUOTAS: " + numCuotas);
+
+			Table tproductoCuotas = detailProcessor.getTproductoCuotas(productFit, operacion.getMontoSolicitud(),
+					frecuencia, plazoDias, operacion.getPersonaID());
 			if (tproductoCuotas == null) {
 				RespuestaSolicitud resSol = new RespuestaSolicitud();
 				resSol.setTieneError(true);
@@ -111,8 +127,14 @@ public class ScoreWebService {
 					+ tproductoCuotas.getRecords().iterator().next().findFieldByNameCreate("TASA").getStringValue());
 
 			// 5) Envía las transacción 062100 al CORE
-			Detail outDetail = detailProcessor.solicitudProcess(operacion, productFit, destinoFodos.getMensaje(),
-					clasificacionCon.getMensaje(), tproductoCuotas, numeroCuotas, plazo);
+			String tipoCuota = helper.getTipoCuota(operacion.getTipoCuotaCOD());
+
+			// Setea los valores adicionales del Detail
+			Detail inDetailSol = detailProcessor.getSolicitudData(productFit, operacion.getPersonaID(),
+					operacion.getUsuarioIDSolicitud(), operacion.getUsuarioID(), operacion.getFechaSolicitud(),
+					destinoFodos.getMensaje(), clasificacionCon.getMensaje(), operacion.getIdentificacionConyuge(),
+					operacion.getMontoSolicitud(), tipoCuota, frecuencia, numCuotas, plazoDias, tproductoCuotas);
+			Detail outDetail = detailProcessor.solicitudProcess(inDetailSol);
 
 			RespuestaSolicitud resSol = new RespuestaSolicitud();
 			if (outDetail.getResponse().getCode().trim().equals("0")) {
@@ -132,6 +154,9 @@ public class ScoreWebService {
 
 				log.info("CSOLICITUD:" + outDetail.findTableByName("TSOLICITUD").getRecords().iterator().next()
 						.findFieldByNameCreate("CSOLICITUD").getStringValue());
+				log.error("Error de validacion de entidades de la base de datos");
+				log.error(outDetail.getResponse().getTechnicalMessage());
+
 			}
 			log.info("FIN - CREACIÓN DE SOLICITUD PARA LA PESONA: " + operacion.getIdentificacion());
 
