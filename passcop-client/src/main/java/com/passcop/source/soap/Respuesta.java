@@ -1,5 +1,5 @@
 
-package com.passcop.client;
+package com.passcop.source.soap;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -164,7 +164,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *         &lt;element name="unidadTiempoPlazoCOD" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/&gt;
  *         &lt;element name="unidadTiempoViviendaActualCOD" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/&gt;
  *         &lt;element name="unidadTiempoViviendaAnteriorCOD" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/&gt;
- *         &lt;element name="usuarioID" type="{http://www.w3.org/2001/XMLSchema}short"/&gt;
+ *         &lt;element name="usuarioID" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/&gt;
  *         &lt;element name="usuarioIDSolicitud" type="{http://www.w3.org/2001/XMLSchema}short"/&gt;
  *         &lt;element name="utilidadNegocioTotalPerdidasYGanancias" type="{http://www.w3.org/2001/XMLSchema}double"/&gt;
  *         &lt;element name="utilidadNetaPersidasYGanancias" type="{http://www.w3.org/2001/XMLSchema}double"/&gt;
@@ -336,7 +336,92 @@ import javax.xml.datatype.XMLGregorianCalendar;
 })
 public class Respuesta {
 
-    protected Integer antiguedadNegocio;
+    @Override
+	public String toString() {
+		return "Respuesta [antiguedadNegocio=" + antiguedadNegocio + ", antiguedadNegocioMismoLugar="
+				+ antiguedadNegocioMismoLugar + ", apellidoMaterno=" + apellidoMaterno + ", apellidoPaterno="
+				+ apellidoPaterno + ", calificacionRiesgoCOD=" + calificacionRiesgoCOD + ", carteraRiesgo="
+				+ carteraRiesgo + ", castigoDemanda=" + castigoDemanda + ", castigoDemanda12Meses="
+				+ castigoDemanda12Meses + ", centralRiesgoConyugeGarante=" + centralRiesgoConyugeGarante
+				+ ", centralRiesgoConyugeSocio=" + centralRiesgoConyugeSocio + ", centralRiesgoGarante="
+				+ centralRiesgoGarante + ", centralRiesgoSocio=" + centralRiesgoSocio + ", comercio=" + comercio
+				+ ", conyugeGarante=" + conyugeGarante + ", conyugeSocio=" + conyugeSocio + ", correo=" + correo
+				+ ", costosTotalesPerdidasYGanancias=" + costosTotalesPerdidasYGanancias + ", costototal=" + costototal
+				+ ", cuoraCredito=" + cuoraCredito + ", cuotaCreditoVigente=" + cuotaCreditoVigente + ", decisionCOD="
+				+ decisionCOD + ", descripcion=" + descripcion + ", descripcionRererenciasComerciales="
+				+ descripcionRererenciasComerciales + ", destinoDetalle=" + destinoDetalle + ", destinoEconomicoCOD="
+				+ destinoEconomicoCOD + ", detallePatrimonialSocio=" + detallePatrimonialSocio
+				+ ", detallePatrominialGarante=" + detallePatrominialGarante + ", detalledeCuentasGarante="
+				+ detalledeCuentasGarante + ", detalledeCuentasSocio=" + detalledeCuentasSocio + ", direccion="
+				+ direccion + ", direccionInformacionNegocio=" + direccionInformacionNegocio
+				+ ", direccionTrabajoConyuge=" + direccionTrabajoConyuge + ", disponibilidadAntesCredito="
+				+ disponibilidadAntesCredito + ", disponibleNeto=" + disponibleNeto + ", duenoCasa=" + duenoCasa
+				+ ", egresosFamiliar=" + egresosFamiliar + ", egresosFamiliaresTotalPerdidasYGanancias="
+				+ egresosFamiliaresTotalPerdidasYGanancias + ", egresosNegocio=" + egresosNegocio
+				+ ", egresosNegocioPerdidasYGanancias=" + egresosNegocioPerdidasYGanancias + ", estado=" + estado
+				+ ", estadoCentralRiesgo=" + estadoCentralRiesgo + ", estadoCivilCOD=" + estadoCivilCOD
+				+ ", fechaApertura=" + fechaApertura + ", fechaNacimiento=" + fechaNacimiento + ", fechaSolicitud="
+				+ fechaSolicitud + ", formaPagoCOD=" + formaPagoCOD + ", garante=" + garante + ", garantiasReales="
+				+ garantiasReales + ", gastosFinancierosPerdidasYGanancias=" + gastosFinancierosPerdidasYGanancias
+				+ ", gastosTotalesPerdidasYGanancias=" + gastosTotalesPerdidasYGanancias + ", iva=" + iva
+				+ ", identificacion=" + identificacion + ", identificacionConyuge=" + identificacionConyuge
+				+ ", identificacionGarante=" + identificacionGarante + ", identificacionInformacionNegocio="
+				+ identificacionInformacionNegocio + ", identificacionSocio=" + identificacionSocio
+				+ ", identificacionSolicitud=" + identificacionSolicitud + ", ingreso=" + ingreso
+				+ ", ingresosFamiliar=" + ingresosFamiliar + ", ingresosFamiliaresTotalPerdidasYGanancias="
+				+ ingresosFamiliaresTotalPerdidasYGanancias + ", ingresosNegocio=" + ingresosNegocio
+				+ ", interesesAmortizacion=" + interesesAmortizacion + ", latitud=" + latitud + ", localidadCOD="
+				+ localidadCOD + ", longitud=" + longitud + ", mensaje=" + mensaje + ", mensajePersonalizado="
+				+ mensajePersonalizado + ", mensajeTecnico=" + mensajeTecnico + ", metodo=" + metodo + ", moduloID="
+				+ moduloID + ", montoSolicitud=" + montoSolicitud + ", montoTotalEndeudamiento="
+				+ montoTotalEndeudamiento + ", nacionalidadCOD=" + nacionalidadCOD + ", nivelEducacionCOD="
+				+ nivelEducacionCOD + ", nombreInformacionNegocio=" + nombreInformacionNegocio + ", nombreModulo="
+				+ nombreModulo + ", nombres=" + nombres + ", numeroCarga=" + numeroCarga + ", numeroCreditosIFI="
+				+ numeroCreditosIFI + ", numeroEmpleados=" + numeroEmpleados + ", numeroOperaciones="
+				+ numeroOperaciones + ", observacion=" + observacion + ", observacionReferenciasComerciales="
+				+ observacionReferenciasComerciales + ", ocupacionCOD=" + ocupacionCOD + ", patrimonioMontos="
+				+ patrimonioMontos + ", peorCalificacion12MesesCOD=" + peorCalificacion12MesesCOD + ", periodoGracia="
+				+ periodoGracia + ", personaID=" + personaID + ", personaIdCentralRiesgo=" + personaIdCentralRiesgo
+				+ ", plazo=" + plazo + ", primerInteres=" + primerInteres + ", primeraCuota=" + primeraCuota
+				+ ", productoID=" + productoID + ", reciprocidad=" + reciprocidad + ", referencia=" + referencia
+				+ ", referenciaUbicacion=" + referenciaUbicacion + ", referenciasComerciales=" + referenciasComerciales
+				+ ", referenciasPersonales=" + referenciasPersonales + ", referenciasPersonales2="
+				+ referenciasPersonales2 + ", relacionCOD=" + relacionCOD + ", respuestaCOD=" + respuestaCOD
+				+ ", sectorEconomicoCOD=" + sectorEconomicoCOD + ", segmento=" + segmento + ", separacionBienes="
+				+ separacionBienes + ", sexoCOD=" + sexoCOD + ", situacionViviendaCOD=" + situacionViviendaCOD
+				+ ", socio=" + socio + ", solicitudID=" + solicitudID + ", tasa=" + tasa + ", telefono=" + telefono
+				+ ", telefonoCelular=" + telefonoCelular + ", telefonoDomicilio=" + telefonoDomicilio
+				+ ", telefonoDuenoCasa=" + telefonoDuenoCasa + ", telefonoReferenciasComerciales="
+				+ telefonoReferenciasComerciales + ", telefonoTrabajoConyuge=" + telefonoTrabajoConyuge
+				+ ", tiempoViviendaActual=" + tiempoViviendaActual + ", tiempoViviendaAnterior="
+				+ tiempoViviendaAnterior + ", tieneError=" + tieneError + ", tipoCuotaCOD=" + tipoCuotaCOD
+				+ ", tipoGarantiaCOD=" + tipoGarantiaCOD + ", tipoIdentificacionCOD=" + tipoIdentificacionCOD
+				+ ", tipoLocalCOD=" + tipoLocalCOD + ", tipoPersonaCOD=" + tipoPersonaCOD
+				+ ", tipoReferenciaComercialCOD=" + tipoReferenciaComercialCOD + ", tipoViviendaCOD=" + tipoViviendaCOD
+				+ ", totalCarteraVigente=" + totalCarteraVigente + ", totalEgresos=" + totalEgresos
+				+ ", totalIngresosFlujo=" + totalIngresosFlujo + ", totalValorDetalleDeCuentasEGRESOSGarante="
+				+ totalValorDetalleDeCuentasEGRESOSGarante + ", totalValorDetalleDeCuentasEGRESOSSocio="
+				+ totalValorDetalleDeCuentasEGRESOSSocio + ", totalValorDetalleDeCuentasINGRESOSGarante="
+				+ totalValorDetalleDeCuentasINGRESOSGarante + ", totalValorDetalleDeCuentasINGRESOSSocio="
+				+ totalValorDetalleDeCuentasINGRESOSSocio + ", totalValorDetallePatrimonial="
+				+ totalValorDetallePatrimonial + ", totalValorDetallePatrimonialGarante="
+				+ totalValorDetallePatrimonialGarante + ", totalValorPatrimonioACTIVOGarante="
+				+ totalValorPatrimonioACTIVOGarante + ", totalValorPatrimonioACTIVOSocio="
+				+ totalValorPatrimonioACTIVOSocio + ", totalValorPatrimonioPASIVOGarante="
+				+ totalValorPatrimonioPASIVOGarante + ", totalValorPatrimonioPASIVOSocio="
+				+ totalValorPatrimonioPASIVOSocio + ", unidadAntiguedadNegocioCOD=" + unidadAntiguedadNegocioCOD
+				+ ", unidadAntiguedadNegocioMismoLugarCOD=" + unidadAntiguedadNegocioMismoLugarCOD
+				+ ", unidadTiempoPlazoCOD=" + unidadTiempoPlazoCOD + ", unidadTiempoViviendaActualCOD="
+				+ unidadTiempoViviendaActualCOD + ", unidadTiempoViviendaAnteriorCOD=" + unidadTiempoViviendaAnteriorCOD
+				+ ", usuarioID=" + usuarioID + ", usuarioIDSolicitud=" + usuarioIDSolicitud
+				+ ", utilidadNegocioTotalPerdidasYGanancias=" + utilidadNegocioTotalPerdidasYGanancias
+				+ ", utilidadNetaPersidasYGanancias=" + utilidadNetaPersidasYGanancias
+				+ ", valorReferenciasComerciales=" + valorReferenciasComerciales + ", ventasMontos=" + ventasMontos
+				+ ", ventasTotalesPerdidasYGanancias=" + ventasTotalesPerdidasYGanancias + ", viviendaHipotecada="
+				+ viviendaHipotecada + "]";
+	}
+
+	protected Integer antiguedadNegocio;
     protected Integer antiguedadNegocioMismoLugar;
     protected String apellidoMaterno;
     protected String apellidoPaterno;
@@ -492,7 +577,7 @@ public class Respuesta {
     protected String unidadTiempoPlazoCOD;
     protected String unidadTiempoViviendaActualCOD;
     protected String unidadTiempoViviendaAnteriorCOD;
-    protected short usuarioID;
+    protected String usuarioID;
     protected short usuarioIDSolicitud;
     protected double utilidadNegocioTotalPerdidasYGanancias;
     protected double utilidadNetaPersidasYGanancias;
@@ -3627,16 +3712,24 @@ public class Respuesta {
     /**
      * Gets the value of the usuarioID property.
      * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
      */
-    public short getUsuarioID() {
+    public String getUsuarioID() {
         return usuarioID;
     }
 
     /**
      * Sets the value of the usuarioID property.
      * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
      */
-    public void setUsuarioID(short value) {
+    public void setUsuarioID(String value) {
         this.usuarioID = value;
     }
 
@@ -3752,90 +3845,4 @@ public class Respuesta {
         this.viviendaHipotecada = value;
     }
 
-	@Override
-	public String toString() {
-		return "Respuesta [antiguedadNegocio=" + antiguedadNegocio + ", antiguedadNegocioMismoLugar="
-				+ antiguedadNegocioMismoLugar + ", apellidoMaterno=" + apellidoMaterno + ", apellidoPaterno="
-				+ apellidoPaterno + ", calificacionRiesgoCOD=" + calificacionRiesgoCOD + ", carteraRiesgo="
-				+ carteraRiesgo + ", castigoDemanda=" + castigoDemanda + ", castigoDemanda12Meses="
-				+ castigoDemanda12Meses + ", centralRiesgoConyugeGarante=" + centralRiesgoConyugeGarante
-				+ ", centralRiesgoConyugeSocio=" + centralRiesgoConyugeSocio + ", centralRiesgoGarante="
-				+ centralRiesgoGarante + ", centralRiesgoSocio=" + centralRiesgoSocio + ", comercio=" + comercio
-				+ ", conyugeGarante=" + conyugeGarante + ", conyugeSocio=" + conyugeSocio + ", correo=" + correo
-				+ ", costosTotalesPerdidasYGanancias=" + costosTotalesPerdidasYGanancias + ", costototal=" + costototal
-				+ ", cuoraCredito=" + cuoraCredito + ", cuotaCreditoVigente=" + cuotaCreditoVigente + ", decisionCOD="
-				+ decisionCOD + ", descripcion=" + descripcion + ", descripcionRererenciasComerciales="
-				+ descripcionRererenciasComerciales + ", destinoDetalle=" + destinoDetalle + ", destinoEconomicoCOD="
-				+ destinoEconomicoCOD + ", detallePatrimonialSocio=" + detallePatrimonialSocio
-				+ ", detallePatrominialGarante=" + detallePatrominialGarante + ", detalledeCuentasGarante="
-				+ detalledeCuentasGarante + ", detalledeCuentasSocio=" + detalledeCuentasSocio + ", direccion="
-				+ direccion + ", direccionInformacionNegocio=" + direccionInformacionNegocio
-				+ ", direccionTrabajoConyuge=" + direccionTrabajoConyuge + ", disponibilidadAntesCredito="
-				+ disponibilidadAntesCredito + ", disponibleNeto=" + disponibleNeto + ", duenoCasa=" + duenoCasa
-				+ ", egresosFamiliar=" + egresosFamiliar + ", egresosFamiliaresTotalPerdidasYGanancias="
-				+ egresosFamiliaresTotalPerdidasYGanancias + ", egresosNegocio=" + egresosNegocio
-				+ ", egresosNegocioPerdidasYGanancias=" + egresosNegocioPerdidasYGanancias + ", estado=" + estado
-				+ ", estadoCentralRiesgo=" + estadoCentralRiesgo + ", estadoCivilCOD=" + estadoCivilCOD
-				+ ", fechaApertura=" + fechaApertura + ", fechaNacimiento=" + fechaNacimiento + ", fechaSolicitud="
-				+ fechaSolicitud + ", formaPagoCOD=" + formaPagoCOD + ", garante=" + garante + ", garantiasReales="
-				+ garantiasReales + ", gastosFinancierosPerdidasYGanancias=" + gastosFinancierosPerdidasYGanancias
-				+ ", gastosTotalesPerdidasYGanancias=" + gastosTotalesPerdidasYGanancias + ", iva=" + iva
-				+ ", identificacion=" + identificacion + ", identificacionConyuge=" + identificacionConyuge
-				+ ", identificacionGarante=" + identificacionGarante + ", identificacionInformacionNegocio="
-				+ identificacionInformacionNegocio + ", identificacionSocio=" + identificacionSocio
-				+ ", identificacionSolicitud=" + identificacionSolicitud + ", ingreso=" + ingreso
-				+ ", ingresosFamiliar=" + ingresosFamiliar + ", ingresosFamiliaresTotalPerdidasYGanancias="
-				+ ingresosFamiliaresTotalPerdidasYGanancias + ", ingresosNegocio=" + ingresosNegocio
-				+ ", interesesAmortizacion=" + interesesAmortizacion + ", latitud=" + latitud + ", localidadCOD="
-				+ localidadCOD + ", longitud=" + longitud + ", mensaje=" + mensaje + ", mensajePersonalizado="
-				+ mensajePersonalizado + ", mensajeTecnico=" + mensajeTecnico + ", metodo=" + metodo + ", moduloID="
-				+ moduloID + ", montoSolicitud=" + montoSolicitud + ", montoTotalEndeudamiento="
-				+ montoTotalEndeudamiento + ", nacionalidadCOD=" + nacionalidadCOD + ", nivelEducacionCOD="
-				+ nivelEducacionCOD + ", nombreInformacionNegocio=" + nombreInformacionNegocio + ", nombreModulo="
-				+ nombreModulo + ", nombres=" + nombres + ", numeroCarga=" + numeroCarga + ", numeroCreditosIFI="
-				+ numeroCreditosIFI + ", numeroEmpleados=" + numeroEmpleados + ", numeroOperaciones="
-				+ numeroOperaciones + ", observacion=" + observacion + ", observacionReferenciasComerciales="
-				+ observacionReferenciasComerciales + ", ocupacionCOD=" + ocupacionCOD + ", patrimonioMontos="
-				+ patrimonioMontos + ", peorCalificacion12MesesCOD=" + peorCalificacion12MesesCOD + ", periodoGracia="
-				+ periodoGracia + ", personaID=" + personaID + ", personaIdCentralRiesgo=" + personaIdCentralRiesgo
-				+ ", plazo=" + plazo + ", primerInteres=" + primerInteres + ", primeraCuota=" + primeraCuota
-				+ ", productoID=" + productoID + ", reciprocidad=" + reciprocidad + ", referencia=" + referencia
-				+ ", referenciaUbicacion=" + referenciaUbicacion + ", referenciasComerciales=" + referenciasComerciales
-				+ ", referenciasPersonales=" + referenciasPersonales + ", referenciasPersonales2="
-				+ referenciasPersonales2 + ", relacionCOD=" + relacionCOD + ", respuestaCOD=" + respuestaCOD
-				+ ", sectorEconomicoCOD=" + sectorEconomicoCOD + ", segmento=" + segmento + ", separacionBienes="
-				+ separacionBienes + ", sexoCOD=" + sexoCOD + ", situacionViviendaCOD=" + situacionViviendaCOD
-				+ ", socio=" + socio + ", solicitudID=" + solicitudID + ", tasa=" + tasa + ", telefono=" + telefono
-				+ ", telefonoCelular=" + telefonoCelular + ", telefonoDomicilio=" + telefonoDomicilio
-				+ ", telefonoDuenoCasa=" + telefonoDuenoCasa + ", telefonoReferenciasComerciales="
-				+ telefonoReferenciasComerciales + ", telefonoTrabajoConyuge=" + telefonoTrabajoConyuge
-				+ ", tiempoViviendaActual=" + tiempoViviendaActual + ", tiempoViviendaAnterior="
-				+ tiempoViviendaAnterior + ", tieneError=" + tieneError + ", tipoCuotaCOD=" + tipoCuotaCOD
-				+ ", tipoGarantiaCOD=" + tipoGarantiaCOD + ", tipoIdentificacionCOD=" + tipoIdentificacionCOD
-				+ ", tipoLocalCOD=" + tipoLocalCOD + ", tipoPersonaCOD=" + tipoPersonaCOD
-				+ ", tipoReferenciaComercialCOD=" + tipoReferenciaComercialCOD + ", tipoViviendaCOD=" + tipoViviendaCOD
-				+ ", totalCarteraVigente=" + totalCarteraVigente + ", totalEgresos=" + totalEgresos
-				+ ", totalIngresosFlujo=" + totalIngresosFlujo + ", totalValorDetalleDeCuentasEGRESOSGarante="
-				+ totalValorDetalleDeCuentasEGRESOSGarante + ", totalValorDetalleDeCuentasEGRESOSSocio="
-				+ totalValorDetalleDeCuentasEGRESOSSocio + ", totalValorDetalleDeCuentasINGRESOSGarante="
-				+ totalValorDetalleDeCuentasINGRESOSGarante + ", totalValorDetalleDeCuentasINGRESOSSocio="
-				+ totalValorDetalleDeCuentasINGRESOSSocio + ", totalValorDetallePatrimonial="
-				+ totalValorDetallePatrimonial + ", totalValorDetallePatrimonialGarante="
-				+ totalValorDetallePatrimonialGarante + ", totalValorPatrimonioACTIVOGarante="
-				+ totalValorPatrimonioACTIVOGarante + ", totalValorPatrimonioACTIVOSocio="
-				+ totalValorPatrimonioACTIVOSocio + ", totalValorPatrimonioPASIVOGarante="
-				+ totalValorPatrimonioPASIVOGarante + ", totalValorPatrimonioPASIVOSocio="
-				+ totalValorPatrimonioPASIVOSocio + ", unidadAntiguedadNegocioCOD=" + unidadAntiguedadNegocioCOD
-				+ ", unidadAntiguedadNegocioMismoLugarCOD=" + unidadAntiguedadNegocioMismoLugarCOD
-				+ ", unidadTiempoPlazoCOD=" + unidadTiempoPlazoCOD + ", unidadTiempoViviendaActualCOD="
-				+ unidadTiempoViviendaActualCOD + ", unidadTiempoViviendaAnteriorCOD=" + unidadTiempoViviendaAnteriorCOD
-				+ ", usuarioID=" + usuarioID + ", usuarioIDSolicitud=" + usuarioIDSolicitud
-				+ ", utilidadNegocioTotalPerdidasYGanancias=" + utilidadNegocioTotalPerdidasYGanancias
-				+ ", utilidadNetaPersidasYGanancias=" + utilidadNetaPersidasYGanancias
-				+ ", valorReferenciasComerciales=" + valorReferenciasComerciales + ", ventasMontos=" + ventasMontos
-				+ ", ventasTotalesPerdidasYGanancias=" + ventasTotalesPerdidasYGanancias + ", viviendaHipotecada="
-				+ viviendaHipotecada + "]";
-	}
-
-    
 }

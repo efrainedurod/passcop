@@ -83,7 +83,7 @@ public class ScoreWebService {
 				log.error("Identificacion no encontrada");
 				return helper.getResponseNotIdentification();
 			}
-			int idPersona = Integer.parseInt(consulta);   
+			int idPersona = Integer.parseInt(consulta);
 			log.debug("CPERSONA: " + idPersona);
 
 			// 3) Verifica el valor del Destino de Fondos
@@ -140,10 +140,10 @@ public class ScoreWebService {
 			String tipoCuota = helper.getTipoCuota(operacion.getTipoCuotaCOD());
 
 			// Setea los valores adicionales del Detail
-			Detail inDetailSol = detailProcessor.getSolicitudData(productFit, idPersona,
-					operacion.getUsuarioIDSolicitud(), operacion.getUsuarioID(), operacion.getFechaSolicitud(),
-					destinoFodos.getMensaje(), clasificacionCon.getMensaje(), operacion.getIdentificacionConyuge(),
-					operacion.getMontoSolicitud(), tipoCuota, frecuencia, numCuotas, plazoDias, tproductoCuotas);
+			Detail inDetailSol = detailProcessor.getSolicitudData(productFit, idPersona, operacion.getUsuarioID(),
+					operacion.getFechaSolicitud(), destinoFodos.getMensaje(), clasificacionCon.getMensaje(),
+					operacion.getIdentificacionConyuge(), operacion.getMontoSolicitud(), tipoCuota, frecuencia,
+					numCuotas, plazoDias, tproductoCuotas);
 			Detail outDetail = detailProcessor.solicitudProcess(inDetailSol);
 
 			RespuestaSolicitud resSol = new RespuestaSolicitud();

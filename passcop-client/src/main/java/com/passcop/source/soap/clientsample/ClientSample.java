@@ -1,10 +1,10 @@
-package com.passcop.client.clientsample;
+package com.passcop.source.soap.clientsample;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.passcop.client.*;
+import com.passcop.source.soap.*;
 
 public class ClientSample {
 
@@ -619,7 +619,7 @@ public class ClientSample {
 		res.setUnidadAntiguedadNegocioMismoLugarCOD("M");
 		res.setUnidadTiempoPlazoCOD("05");
 		res.setUnidadTiempoViviendaActualCOD("2");
-		res.setUsuarioID(new Short("1"));
+		res.setUsuarioID("1");
 		res.setUsuarioIDSolicitud(new Short("1"));
 		res.setUtilidadNegocioTotalPerdidasYGanancias(10000);
 		res.setUtilidadNetaPersidasYGanancias(10000);

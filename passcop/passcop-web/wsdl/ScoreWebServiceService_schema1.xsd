@@ -214,7 +214,7 @@
       <xs:element minOccurs="0" name="unidadTiempoPlazoCOD" type="xs:string"></xs:element>
       <xs:element minOccurs="0" name="unidadTiempoViviendaActualCOD" type="xs:string"></xs:element>
       <xs:element minOccurs="0" name="unidadTiempoViviendaAnteriorCOD" type="xs:string"></xs:element>
-      <xs:element name="usuarioID" type="xs:short"></xs:element>
+      <xs:element minOccurs="0" name="usuarioID" type="xs:string"></xs:element>
       <xs:element name="usuarioIDSolicitud" type="xs:short"></xs:element>
       <xs:element name="utilidadNegocioTotalPerdidasYGanancias" type="xs:double"></xs:element>
       <xs:element name="utilidadNetaPersidasYGanancias" type="xs:double"></xs:element>

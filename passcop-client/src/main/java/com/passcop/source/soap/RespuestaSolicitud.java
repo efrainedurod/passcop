@@ -1,5 +1,5 @@
 
-package com.passcop.client;
+package com.passcop.source.soap;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -39,7 +39,14 @@ import javax.xml.bind.annotation.XmlType;
 })
 public class RespuestaSolicitud {
 
-    protected String mensaje;
+    @Override
+	public String toString() {
+		return "RespuestaSolicitud [mensaje=" + mensaje + ", mensajePersonalizado=" + mensajePersonalizado
+				+ ", mensajeTecnico=" + mensajeTecnico + ", respuestaCOD=" + respuestaCOD + ", tieneError=" + tieneError
+				+ "]";
+	}
+
+	protected String mensaje;
     protected String mensajePersonalizado;
     protected String mensajeTecnico;
     protected String respuestaCOD;
@@ -157,12 +164,4 @@ public class RespuestaSolicitud {
         this.tieneError = value;
     }
 
-	@Override
-	public String toString() {
-		return "RespuestaSolicitud [mensaje=" + mensaje + ", mensajePersonalizado=" + mensajePersonalizado
-				+ ", mensajeTecnico=" + mensajeTecnico + ", respuestaCOD=" + respuestaCOD + ", tieneError=" + tieneError
-				+ "]";
-	}
-
-    
 }

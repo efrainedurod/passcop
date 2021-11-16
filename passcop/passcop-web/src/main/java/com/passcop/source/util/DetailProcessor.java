@@ -43,7 +43,7 @@ public class DetailProcessor implements Serializable {
 		return identificacion;
 	}
 
-	public Detail getSolicitudData(String[] pProductFit, int pPersonaId, Short pUsuarioIdSol, Short pUsuarioId,
+	public Detail getSolicitudData(String[] pProductFit, int pPersonaId, String pUsuarioId,
 			Calendar pFechaSol, String pDestinoFondos, String pClasContable, String pIdentificacionConyuge,
 			double pMontoSolicitud, String pTipoCuota, String pFrecuencia, Integer pNumCuotas, Integer pPlazo,
 			Table pTproductoCuotas) throws Exception {
@@ -57,7 +57,7 @@ public class DetailProcessor implements Serializable {
 				r.findFieldByNameCreate("CGRUPOPRODUCTO").setValue(pProductFit[0]);
 				r.findFieldByNameCreate("CPRODUCTO").setValue(pProductFit[1]);
 				r.findFieldByNameCreate("CPERSONA_CLIENTE").setValue(pPersonaId);
-				r.findFieldByNameCreate("CUSUARIO_OFICIALCUENTA").setValue(pUsuarioIdSol);
+				r.findFieldByNameCreate("CUSUARIO_OFICIALCUENTA").setValue(pUsuarioId);
 				r.findFieldByNameCreate("CUSUARIO_INGRESO").setValue(pUsuarioId);
 				r.findFieldByNameCreate("FSOLICITUD").setValue(covertCalendarToDate(pFechaSol));
 				r.findFieldByNameCreate("CDESTINOFONDOS").setValue(pDestinoFondos);

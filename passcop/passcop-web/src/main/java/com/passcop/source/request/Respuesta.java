@@ -294,7 +294,7 @@ public class Respuesta  implements java.io.Serializable {
 
     private java.lang.String estadoCentralRiesgo;
 
-    private short usuarioID;
+    private String usuarioID;
 
     private java.lang.Integer personaIdCentralRiesgo;
 
@@ -458,7 +458,7 @@ public class Respuesta  implements java.io.Serializable {
            java.lang.Short numeroOperaciones,
            java.lang.String reciprocidad,
            java.lang.String estadoCentralRiesgo,
-           short usuarioID,
+           String usuarioID,
            java.lang.Integer personaIdCentralRiesgo,
            boolean tieneError,
            java.lang.String mensaje,
@@ -3466,7 +3466,7 @@ public class Respuesta  implements java.io.Serializable {
      * 
      * @return usuarioID
      */
-    public short getUsuarioID() {
+    public String getUsuarioID() {
         return usuarioID;
     }
 
@@ -3476,7 +3476,7 @@ public class Respuesta  implements java.io.Serializable {
      * 
      * @param usuarioID
      */
-    public void setUsuarioID(short usuarioID) {
+    public void setUsuarioID(String usuarioID) {
         this.usuarioID = usuarioID;
     }
 
@@ -4224,7 +4224,10 @@ public class Respuesta  implements java.io.Serializable {
 				return false;
 		} else if (!unidadTiempoViviendaAnteriorCOD.equals(other.unidadTiempoViviendaAnteriorCOD))
 			return false;
-		if (usuarioID != other.usuarioID)
+		if (usuarioID == null) {
+			if (other.usuarioID != null)
+				return false;
+		} else if (!usuarioID.equals(other.usuarioID))
 			return false;
 		if (usuarioIDSolicitud != other.usuarioIDSolicitud)
 			return false;
@@ -4445,7 +4448,7 @@ public class Respuesta  implements java.io.Serializable {
 				+ ((unidadTiempoViviendaActualCOD == null) ? 0 : unidadTiempoViviendaActualCOD.hashCode());
 		result = prime * result
 				+ ((unidadTiempoViviendaAnteriorCOD == null) ? 0 : unidadTiempoViviendaAnteriorCOD.hashCode());
-		result = prime * result + usuarioID;
+		result = prime * result + ((usuarioID == null) ? 0 : usuarioID.hashCode());
 		result = prime * result + usuarioIDSolicitud;
 		temp = Double.doubleToLongBits(utilidadNegocioTotalPerdidasYGanancias);
 		result = prime * result + (int) (temp ^ (temp >>> 32));
