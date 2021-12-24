@@ -46,6 +46,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *         &lt;element name="seriePrincipalMotor" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/&gt;
  *         &lt;element name="serieSecundariaMotor" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/&gt;
  *         &lt;element name="tieneError" type="{http://www.w3.org/2001/XMLSchema}boolean"/&gt;
+ *         &lt;element name="tipoGarantia" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/&gt;
  *         &lt;element name="tipoGarantiaCOD" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/&gt;
  *         &lt;element name="usuarioID" type="{http://www.w3.org/2001/XMLSchema}short" minOccurs="0"/&gt;
  *         &lt;element name="valor" type="{http://www.w3.org/2001/XMLSchema}double"/&gt;
@@ -87,6 +88,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
     "seriePrincipalMotor",
     "serieSecundariaMotor",
     "tieneError",
+    "tipoGarantia",
     "tipoGarantiaCOD",
     "usuarioID",
     "valor"
@@ -123,6 +125,7 @@ public class GarantiasReales {
     protected String seriePrincipalMotor;
     protected String serieSecundariaMotor;
     protected boolean tieneError;
+    protected String tipoGarantia;
     protected String tipoGarantiaCOD;
     protected Short usuarioID;
     protected double valor;
@@ -741,6 +744,30 @@ public class GarantiasReales {
      */
     public void setTieneError(boolean value) {
         this.tieneError = value;
+    }
+
+    /**
+     * Gets the value of the tipoGarantia property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getTipoGarantia() {
+        return tipoGarantia;
+    }
+
+    /**
+     * Sets the value of the tipoGarantia property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setTipoGarantia(String value) {
+        this.tipoGarantia = value;
     }
 
     /**

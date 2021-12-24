@@ -11,6 +11,8 @@ public class GarantiasReales  implements java.io.Serializable {
     private java.lang.String identificacion;
 
     private java.lang.String tipoGarantiaCOD;
+    
+    private java.lang.String tipoGarantia;
 
     private java.lang.String descripcion;
 
@@ -76,6 +78,7 @@ public class GarantiasReales  implements java.io.Serializable {
     public GarantiasReales(
            java.lang.String identificacion,
            java.lang.String tipoGarantiaCOD,
+           java.lang.String tipoGarantia,
            java.lang.String descripcion,
            double valor,
            java.lang.Integer personaID,
@@ -107,6 +110,7 @@ public class GarantiasReales  implements java.io.Serializable {
            java.lang.String mensaje) {
            this.identificacion = identificacion;
            this.tipoGarantiaCOD = tipoGarantiaCOD;
+           this.tipoGarantia = tipoGarantia;
            this.descripcion = descripcion;
            this.valor = valor;
            this.personaID = personaID;
@@ -168,7 +172,6 @@ public class GarantiasReales  implements java.io.Serializable {
         return tipoGarantiaCOD;
     }
 
-
     /**
      * Sets the tipoGarantiaCOD value for this GarantiasReales.
      * 
@@ -178,6 +181,24 @@ public class GarantiasReales  implements java.io.Serializable {
         this.tipoGarantiaCOD = tipoGarantiaCOD;
     }
 
+    
+    /**
+     * Gets the tipoGarantia value for this GarantiasReales.
+     * 
+     * @return tipoGarantia
+     */
+    public java.lang.String getTipoGarantia() {
+		return tipoGarantia;
+	}
+    
+    /**
+     * Sets the tipoGarantia value for this GarantiasReales.
+     * 
+     * @param tipoGarantia
+     */
+	public void setTipoGarantia(java.lang.String tipoGarantia) {
+		this.tipoGarantia = tipoGarantia;
+	}
 
     /**
      * Gets the descripcion value for this GarantiasReales.
@@ -894,6 +915,11 @@ public class GarantiasReales  implements java.io.Serializable {
 			return false;
 		if (tieneError != other.tieneError)
 			return false;
+		if (tipoGarantia == null) {
+			if (other.tipoGarantia != null)
+				return false;
+		} else if (!tipoGarantia.equals(other.tipoGarantia))
+			return false;
 		if (tipoGarantiaCOD == null) {
 			if (other.tipoGarantiaCOD != null)
 				return false;
@@ -949,6 +975,7 @@ public class GarantiasReales  implements java.io.Serializable {
 		result = prime * result + ((seriePrincipalMotor == null) ? 0 : seriePrincipalMotor.hashCode());
 		result = prime * result + ((serieSecundariaMotor == null) ? 0 : serieSecundariaMotor.hashCode());
 		result = prime * result + (tieneError ? 1231 : 1237);
+		result = prime * result + ((tipoGarantia == null) ? 0 : tipoGarantia.hashCode());
 		result = prime * result + ((tipoGarantiaCOD == null) ? 0 : tipoGarantiaCOD.hashCode());
 		result = prime * result + ((usuarioID == null) ? 0 : usuarioID.hashCode());
 		temp = Double.doubleToLongBits(valor);
@@ -972,6 +999,13 @@ public class GarantiasReales  implements java.io.Serializable {
         elemField = new org.apache.axis.description.ElementDesc();
         elemField.setFieldName("tipoGarantiaCOD");
         elemField.setXmlName(new javax.xml.namespace.QName("http://tempuri.org/", "TipoGarantiaCOD"));
+        elemField.setXmlType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "string"));
+        elemField.setMinOccurs(0);
+        elemField.setNillable(false);
+        typeDesc.addFieldDesc(elemField);
+        elemField = new org.apache.axis.description.ElementDesc();
+        elemField.setFieldName("tipoGarantia");
+        elemField.setXmlName(new javax.xml.namespace.QName("http://tempuri.org/", "TipoGarantia"));
         elemField.setXmlType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "string"));
         elemField.setMinOccurs(0);
         elemField.setNillable(false);
@@ -1201,18 +1235,19 @@ public class GarantiasReales  implements java.io.Serializable {
 	@Override
 	public String toString() {
 		return "GarantiasReales [identificacion=" + identificacion + ", tipoGarantiaCOD=" + tipoGarantiaCOD
-				+ ", descripcion=" + descripcion + ", valor=" + valor + ", personaID=" + personaID
-				+ ", microEmpresario=" + microEmpresario + ", cuotaCreditoVigente=" + cuotaCreditoVigente + ", ingreso="
-				+ ingreso + ", estado=" + estado + ", usuarioID=" + usuarioID + ", comercio=" + comercio
-				+ ", estadoCOD=" + estadoCOD + ", direccion=" + direccion + ", nombrePropietario=" + nombrePropietario
-				+ ", seriePrincipalMotor=" + seriePrincipalMotor + ", serieSecundariaMotor=" + serieSecundariaMotor
-				+ ", marca=" + marca + ", modelo=" + modelo + ", placa=" + placa + ", anioFabricacionConstruccion="
-				+ anioFabricacionConstruccion + ", fechaAvaluo=" + fechaAvaluo + ", nombrePerito=" + nombrePerito
-				+ ", avaluoComercial=" + avaluoComercial + ", numeroRegistro=" + numeroRegistro
-				+ ", grupoTipoGarantiaCOD=" + grupoTipoGarantiaCOD + ", longitud=" + longitud + ", latitud=" + latitud
-				+ ", descripcionGarantiasReales=" + descripcionGarantiasReales + ", direccionGarantiasReales="
-				+ direccionGarantiasReales + ", tieneError=" + tieneError + ", mensaje=" + mensaje + ", __equalsCalc="
-				+ __equalsCalc + ", __hashCodeCalc=" + __hashCodeCalc + "]";
+				+ ", tipoGarantia=" + tipoGarantia + ", descripcion=" + descripcion + ", valor=" + valor
+				+ ", personaID=" + personaID + ", microEmpresario=" + microEmpresario + ", cuotaCreditoVigente="
+				+ cuotaCreditoVigente + ", ingreso=" + ingreso + ", estado=" + estado + ", usuarioID=" + usuarioID
+				+ ", comercio=" + comercio + ", estadoCOD=" + estadoCOD + ", direccion=" + direccion
+				+ ", nombrePropietario=" + nombrePropietario + ", seriePrincipalMotor=" + seriePrincipalMotor
+				+ ", serieSecundariaMotor=" + serieSecundariaMotor + ", marca=" + marca + ", modelo=" + modelo
+				+ ", placa=" + placa + ", anioFabricacionConstruccion=" + anioFabricacionConstruccion + ", fechaAvaluo="
+				+ fechaAvaluo + ", nombrePerito=" + nombrePerito + ", avaluoComercial=" + avaluoComercial
+				+ ", numeroRegistro=" + numeroRegistro + ", grupoTipoGarantiaCOD=" + grupoTipoGarantiaCOD
+				+ ", longitud=" + longitud + ", latitud=" + latitud + ", descripcionGarantiasReales="
+				+ descripcionGarantiasReales + ", direccionGarantiasReales=" + direccionGarantiasReales
+				+ ", tieneError=" + tieneError + ", mensaje=" + mensaje + ", __equalsCalc=" + __equalsCalc
+				+ ", __hashCodeCalc=" + __hashCodeCalc + "]";
 	}
 
     

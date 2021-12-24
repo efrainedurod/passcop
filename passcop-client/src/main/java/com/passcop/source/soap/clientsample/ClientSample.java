@@ -8,7 +8,7 @@ import com.passcop.source.soap.*;
 
 public class ClientSample {
 
-	public static void main(String[] args)  {
+	public static void main(String[] args) {
 		System.out.println("***********************");
 		System.out.println("Create Web Service Client...");
 		ScoreWebServiceService service1 = new ScoreWebServiceService();
@@ -106,7 +106,7 @@ public class ClientSample {
 		personaCon.setPersonaID(123456); // Consultar como se maneja si es una persona nueva
 		personaCon.setRelacionCOD(" "); // Consultar que va en realación
 		personaCon.setNomreModulo("Personas");
-		personaCon.setUsuarioID(new Short("1"));
+		personaCon.setUsuarioID(new Short("17"));
 		personaCon.setIdentificacion("0502631310");
 		personaCon.setIdentificacionConyuge("0502631310");
 		personaCon.setTipoPersonaCOD("NAT");
@@ -115,7 +115,7 @@ public class ClientSample {
 		personaCon.setApellidoMaterno("LOPEZ");
 		personaCon.setNombres("TOMASA");
 		personaCon.setFechaNacimiento(null);
-		personaCon.setEstadoCivilCOD("1");
+		personaCon.setEstadoCivilCOD("2");
 		personaCon.setSexoCOD("F");
 		personaCon.setNumeroCarga(new Short("1"));
 		personaCon.setSeparacionBienes(false);
@@ -131,7 +131,7 @@ public class ClientSample {
 		personaCon.setViviendaHipotecada(false); // La cooperativa Debe definir la fuente
 		personaCon.setDuenoCasa("JOSE JIMENEZ");
 		personaCon.setTelefonoDuenoCasa("");
-		personaCon.setTiempoViviendaActual(new Short("24"));
+		personaCon.setTiempoViviendaActual(new Short("16"));
 		personaCon.setUnidadTiempoViviendaActualCOD("M");
 		personaCon.setReferenciaUbicacion("A TRES CUADRAS DE LA UPC");
 		personaCon.setTiempoViviendaAnterior(null); // El campo no existe en Fitbank
@@ -297,7 +297,7 @@ public class ClientSample {
 		res.setEgresosNegocioPerdidasYGanancias(200);
 		res.setEstado("ACTIVO");
 		res.setEstadoCentralRiesgo("BAJO");
-		res.setEstadoCivilCOD("2");
+		res.setEstadoCivilCOD("1");
 		res.setFechaApertura(null);
 		res.setFechaNacimiento(null);
 		res.setFechaSolicitud(null);
@@ -320,7 +320,7 @@ public class ClientSample {
 		personaGarante.setEstadoCivilCOD("1");
 		personaGarante.setSexoCOD("F");
 		personaGarante.setNumeroCarga(new Short("1"));
-		personaGarante.setSeparacionBienes(false);
+//		personaGarante.setSeparacionBienes(false);
 		personaGarante.setNacionalidadCOD("EC");
 		personaGarante.setNivelEducacionCOD("3");
 		personaGarante.setOcupacionCOD("328");
@@ -345,7 +345,10 @@ public class ClientSample {
 
 		res.setGarante(personaGarante);
 		// Objeto de garantias reales
+
+		List<GarantiasReales> gar = new ArrayList<GarantiasReales>();
 		GarantiasReales garReal1 = new GarantiasReales();
+		garReal1.setTipoGarantia("CASA");
 		garReal1.setAnioFabricacionConstruccion(1986);
 		garReal1.setAvaluoComercial(2000);
 		garReal1.setComercio(true);
@@ -376,8 +379,10 @@ public class ClientSample {
 		garReal1.setTipoGarantiaCOD("004");
 		garReal1.setUsuarioID(new Short("1")); // Consultar si se debe veridicar el usuario
 		garReal1.setValor(20000);
+		gar.add(garReal1);
 
 		GarantiasReales garReal2 = new GarantiasReales();
+		garReal2.setTipoGarantia("TERRENO");
 		garReal2.setAnioFabricacionConstruccion(1986);
 		garReal2.setAvaluoComercial(2000);
 		garReal2.setComercio(true);
@@ -412,12 +417,13 @@ public class ClientSample {
 		List<GarantiasReales> garReales = new ArrayList<GarantiasReales>();
 		garReales.add(garReal1);
 		garReales.add(garReal2);
+		res.setGarantiasReales(garReales);
 
 		res.setGastosFinancierosPerdidasYGanancias(5000);
 		res.setGastosTotalesPerdidasYGanancias(5000);
 		res.setIVA(500);
 		res.setIdentificacion("1804073268");
-		res.setIdentificacionConyuge("1234567892");
+		res.setIdentificacionConyuge("1716517394");
 		res.setIdentificacionGarante("1234567893");
 		res.setIdentificacionInformacionNegocio("1234567894");
 		res.setIdentificacionSocio("1234567895");
@@ -437,17 +443,17 @@ public class ClientSample {
 		res.setModuloID(6);
 		res.setMontoSolicitud(2000);
 		res.setNacionalidadCOD("EC");
-		res.setNivelEducacionCOD("02");
+		res.setNivelEducacionCOD("3");
 		res.setNombreInformacionNegocio("BAZAR Y PAPELERIA");
 		res.setNombreModulo("PRESTAMOS");
 		res.setNombres("JUAN JOSE");
-		res.setNumeroCarga(new Short("3"));
+//		res.setNumeroCarga(new Short("3"));
 		res.setNumeroCreditosIFI(new Short("1"));
 		res.setNumeroEmpleados(new Short("1"));
 		res.setNumeroOperaciones(new Short("1"));
 		res.setObservacion("OBSERVACIONES");
 		res.setObservacionReferenciasComerciales("OBSERVACIONES REFERENCIAA");
-		res.setOcupacionCOD("03");
+		res.setOcupacionCOD("486");
 		res.setPatrimonioMontos(100000);
 		res.setPeorCalificacion12MesesCOD("B");
 		res.setPeriodoGracia(2);
@@ -459,10 +465,10 @@ public class ClientSample {
 		res.setProductoID("2620");
 		res.setReciprocidad("RECIPROCIDAD");
 		res.setReferencia("REFERENCIA");
-		res.setReferenciaUbicacion("REFERENCIA UBICACION");
+		res.setReferenciaUbicacion("REFERENCIA UBICACION ALADITO");
 		// Objeto ReferenciasComerciales
 		ReferenciasComerciales refComer = new ReferenciasComerciales();
-		refComer.setDescripcion("DESCRIPCION REFCO");
+		refComer.setDescripcion("DESCRIPCION REFCO 1");
 		refComer.setMensaje("MENSAJE REF COMER");
 		refComer.setObservacion("OBSERVACIONES REF COM");
 		refComer.setSolicitudID(123);
@@ -472,7 +478,7 @@ public class ClientSample {
 		refComer.setValor(10000);
 
 		ReferenciasComerciales refComer2 = new ReferenciasComerciales();
-		refComer2.setDescripcion("DESCRIPCION REFCO");
+		refComer2.setDescripcion("DESCRIPCION REFCO 2");
 		refComer2.setMensaje("MENSAJE REF COMER");
 		refComer2.setObservacion("OBSERVACIONES REF COM");
 		refComer2.setSolicitudID(123);
@@ -481,11 +487,11 @@ public class ClientSample {
 		refComer2.setTipoReferenciaComercialCOD("Codigo");
 		refComer2.setValor(10000);
 
-		List<ReferenciasComerciales> referenciasComer = new ArrayList<ReferenciasComerciales>();
-		referenciasComer.add(refComer);
-		referenciasComer.add(refComer2);
+		ReferenciasComerciales[] references = new ReferenciasComerciales[2];
+		references[0] = refComer;
+		references[1] = refComer2;
 
-		res.setReferenciasComerciales(referenciasComer);
+		res.setReferenciasComerciales(references);
 		// Objeto ReferenciasPersonales
 		ReferenciasPersonales refPers1 = new ReferenciasPersonales();
 		refPers1.setMensaje("Mensaje");
@@ -505,9 +511,12 @@ public class ClientSample {
 		refPers2.setTieneError(true);
 		refPers2.setTipoReferenciaPersonalCOD("REFP");
 
-		List<ReferenciasPersonales> referenciasPersonales = new ArrayList<ReferenciasPersonales>();
-		referenciasPersonales.add(refPers1);
-		referenciasPersonales.add(refPers2);
+
+//		List<ReferenciasPersonales> referenciasPersonales = new ArrayList<ReferenciasPersonales>();
+		ReferenciasPersonales[] referenciasPersonales = new ReferenciasPersonales[2];
+		referenciasPersonales[0] = refPers1;
+		referenciasPersonales[1] = refPers2;
+;
 		res.setReferenciasPersonales(referenciasPersonales);
 
 		// Objeto ReferenciasPersonales2
@@ -532,13 +541,13 @@ public class ClientSample {
 		List<ReferenciasPersonales> referenciasPersonales2 = new ArrayList<ReferenciasPersonales>();
 		referenciasPersonales2.add(refPers3);
 		referenciasPersonales2.add(refPers4);
-		res.setReferenciasPersonales(referenciasPersonales2);
+		res.setReferenciasPersonales2(referenciasPersonales2);
 
 		res.setRelacionCOD(""); // Consultar
 		res.setRespuestaCOD("COD");
 		res.setSectorEconomicoCOD("SECEC");
 		res.setSegmento("SEG");
-		res.setSeparacionBienes(true);
+		res.setSeparacionBienes(false);
 		res.setSexoCOD("M");
 		res.setSituacionViviendaCOD("3");
 
@@ -590,7 +599,7 @@ public class ClientSample {
 		res.setTelefonoDuenoCasa("123121212");
 		res.setTelefonoReferenciasComerciales("123132121212");
 		res.setTelefonoTrabajoConyuge("234322323");
-		res.setTiempoViviendaActual(new Short("24"));
+		res.setTiempoViviendaActual(new Short("16"));
 		res.setTiempoViviendaAnterior(new Short("0"));
 		res.setTieneError(false);
 		res.setTipoCuotaCOD("F");
@@ -599,7 +608,7 @@ public class ClientSample {
 		res.setTipoLocalCOD(""); // Consultar
 		res.setTipoPersonaCOD("NAT");
 		res.setTipoReferenciaComercialCOD("TIPREF");
-		res.setTipoViviendaCOD("TIPVI");
+		res.setTipoViviendaCOD("1");
 		res.setTotalCarteraVigente(1000);
 		res.setTotalEgresos(1000);
 		res.setTotalIngresosFlujo(1000);
@@ -618,8 +627,8 @@ public class ClientSample {
 		res.setUnidadAntiguedadNegocioCOD("M");
 		res.setUnidadAntiguedadNegocioMismoLugarCOD("M");
 		res.setUnidadTiempoPlazoCOD("05");
-		res.setUnidadTiempoViviendaActualCOD("2");
-		res.setUsuarioID("1");
+		res.setUnidadTiempoViviendaActualCOD("M");
+		res.setUsuarioID("127");
 		res.setUsuarioIDSolicitud(new Short("1"));
 		res.setUtilidadNegocioTotalPerdidasYGanancias(10000);
 		res.setUtilidadNetaPersidasYGanancias(10000);
@@ -630,7 +639,6 @@ public class ClientSample {
 
 		RespuestaSolicitud respuesta = port1.enviarDatosOperacion(res);
 		System.out.println(respuesta.toString());
-
 
 		System.out.println("***********************");
 		System.out.println("Call Over!");

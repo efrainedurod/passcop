@@ -39,14 +39,7 @@ import javax.xml.bind.annotation.XmlType;
 })
 public class RespuestaSolicitud {
 
-    @Override
-	public String toString() {
-		return "RespuestaSolicitud [mensaje=" + mensaje + ", mensajePersonalizado=" + mensajePersonalizado
-				+ ", mensajeTecnico=" + mensajeTecnico + ", respuestaCOD=" + respuestaCOD + ", tieneError=" + tieneError
-				+ "]";
-	}
-
-	protected String mensaje;
+    protected String mensaje;
     protected String mensajePersonalizado;
     protected String mensajeTecnico;
     protected String respuestaCOD;
@@ -163,5 +156,14 @@ public class RespuestaSolicitud {
     public void setTieneError(boolean value) {
         this.tieneError = value;
     }
+
+	@Override
+	public String toString() {
+		return "RespuestaSolicitud [mensaje=" + mensaje + ", mensajePersonalizado=" + mensajePersonalizado
+				+ ", mensajeTecnico=" + mensajeTecnico + ", respuestaCOD=" + respuestaCOD + ", tieneError=" + tieneError
+				+ "]";
+	}
+    
+    
 
 }

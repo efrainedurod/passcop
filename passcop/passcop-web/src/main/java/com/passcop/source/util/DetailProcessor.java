@@ -10,6 +10,8 @@ import com.fitbank.common.FileHelper;
 import com.fitbank.dto.management.Detail;
 import com.fitbank.dto.management.Record;
 import com.fitbank.dto.management.Table;
+import com.passcop.source.request.ReferenciasComerciales;
+import com.passcop.source.request.ReferenciasPersonales;
 import com.passcop.source.request.RespuestaSolicitud;
 
 public class DetailProcessor implements Serializable {
@@ -21,9 +23,85 @@ public class DetailProcessor implements Serializable {
 
 		return outDetail;
 	}
-	
+
+	public RespuestaSolicitud updatePersonInformation(String pCpersona, String pCpersonaCon, String pEstadoCivil,
+			boolean pSeparacionBienes, Short pNumeroCarga, String pNivelEducacion, String pOcupacionCod, String pCorreo,
+			String pDireccion, String pTipoViviendaCOD, boolean pViviendaHipotecada, String pUnidadTiempoVivienda,
+			Short pTiempoViviendaActual, String pTelefonoCelular, String pTelefonoDomicilio, String duenoCasa,
+			String pReferenciaUbicacion, String pUsuarioID, ReferenciasComerciales[] pRefComerciales,
+			ReferenciasPersonales[] pRegPersonales) throws Exception {
+		// Setea valores antes de enviar al UCI
+		String message = FileHelper.readFile("/home/fitbank/FitBank/score/023050.xml");
+		Detail inDetail = Detail.valueOf(message);
+		Table tper = inDetail.findTableByName("TPERSONAINFORMACION");
+		if (tper != null) {
+			inDetail.setUser(pUsuarioID);
+			for (Record r : tper.getRecords()) {
+				r.findFieldByNameCreate("CPERSONA").setValue(pCpersona);
+				r.findFieldByNameCreate("CPERSONACON").setValue(pCpersonaCon);
+				r.findFieldByNameCreate("ESTADOCIVILCOD").setValue(pEstadoCivil);
+				r.findFieldByNameCreate("SEPARACIONBIENES").setValue(pSeparacionBienes);
+				r.findFieldByNameCreate("NUMEROCARGA").setValue(pNumeroCarga);
+				r.findFieldByNameCreate("NIVELEDUCACIONCOD").setValue(pNivelEducacion);
+				r.findFieldByNameCreate("OCUPACIONCOD").setValue(pOcupacionCod);
+				r.findFieldByNameCreate("CORREO").setValue(pCorreo);
+				r.findFieldByNameCreate("DIRECCION").setValue(pDireccion);
+				r.findFieldByNameCreate("TIPOVIVIENDACOD").setValue(pTipoViviendaCOD);
+				r.findFieldByNameCreate("UNIDADTIEMPOVIVIENDAACTUALCOD").setValue(pUnidadTiempoVivienda);
+				r.findFieldByNameCreate("TIEMPOVIVIENDAACTUAL").setValue(pTiempoViviendaActual);
+				r.findFieldByNameCreate("TELEFONOCELULAR").setValue(pTelefonoCelular);
+				r.findFieldByNameCreate("TELEFONODOMICILIO").setValue(pTelefonoDomicilio);
+				r.findFieldByNameCreate("DUENOCASA").setValue(duenoCasa);
+				r.findFieldByNameCreate("REFERENCIAUBICACION").setValue(pReferenciaUbicacion);
+			}
+		}
+
+		inDetail.findFieldByNameCreate("CPERSONA").setValue(pCpersona);
+		Table trefComerciales = inDetail.findTableByName("TPERSONAREFERENCIASCOMERCIALES");
+		if (trefComerciales != null) {
+			for (ReferenciasComerciales refCom : pRefComerciales) {
+				Record r = new Record();
+				r.findFieldByNameCreate("CPERSONA").setValue(pCpersona);
+				r.findFieldByNameCreate("TIPOREFERENCIACOMERCIALCOD").setValue(refCom.getTipoReferenciaComercialCOD());
+				r.findFieldByNameCreate("DESCRIPCION").setValue(refCom.getDescripcion());
+				r.findFieldByNameCreate("VALOR").setValue(refCom.getValor());
+				r.findFieldByNameCreate("TELEFONO").setValue(refCom.getTelefono());
+				r.findFieldByNameCreate("OBSERVACION").setValue(refCom.getObservacion());
+				trefComerciales.addRecord(r);
+			}
+		}
+
+		Table trefPersonales = inDetail.findTableByName("TPERSONAREFERENCIASPERSONALES");
+		if (trefPersonales != null) {
+			for (ReferenciasPersonales refPer : pRegPersonales) {
+				Record r = new Record();
+				r.findFieldByNameCreate("NOMBREPERSONA").setValue(refPer.getNombre());
+				r.findFieldByNameCreate("TELEFONO").setValue(refPer.getTelefono());
+				r.findFieldByNameCreate("DETALLE").setValue(refPer.getObservacion());
+				trefPersonales.addRecord(r);
+			}
+		}
+
+		// Se envía el Detail al UCI
+		String request = (String) UCIClient.send(inDetail.toErrorXml(), "127.0.0.1", 20091, 30);
+		Detail outDetail = Detail.valueOf(request);
+
+		RespuestaSolicitud result = new RespuestaSolicitud();
+		if (outDetail.getResponse() != null && outDetail.getResponse().getCode().trim().equals("0")) {
+			return result;
+		} else {
+			result.setTieneError(true);
+			result.setRespuestaCOD("D504");
+			result.setMensaje(outDetail.getResponse() != null ? outDetail.getResponse().getUserMessage()
+					: "Error al Actualizar los datos");
+			result.setMensajePersonalizado("Error al Actualizar los datos");
+			result.setMensajeTecnico(outDetail.getResponse().getTechnicalMessage());
+		}
+		return result;
+	}
+
 	public String getIdentificacion(String pIdentificacion) throws Exception {
-		String identificacion = null;
+		String cpersona = null;
 		String message = FileHelper.readFile("/home/fitbank/FitBank/score/4-lv-identificacion.xml");
 		Detail inDetail = Detail.valueOf(message);
 		Table tpro = inDetail.findTableByName("TPERSONA");
@@ -37,16 +115,16 @@ public class DetailProcessor implements Serializable {
 		if (outDetail.getResponse() != null && outDetail.getResponse().getCode().trim().equals("0")) {
 			Table tproDesFond = outDetail.findTableByName("TPERSONA");
 			for (Record r : tproDesFond.getRecords()) {
-				 identificacion = r.findFieldByNameCreate("cpersona").getStringValue();
+				cpersona = r.findFieldByNameCreate("cpersona").getStringValue();
 			}
 		}
-		return identificacion;
+		return cpersona;
 	}
 
-	public Detail getSolicitudData(String[] pProductFit, int pPersonaId, String pUsuarioId,
-			Calendar pFechaSol, String pDestinoFondos, String pClasContable, String pIdentificacionConyuge,
-			double pMontoSolicitud, String pTipoCuota, String pFrecuencia, Integer pNumCuotas, Integer pPlazo,
-			Table pTproductoCuotas) throws Exception {
+	public Detail getSolicitudData(String[] pProductFit, int pPersonaId, String pUsuarioId, Calendar pFechaSol,
+			String pDestinoFondos, String pClasContable, String pIdentificacionConyuge, double pMontoSolicitud,
+			String pTipoCuota, String pFrecuencia, Integer pNumCuotas, Integer pPlazo, Table pTproductoCuotas,
+			int pSolicitudId, String pIdentificacion) throws Exception {
 		String messageSol = FileHelper.readFile("/home/fitbank/FitBank/score/062100.xml");
 		Detail detail = Detail.valueOf(messageSol);
 
@@ -118,6 +196,11 @@ public class DetailProcessor implements Serializable {
 			}
 		}
 
+		detail.findFieldByNameCreate("CSOLICITUDMICROSCORE").setValue(pSolicitudId);
+		detail.findFieldByNameCreate("MICROSCOREPROCESS").setValue("P");
+		detail.findFieldByNameCreate("MICROSCOREIDENTIFICACION").setValue(pIdentificacion);
+		
+		
 		return detail;
 	}
 

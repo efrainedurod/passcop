@@ -64,11 +64,49 @@ public class ScoreWebService {
 	public RespuestaSolicitud EnviarDatosOperacion(@WebParam(name = "operacion") Respuesta operacion) {
 		try {
 
+			HelperResponse helper = new HelperResponse();
+			DetailProcessor detailProcessor = new DetailProcessor();
 			log.debug("PARAMETROS DE ENTRADA");
 			log.debug("TRAMA: " + operacion.toString());
-			log.info("INICIO - CREACIÓN DE SOLICITUD PARA LA PESONA: " + operacion.getIdentificacion());
 
-			HelperResponse helper = new HelperResponse();
+			// 1) Verifica Si la identificación existe
+			String cpersona = detailProcessor.getIdentificacion(operacion.getIdentificacion());
+			if (cpersona == null) {
+				log.error("Identificacion no encontrada");
+				return helper.getResponseNotIdentification();
+			}
+			log.debug("CPERSONA: " + cpersona);
+
+			String cpersonaCon = detailProcessor.getIdentificacion(operacion.getIdentificacionConyuge());
+			if (cpersonaCon == null) {
+				log.error("Identificacion del conyuge no encontrada");
+			}
+			log.debug("CPERSONA_CONYUGE: " + cpersonaCon);
+			log.debug("SEPARACIONBIENES: " + operacion.isSeparacionBienes());
+			log.debug("NUMEROCARGA: " + operacion.getNumeroCarga());
+			log.debug("NIVELEDUCACIONCOD: " + operacion.getNivelEducacionCOD());
+			log.debug("OCUPACIONCOD: " + operacion.getOcupacionCOD());
+			log.debug("USERID: " + operacion.getUsuarioID());
+			log.debug("DUENOCASA: " + operacion.getDuenoCasa());
+			log.debug("REFERENCIA: " + operacion.getReferenciaUbicacion());
+
+			log.info("INICIO - ACTUALIZACIÓN DE INFORMACIÓN DEL DEUDOR: " + operacion.getIdentificacion());
+			RespuestaSolicitud actualziarDatos = detailProcessor.updatePersonInformation(cpersona, cpersonaCon,
+					operacion.getEstadoCivilCOD(), operacion.isSeparacionBienes(), operacion.getNumeroCarga(),
+					operacion.getNivelEducacionCOD(), operacion.getOcupacionCOD(), operacion.getCorreo(),
+					operacion.getDireccion(), operacion.getTipoViviendaCOD(), operacion.isViviendaHipotecada(),
+					operacion.getUnidadTiempoViviendaActualCOD(), operacion.getTiempoViviendaActual(),
+					operacion.getTelefonoCelular(), operacion.getTelefonoDomicilio(), operacion.getDuenoCasa(),
+					operacion.getReferenciaUbicacion(), operacion.getUsuarioID(), operacion.getReferenciasComerciales(),
+					operacion.getReferenciasPersonales());
+			if (actualziarDatos.isTieneError() == true) {
+				log.error("Error al actualicar datos");
+				log.error(actualziarDatos.getMensajeTecnico());
+				return actualziarDatos;
+			}
+			log.info("FIN - ACTUALIZACIÓN DE INFORMACIÓN  PARA LA PERSONA: " + operacion.getIdentificacion());
+
+			log.info("INICIO - CREACIÓN DE SOLICITUD PARA LA PESONA: " + operacion.getIdentificacion());
 			// 1) Verifica Si el producto existe en el mapeo
 			String[] productFit = helper.getProduct(operacion.getProductoID());
 			if (productFit == null) {
@@ -76,21 +114,13 @@ public class ScoreWebService {
 			}
 			log.info("CGRUPOPRODUCTO: " + productFit[0] + ", CPRODUCTO: " + productFit[1]);
 
-			// 2) Verifica Si la identificación existe
-			DetailProcessor detailProcessor = new DetailProcessor();
-			String consulta = detailProcessor.getIdentificacion(operacion.getIdentificacion());
-			if (consulta == null) {
-				log.error("Identificacion no encontrada");
-				return helper.getResponseNotIdentification();
-			}
-			int idPersona = Integer.parseInt(consulta);
-			log.debug("CPERSONA: " + idPersona);
+			int idPersona = Integer.parseInt(cpersona);
 
 			// 3) Verifica el valor del Destino de Fondos
-
 			RespuestaSolicitud destinoFodos = detailProcessor.getDestinoFondos(productFit,
 					operacion.getDestinoEconomicoCOD());
 			if (destinoFodos.isTieneError() == true) {
+				log.error("Error al consultar el destino de fondos");
 				return destinoFodos;
 			}
 			log.info("CDESTINOFONDOS: " + destinoFodos.getMensaje());
@@ -143,7 +173,7 @@ public class ScoreWebService {
 			Detail inDetailSol = detailProcessor.getSolicitudData(productFit, idPersona, operacion.getUsuarioID(),
 					operacion.getFechaSolicitud(), destinoFodos.getMensaje(), clasificacionCon.getMensaje(),
 					operacion.getIdentificacionConyuge(), operacion.getMontoSolicitud(), tipoCuota, frecuencia,
-					numCuotas, plazoDias, tproductoCuotas);
+					numCuotas, plazoDias, tproductoCuotas, operacion.getSolicitudID(), operacion.getIdentificacion());
 			Detail outDetail = detailProcessor.solicitudProcess(inDetailSol);
 
 			RespuestaSolicitud resSol = new RespuestaSolicitud();
@@ -171,6 +201,7 @@ public class ScoreWebService {
 			log.info("FIN - CREACIÓN DE SOLICITUD PARA LA PESONA: " + operacion.getIdentificacion());
 
 			return resSol;
+
 		} catch (Exception ex) {
 			log.error(ex.getMessage(), ex);
 			RespuestaSolicitud resSol = new RespuestaSolicitud();
@@ -182,5 +213,6 @@ public class ScoreWebService {
 
 			return resSol;
 		}
+
 	}
 }
