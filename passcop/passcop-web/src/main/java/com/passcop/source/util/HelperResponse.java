@@ -227,6 +227,22 @@ public class HelperResponse implements Serializable {
 		return frecuencia;
 	}
 
+	public String getIdTipoBien(String pId) throws Exception {
+		String frecuencia = "";
+		switch (pId) {
+		case "TERRENOS":
+			frecuencia = "110";
+			break;
+		case "EDIFICACIONES":
+			frecuencia = "120";
+			break;
+		case "EQUIPOS":
+			frecuencia = "220";
+			break;
+		}
+		return frecuencia;
+	}
+
 	public RespuestaSolicitud getResponseNotFoundProduct() {
 		RespuestaSolicitud resSol = new RespuestaSolicitud();
 		resSol.setTieneError(true);
@@ -236,14 +252,15 @@ public class HelperResponse implements Serializable {
 		resSol.setMensajeTecnico("Validacion No Exitosa No se puede identificar el Producto");
 		return resSol;
 	}
-	
-	public RespuestaSolicitud getResponseNotIdentification() {
+
+	public RespuestaSolicitud getResponseNotIdentification(String pIdentificacion) {
 		RespuestaSolicitud resSol = new RespuestaSolicitud();
 		resSol.setTieneError(true);
 		resSol.setRespuestaCOD("D404");
-		resSol.setMensaje("Validacion No Exitosa No se puede encontrar la identificacion");
-		resSol.setMensajePersonalizado("Validacion No Exitosa No se puede encontrar la identificacion");
-		resSol.setMensajeTecnico("Validacion No Exitosa No se puede encontrar la identificacion");
+		resSol.setMensaje("Validacion No Exitosa No se puede encontrar la identificacion " + pIdentificacion);
+		resSol.setMensajePersonalizado(
+				"Validacion No Exitosa No se puede encontrar la identificacion" + pIdentificacion);
+		resSol.setMensajeTecnico("Validacion No Exitosa No se puede encontrar la identificacion" + pIdentificacion);
 		return resSol;
 	}
 
@@ -257,7 +274,6 @@ public class HelperResponse implements Serializable {
 			resSol.setMensajePersonalizado("Parámetro Plazo no enviado o igul a cero ");
 			resSol.setMensajeTecnico("Parámetro Plazo no enviado o igul a cero");
 		}
-		
 
 		if (pFormaPago == null || pFormaPago == "") {
 			resSol.setTieneError(true);

@@ -69,19 +69,36 @@ public class ScoreWebService {
 			log.debug("PARAMETROS DE ENTRADA");
 			log.debug("TRAMA: " + operacion.toString());
 
-			// 1) Verifica Si la identificación existe
+			// 1) Verifica las indentificaicones del Deudor Garante y conyuge
 			String cpersona = detailProcessor.getIdentificacion(operacion.getIdentificacion());
-			if (cpersona == null) {
-				log.error("Identificacion no encontrada");
-				return helper.getResponseNotIdentification();
+			if (cpersona == null && operacion.getIdentificacion() != null) {
+				log.error("Identificacion no encontrada para " + operacion.getIdentificacion());
+				return helper.getResponseNotIdentification(operacion.getIdentificacion());
 			}
 			log.debug("CPERSONA: " + cpersona);
-
 			String cpersonaCon = detailProcessor.getIdentificacion(operacion.getIdentificacionConyuge());
-			if (cpersonaCon == null) {
-				log.error("Identificacion del conyuge no encontrada");
+			if (cpersonaCon == null && operacion.getIdentificacionConyuge() != null) {
+				log.error("Identificacion no encontrada para " + operacion.getIdentificacionConyuge());
+				return helper.getResponseNotIdentification(operacion.getIdentificacionConyuge());
 			}
 			log.debug("CPERSONA_CONYUGE: " + cpersonaCon);
+			String cpersonaGar = null;
+			String cpersonaConGar = null;
+			if (operacion.getGarante() != null) {
+				cpersonaGar = detailProcessor.getIdentificacion(operacion.getGarante().getIdentificacion());
+				if (cpersonaGar == null && operacion.getGarante().getIdentificacion() != null) {
+					log.error("Identificacion no encontrada para " + operacion.getGarante().getIdentificacion());
+					return helper.getResponseNotIdentification(operacion.getGarante().getIdentificacion());
+				}
+				log.debug("CPERSONAGAR: " + cpersona);
+				cpersonaConGar = detailProcessor.getIdentificacion(operacion.getGarante().getIdentificacionConyuge());
+				if (cpersonaConGar == null && operacion.getGarante().getIdentificacionConyuge() != null) {
+					log.error("Identificacion no encontrada para " + operacion.getGarante().getIdentificacionConyuge());
+					return helper.getResponseNotIdentification(operacion.getGarante().getIdentificacionConyuge());
+				}
+				log.debug("CPERSONA_CONYUGEGAR: " + cpersonaConGar);
+			}
+			// 2 Actualizar información
 			log.debug("SEPARACIONBIENES: " + operacion.isSeparacionBienes());
 			log.debug("NUMEROCARGA: " + operacion.getNumeroCarga());
 			log.debug("NIVELEDUCACIONCOD: " + operacion.getNivelEducacionCOD());
@@ -92,19 +109,13 @@ public class ScoreWebService {
 
 			log.info("INICIO - ACTUALIZACIÓN DE INFORMACIÓN DEL DEUDOR: " + operacion.getIdentificacion());
 			RespuestaSolicitud actualziarDatos = detailProcessor.updatePersonInformation(cpersona, cpersonaCon,
-					operacion.getEstadoCivilCOD(), operacion.isSeparacionBienes(), operacion.getNumeroCarga(),
-					operacion.getNivelEducacionCOD(), operacion.getOcupacionCOD(), operacion.getCorreo(),
-					operacion.getDireccion(), operacion.getTipoViviendaCOD(), operacion.isViviendaHipotecada(),
-					operacion.getUnidadTiempoViviendaActualCOD(), operacion.getTiempoViviendaActual(),
-					operacion.getTelefonoCelular(), operacion.getTelefonoDomicilio(), operacion.getDuenoCasa(),
-					operacion.getReferenciaUbicacion(), operacion.getUsuarioID(), operacion.getReferenciasComerciales(),
-					operacion.getReferenciasPersonales());
+					cpersonaGar, cpersonaConGar, operacion);
 			if (actualziarDatos.isTieneError() == true) {
 				log.error("Error al actualicar datos");
 				log.error(actualziarDatos.getMensajeTecnico());
 				return actualziarDatos;
 			}
-			log.info("FIN - ACTUALIZACIÓN DE INFORMACIÓN  PARA LA PERSONA: " + operacion.getIdentificacion());
+			log.info("FIN - ACTUALIZACIÓN DE INFORMACIÓN DEL DEUDOR: " + operacion.getIdentificacion());
 
 			log.info("INICIO - CREACIÓN DE SOLICITUD PARA LA PESONA: " + operacion.getIdentificacion());
 			// 1) Verifica Si el producto existe en el mapeo
@@ -173,9 +184,10 @@ public class ScoreWebService {
 			Detail inDetailSol = detailProcessor.getSolicitudData(productFit, idPersona, operacion.getUsuarioID(),
 					operacion.getFechaSolicitud(), destinoFodos.getMensaje(), clasificacionCon.getMensaje(),
 					operacion.getIdentificacionConyuge(), operacion.getMontoSolicitud(), tipoCuota, frecuencia,
-					numCuotas, plazoDias, tproductoCuotas, operacion.getSolicitudID(), operacion.getIdentificacion());
+					numCuotas, plazoDias, tproductoCuotas, operacion.getSolicitudID(), operacion.getIdentificacion(),
+					operacion.getGarantiasReales());
 			Detail outDetail = detailProcessor.solicitudProcess(inDetailSol);
-
+		
 			RespuestaSolicitud resSol = new RespuestaSolicitud();
 			if (outDetail.getResponse().getCode().trim().equals("0")) {
 				resSol.setTieneError(false);
