@@ -274,7 +274,7 @@ public class Respuesta {
 	protected String formaPagoCOD;
 	protected Persona garante;
 	@XmlElement(nillable = true)
-	protected List<GarantiasReales> garantiasReales;
+	protected GarantiasReales[] garantiasReales;
 	protected double gastosFinancierosPerdidasYGanancias;
 	protected double gastosTotalesPerdidasYGanancias;
 	@XmlElement(name = "IVA")
@@ -1343,10 +1343,8 @@ public class Respuesta {
 	 * 
 	 * 
 	 */
-	public List<GarantiasReales> getGarantiasReales() {
-		if (garantiasReales == null) {
-			garantiasReales = new ArrayList<GarantiasReales>();
-		}
+	public GarantiasReales[] getGarantiasReales() {
+
 		return this.garantiasReales;
 	}
 
@@ -2307,7 +2305,7 @@ public class Respuesta {
 	 * 
 	 * 
 	 */
-	
+
 	public ReferenciasPersonales[] getReferenciasPersonales() {
 		return this.referenciasPersonales;
 	}
@@ -3294,7 +3292,7 @@ public class Respuesta {
 		this.viviendaHipotecada = value;
 	}
 
-	public void setGarantiasReales(List<GarantiasReales> garantiasReales) {
+	public void setGarantiasReales(GarantiasReales[] garantiasReales) {
 		this.garantiasReales = garantiasReales;
 	}
 

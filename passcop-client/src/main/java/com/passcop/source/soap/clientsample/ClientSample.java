@@ -309,8 +309,8 @@ public class ClientSample {
 		personaGarante.setRelacionCOD(" "); // Consultar que va en realación
 		personaGarante.setNomreModulo("Personas");
 		personaGarante.setUsuarioID(new Short("1"));
-		personaGarante.setIdentificacion("1804073268");
-		personaGarante.setIdentificacionConyuge("22297");
+		personaGarante.setIdentificacion("0602912545");
+		personaGarante.setIdentificacionConyuge("0603185026");
 		personaGarante.setTipoPersonaCOD("NAT");
 		personaGarante.setTipoIdentificacionCOD("CED");
 		personaGarante.setApellidoPaterno("TENDELEMA");
@@ -346,9 +346,9 @@ public class ClientSample {
 		res.setGarante(personaGarante);
 		// Objeto de garantias reales
 
-		List<GarantiasReales> gar = new ArrayList<GarantiasReales>();
 		GarantiasReales garReal1 = new GarantiasReales();
-		garReal1.setTipoGarantia("CASA");
+		garReal1.setTipoGarantiaCOD("A12");
+		garReal1.setTipoGarantia("TERRENOS");
 		garReal1.setAnioFabricacionConstruccion(1986);
 		garReal1.setAvaluoComercial(2000);
 		garReal1.setComercio(true);
@@ -376,13 +376,12 @@ public class ClientSample {
 		garReal1.setSeriePrincipalMotor("1231212121212");
 		garReal1.setSerieSecundariaMotor("2121121212");
 		garReal1.setTieneError(false);
-		garReal1.setTipoGarantiaCOD("004");
 		garReal1.setUsuarioID(new Short("1")); // Consultar si se debe veridicar el usuario
 		garReal1.setValor(20000);
-		gar.add(garReal1);
 
 		GarantiasReales garReal2 = new GarantiasReales();
-		garReal2.setTipoGarantia("TERRENO");
+		garReal2.setTipoGarantiaCOD("A12");
+		garReal2.setTipoGarantia("TERRENOS");
 		garReal2.setAnioFabricacionConstruccion(1986);
 		garReal2.setAvaluoComercial(2000);
 		garReal2.setComercio(true);
@@ -410,14 +409,13 @@ public class ClientSample {
 		garReal2.setSeriePrincipalMotor("1231212121212");
 		garReal2.setSerieSecundariaMotor("2121121212");
 		garReal2.setTieneError(false);
-		garReal2.setTipoGarantiaCOD("004");
 		garReal2.setUsuarioID(new Short("1")); // Consultar si se debe veridicar el usuario
 		garReal2.setValor(20000);
 
-		List<GarantiasReales> garReales = new ArrayList<GarantiasReales>();
-		garReales.add(garReal1);
-		garReales.add(garReal2);
-		res.setGarantiasReales(garReales);
+		GarantiasReales[] garantiasReales = new GarantiasReales[2];
+		garantiasReales[0] = garReal1;
+		garantiasReales[1] = garReal2;
+		res.setGarantiasReales(garantiasReales);
 
 		res.setGastosFinancierosPerdidasYGanancias(5000);
 		res.setGastosTotalesPerdidasYGanancias(5000);
@@ -511,12 +509,11 @@ public class ClientSample {
 		refPers2.setTieneError(true);
 		refPers2.setTipoReferenciaPersonalCOD("REFP");
 
-
 //		List<ReferenciasPersonales> referenciasPersonales = new ArrayList<ReferenciasPersonales>();
 		ReferenciasPersonales[] referenciasPersonales = new ReferenciasPersonales[2];
 		referenciasPersonales[0] = refPers1;
 		referenciasPersonales[1] = refPers2;
-;
+		;
 		res.setReferenciasPersonales(referenciasPersonales);
 
 		// Objeto ReferenciasPersonales2
@@ -603,7 +600,7 @@ public class ClientSample {
 		res.setTiempoViviendaAnterior(new Short("0"));
 		res.setTieneError(false);
 		res.setTipoCuotaCOD("F");
-		res.setTipoGarantiaCOD("GAR");
+//		res.setTipoGarantiaCOD("A13");
 		res.setTipoIdentificacionCOD("CED");
 		res.setTipoLocalCOD(""); // Consultar
 		res.setTipoPersonaCOD("NAT");
