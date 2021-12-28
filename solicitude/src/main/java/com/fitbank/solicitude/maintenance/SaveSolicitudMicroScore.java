@@ -76,6 +76,7 @@ public class SaveSolicitudMicroScore extends MaintenanceCommand {
 						gar.setDetalle(detalle);
 						gar.setValorcomercial(avaluo);
 						gar.setValormaximo(valor);
+						gar.setConstituirgarantia("1");
 						segGarantias = segGarantias + 1;
 						Helper.saveOrUpdate(gar);
 					}

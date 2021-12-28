@@ -233,11 +233,10 @@ public class DetailProcessor implements Serializable {
 
 		Table tsoGar = detail.findTableByName("TSOLICITUDGARANTIASREALES");
 		if (tsoGar != null && pGarantiasReales != null) {
-			HelperResponse response = new HelperResponse();
 			for (GarantiasReales gar : pGarantiasReales) {
 				Record r = new Record();
 				r.findFieldByNameCreate("TIPOGARANTIACOD").setValue(gar.getTipoGarantiaCOD());
-				r.findFieldByNameCreate("TIPOGARANTIA").setValue(response.getIdTipoBien(gar.getTipoGarantia()));
+				r.findFieldByNameCreate("TIPOGARANTIA").setValue(gar.getTipoGarantia());
 				r.findFieldByNameCreate("DESCRIPCION").setValue(gar.getDescripcion());
 				r.findFieldByNameCreate("DIRECCION").setValue(gar.getDireccion());
 				r.findFieldByNameCreate("AVALUOCOMERCIAL").setValue(gar.getAvaluoComercial());
