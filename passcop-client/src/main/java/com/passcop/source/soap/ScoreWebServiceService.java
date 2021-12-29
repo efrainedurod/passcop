@@ -15,7 +15,7 @@ import javax.xml.ws.Service;
  * 
  */
 @WebServiceClient(name = "ScoreWebServiceService", 
-                  wsdlLocation = "http://localhost:8080/passcop-web/ScoreWebService?wsdl",
+                  wsdlLocation = "http://localhost:8580/passcop-web/ScoreWebService?wsdl",
                   targetNamespace = "http://soap.source.passcop.com/") 
 public class ScoreWebServiceService extends Service {
 
@@ -26,11 +26,11 @@ public class ScoreWebServiceService extends Service {
     static {
         URL url = null;
         try {
-            url = new URL("http://localhost:8080/passcop-web/ScoreWebService?wsdl");
+            url = new URL("http://localhost:8580/passcop-web/ScoreWebService?wsdl");
         } catch (MalformedURLException e) {
             java.util.logging.Logger.getLogger(ScoreWebServiceService.class.getName())
                 .log(java.util.logging.Level.INFO, 
-                     "Can not initialize the default wsdl from {0}", "http://localhost:8080/passcop-web/ScoreWebService?wsdl");
+                     "Can not initialize the default wsdl from {0}", "http://localhost:8580/passcop-web/ScoreWebService?wsdl");
         }
         WSDL_LOCATION = url;
     }

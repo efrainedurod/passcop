@@ -348,7 +348,7 @@ public class ClientSample {
 
 		GarantiasReales garReal1 = new GarantiasReales();
 		garReal1.setTipoGarantiaCOD("A12");
-		garReal1.setTipoGarantia("TERRENOS");
+		garReal1.setTipoGarantia("230");
 		garReal1.setAnioFabricacionConstruccion(1986);
 		garReal1.setAvaluoComercial(2000);
 		garReal1.setComercio(true);
@@ -381,7 +381,7 @@ public class ClientSample {
 
 		GarantiasReales garReal2 = new GarantiasReales();
 		garReal2.setTipoGarantiaCOD("A12");
-		garReal2.setTipoGarantia("TERRENOS");
+		garReal2.setTipoGarantia("230");
 		garReal2.setAnioFabricacionConstruccion(1986);
 		garReal2.setAvaluoComercial(2000);
 		garReal2.setComercio(true);
@@ -625,7 +625,7 @@ public class ClientSample {
 		res.setUnidadAntiguedadNegocioMismoLugarCOD("M");
 		res.setUnidadTiempoPlazoCOD("05");
 		res.setUnidadTiempoViviendaActualCOD("M");
-		res.setUsuarioID("127");
+		res.setUsuarioID("1");
 		res.setUsuarioIDSolicitud(new Short("1"));
 		res.setUtilidadNegocioTotalPerdidasYGanancias(10000);
 		res.setUtilidadNetaPersidasYGanancias(10000);
