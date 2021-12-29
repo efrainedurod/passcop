@@ -93,7 +93,7 @@ public class DetailProcessor implements Serializable {
 
 		inDetail.findFieldByNameCreate("CPERSONA").setValue(pCpersona);
 		Table trefComerciales = inDetail.findTableByName("TPERSONAREFERENCIASCOMERCIALES");
-		if (trefComerciales != null) {
+		if (trefComerciales != null && operacion.getReferenciasComerciales() != null) {
 			for (ReferenciasComerciales refCom : operacion.getReferenciasComerciales()) {
 				Record r = new Record();
 				r.findFieldByNameCreate("CPERSONA").setValue(pCpersona);
@@ -107,7 +107,7 @@ public class DetailProcessor implements Serializable {
 		}
 
 		Table trefPersonales = inDetail.findTableByName("TPERSONAREFERENCIASPERSONALES");
-		if (trefPersonales != null) {
+		if (trefPersonales != null && operacion.getReferenciasPersonales() != null) {
 			for (ReferenciasPersonales refPer : operacion.getReferenciasPersonales()) {
 				Record r = new Record();
 				r.findFieldByNameCreate("NOMBREPERSONA").setValue(refPer.getNombre());

@@ -1419,4 +1419,28 @@ public class Persona  implements java.io.Serializable {
             _javaType, _xmlType, typeDesc);
     }
 
+	@Override
+	public String toString() {
+		return "Persona [personaID=" + personaID + ", relacionCOD=" + relacionCOD + ", nomreModulo=" + nomreModulo
+				+ ", usuarioID=" + usuarioID + ", identificacion=" + identificacion + ", identificacionConyuge="
+				+ identificacionConyuge + ", tipoPersonaCOD=" + tipoPersonaCOD + ", tipoIdentificacionCOD="
+				+ tipoIdentificacionCOD + ", apellidoPaterno=" + apellidoPaterno + ", apellidoMaterno="
+				+ apellidoMaterno + ", nombres=" + nombres + ", fechaNacimiento=" + fechaNacimiento
+				+ ", estadoCivilCOD=" + estadoCivilCOD + ", sexoCOD=" + sexoCOD + ", numeroCarga=" + numeroCarga
+				+ ", separacionBienes=" + separacionBienes + ", nacionalidadCOD=" + nacionalidadCOD
+				+ ", nivelEducacionCOD=" + nivelEducacionCOD + ", ocupacionCOD=" + ocupacionCOD + ", correo=" + correo
+				+ ", fechaApertura=" + fechaApertura + ", localidadCOD=" + localidadCOD + ", direccion=" + direccion
+				+ ", tipoViviendaCOD=" + tipoViviendaCOD + ", situacionViviendaCOD=" + situacionViviendaCOD
+				+ ", viviendaHipotecada=" + viviendaHipotecada + ", duenoCasa=" + duenoCasa + ", telefonoDuenoCasa="
+				+ telefonoDuenoCasa + ", tiempoViviendaActual=" + tiempoViviendaActual
+				+ ", unidadTiempoViviendaActualCOD=" + unidadTiempoViviendaActualCOD + ", referenciaUbicacion="
+				+ referenciaUbicacion + ", tiempoViviendaAnterior=" + tiempoViviendaAnterior
+				+ ", unidadTiempoViviendaAnteriorCOD=" + unidadTiempoViviendaAnteriorCOD + ", telefonoDomicilio="
+				+ telefonoDomicilio + ", telefonoCelular=" + telefonoCelular + ", tieneError=" + tieneError
+				+ ", mensaje=" + mensaje + ", __equalsCalc=" + __equalsCalc + ", __hashCodeCalc=" + __hashCodeCalc
+				+ "]";
+	}
+
+    
+    
 }
