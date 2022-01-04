@@ -317,7 +317,7 @@ public class ClientSample {
 		personaGarante.setApellidoMaterno("LOPEZ");
 		personaGarante.setNombres("TOMASA");
 		personaGarante.setFechaNacimiento(null);
-		personaGarante.setEstadoCivilCOD("1");
+//		personaGarante.setEstadoCivilCOD("1");
 		personaGarante.setSexoCOD("F");
 		personaGarante.setNumeroCarga(new Short("1"));
 //		personaGarante.setSeparacionBienes(false);
@@ -342,8 +342,9 @@ public class ClientSample {
 		personaGarante.setTelefonoCelular("0502631310");
 		personaGarante.setTieneError(false);
 		personaGarante.setMensaje("D204");
-
-		res.setGarante(personaGarante);
+		
+		Persona persona1 = new Persona();
+		res.setGarante(persona1);
 		// Objeto de garantias reales
 
 		GarantiasReales garReal1 = new GarantiasReales();
@@ -578,7 +579,7 @@ public class ClientSample {
 		personaSoc.setDuenoCasa("JOSE JIMENEZ");
 		personaSoc.setTelefonoDuenoCasa("");
 		personaSoc.setTiempoViviendaActual(new Short("24"));
-		personaSoc.setUnidadTiempoViviendaActualCOD("M");
+		personaSoc.setUnidadTiempoViviendaActualCOD("A");
 		personaSoc.setReferenciaUbicacion("A TRES CUADRAS DE LA UPC");
 		personaSoc.setTiempoViviendaAnterior(null); // El campo no existe en Fitbank
 		personaSoc.setUnidadTiempoViviendaAnteriorCOD(null); // El campo no existe en Fitbank

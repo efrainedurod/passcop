@@ -202,21 +202,20 @@ public class UpdateInformationMicroScore extends MaintenanceCommand {
 			utilHB.setSentence(HQL_DIRECCIONESMAX);
 			utilHB.setInteger("cpersona", pCpersona);
 			utilHB.setReadonly(true);
-			Object secuencia = utilHB.getObject();
-			if (secuencia != null) {
-				Integer numero = (Integer) secuencia;
-				numero = numero + 1;
-				TaddresspersonKey ceKey = new TaddresspersonKey(pCpersona, numero,
-						ApplicationDates.DEFAULT_EXPIRY_TIMESTAMP);
-				Taddressperson address = new Taddressperson();
-				address.setPk(ceKey);
-				address.setDireccion(pCorreo);
-				address.setCtipodireccion("CE");
-				address.setDireccionprincipal("0");
-				address.setCpais("EC");
-				address.setCusuario_ingreso(pUser);
-				Helper.saveOrUpdate(address);
-			}
+			Object secuencia = utilHB.getObject() == null ? 0 : utilHB.getObject();
+			Integer numero = (Integer) secuencia;
+			numero = numero + 1;
+			TaddresspersonKey ceKey = new TaddresspersonKey(pCpersona, numero,
+					ApplicationDates.DEFAULT_EXPIRY_TIMESTAMP);
+			Taddressperson address = new Taddressperson();
+			address.setPk(ceKey);
+			address.setDireccion(pCorreo);
+			address.setCtipodireccion("CE");
+			address.setDireccionprincipal("0");
+			address.setCpais("EC");
+			address.setCusuario_ingreso(pUser);
+			Helper.saveOrUpdate(address);
+
 		}
 	}
 
@@ -227,23 +226,22 @@ public class UpdateInformationMicroScore extends MaintenanceCommand {
 			utilHB.setSentence(HQL_DIRECCIONESMAX);
 			utilHB.setInteger("cpersona", pCpersona);
 			utilHB.setReadonly(true);
-			Object secuencia = utilHB.getObject();
-			if (secuencia != null) {
-				Integer numero = (Integer) secuencia;
-				numero = numero + 1;
-				TaddresspersonKey ceKey = new TaddresspersonKey(pCpersona, numero,
-						ApplicationDates.DEFAULT_EXPIRY_TIMESTAMP);
-				Taddressperson address = new Taddressperson();
-				address.setPk(ceKey);
-				address.setDireccion(pDireccion);
-				address.setNombrepropietario(pDuenoCasa);
-				address.setObservaciones(pReferencia);
-				address.setCtipodireccion("DO");
-				address.setDireccionprincipal("0");
-				address.setCpais("EC");
-				address.setCusuario_ingreso(pUser);
-				Helper.saveOrUpdate(address);
-			}
+			Object secuencia = utilHB.getObject() == null ? 0 : utilHB.getObject();
+			Integer numero = (Integer) secuencia;
+			numero = numero + 1;
+			TaddresspersonKey ceKey = new TaddresspersonKey(pCpersona, numero,
+					ApplicationDates.DEFAULT_EXPIRY_TIMESTAMP);
+			Taddressperson address = new Taddressperson();
+			address.setPk(ceKey);
+			address.setDireccion(pDireccion);
+			address.setNombrepropietario(pDuenoCasa);
+			address.setObservaciones(pReferencia);
+			address.setCtipodireccion("DO");
+			address.setDireccionprincipal("0");
+			address.setCpais("EC");
+			address.setCusuario_ingreso(pUser);
+			Helper.saveOrUpdate(address);
+
 		}
 	}
 
@@ -327,21 +325,19 @@ public class UpdateInformationMicroScore extends MaintenanceCommand {
 			utilHB.setSentence(HQL_TELEFONOMAX);
 			utilHB.setInteger("cpersona", pCpersona);
 			utilHB.setReadonly(true);
-			Object secuencia = utilHB.getObject();
-			if (secuencia != null) {
-				Integer numero = (Integer) secuencia;
-				numero = numero + 1;
-				TtelephonepersonKey ceKey = new TtelephonepersonKey(pCpersona, numero,
-						ApplicationDates.DEFAULT_EXPIRY_TIMESTAMP);
-				Ttelephoneperson cel = new Ttelephoneperson();
-				cel.setPk(ceKey);
-				cel.setNumerotelefono(pNumeroTelefono);
-				cel.setCtipotelefono("CEL");
-				cel.setCodigoarea(593);
-				cel.setCtipoubicacion("001");
-				cel.setCusuario_ingreso(pUser);
-				Helper.saveOrUpdate(cel);
-			}
+			Object secuencia = utilHB.getObject() == null ? 0 : utilHB.getObject();
+			Integer numero = (Integer) secuencia;
+			numero = numero + 1;
+			TtelephonepersonKey ceKey = new TtelephonepersonKey(pCpersona, numero,
+					ApplicationDates.DEFAULT_EXPIRY_TIMESTAMP);
+			Ttelephoneperson cel = new Ttelephoneperson();
+			cel.setPk(ceKey);
+			cel.setNumerotelefono(pNumeroTelefono);
+			cel.setCtipotelefono("CEL");
+			cel.setCodigoarea(593);
+			cel.setCtipoubicacion("001");
+			cel.setCusuario_ingreso(pUser);
+			Helper.saveOrUpdate(cel);
 		}
 	}
 
@@ -374,21 +370,19 @@ public class UpdateInformationMicroScore extends MaintenanceCommand {
 			utilHB.setSentence(HQL_TELEFONOMAX);
 			utilHB.setInteger("cpersona", pCpersona);
 			utilHB.setReadonly(true);
-			Object secuencia = utilHB.getObject();
-			if (secuencia != null) {
-				Integer numero = (Integer) secuencia;
-				numero = numero + 1;
-				TtelephonepersonKey ceKey = new TtelephonepersonKey(pCpersona, numero,
-						ApplicationDates.DEFAULT_EXPIRY_TIMESTAMP);
-				Ttelephoneperson cel = new Ttelephoneperson();
-				cel.setPk(ceKey);
-				cel.setNumerotelefono(pNumeroTelefono);
-				cel.setCtipotelefono("TEL");
-				cel.setCodigoarea(593);
-				cel.setCtipoubicacion("001");
-				cel.setCusuario_ingreso(pUser);
-				Helper.saveOrUpdate(cel);
-			}
+			Object secuencia = utilHB.getObject() == null ? 0 : utilHB.getObject();
+			Integer numero = (Integer) secuencia;
+			numero = numero + 1;
+			TtelephonepersonKey ceKey = new TtelephonepersonKey(pCpersona, numero,
+					ApplicationDates.DEFAULT_EXPIRY_TIMESTAMP);
+			Ttelephoneperson cel = new Ttelephoneperson();
+			cel.setPk(ceKey);
+			cel.setNumerotelefono(pNumeroTelefono);
+			cel.setCtipotelefono("TEL");
+			cel.setCodigoarea(593);
+			cel.setCtipoubicacion("001");
+			cel.setCusuario_ingreso(pUser);
+			Helper.saveOrUpdate(cel);
 		}
 	}
 
@@ -436,11 +430,9 @@ public class UpdateInformationMicroScore extends MaintenanceCommand {
 		utilHB.setSentence(HQL_COMERCIALREFMAX);
 		utilHB.setInteger("cpersona", pCpersona);
 		utilHB.setReadonly(true);
-		Object secuencia = utilHB.getObject();
-		if (secuencia != null) {
-			numero = (Integer) secuencia;
-			numero = numero + 1;
-		}
+		Object secuencia = utilHB.getObject() == null ? 0 : utilHB.getObject();
+		numero = (Integer) secuencia;
+		numero = numero + 1;
 		return numero;
 	}
 
@@ -465,11 +457,9 @@ public class UpdateInformationMicroScore extends MaintenanceCommand {
 		utilHB.setSentence(HQL_PERSONALREFMAX);
 		utilHB.setInteger("cpersona", pCpersona);
 		utilHB.setReadonly(true);
-		Object secuencia = utilHB.getObject();
-		if (secuencia != null) {
-			numero = (Integer) secuencia;
-			numero = numero + 1;
-		}
+		Object secuencia = utilHB.getObject() == null ? 0 : utilHB.getObject();
+		numero = (Integer) secuencia;
+		numero = numero + 1;
 		return numero;
 	}
 

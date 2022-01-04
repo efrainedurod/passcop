@@ -372,4 +372,12 @@ public class ReferenciasComerciales  implements java.io.Serializable {
             _javaType, _xmlType, typeDesc);
     }
 
+	@Override
+	public String toString() {
+		return "ReferenciasComerciales [solicitudID=" + solicitudID + ", tipoReferenciaComercialCOD="
+				+ tipoReferenciaComercialCOD + ", descripcion=" + descripcion + ", valor=" + valor + ", telefono="
+				+ telefono + ", observacion=" + observacion + ", tieneError=" + tieneError + ", mensaje=" + mensaje
+				+ ", __equalsCalc=" + __equalsCalc + ", __hashCodeCalc=" + __hashCodeCalc + "]";
+	}
+
 }

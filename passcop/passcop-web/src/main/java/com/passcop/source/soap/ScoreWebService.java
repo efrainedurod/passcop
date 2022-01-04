@@ -84,13 +84,14 @@ public class ScoreWebService {
 			log.debug("CPERSONA_CONYUGE: " + cpersonaCon);
 			String cpersonaGar = null;
 			String cpersonaConGar = null;
-			if (operacion.getGarante() != null) {
+			if (operacion.getGarante() != null && operacion.getGarante().getIdentificacion() != null ) {
 				cpersonaGar = detailProcessor.getIdentificacion(operacion.getGarante().getIdentificacion());
 				if (cpersonaGar == null && operacion.getGarante().getIdentificacion() != null) {
 					log.error("Identificacion no encontrada para " + operacion.getGarante().getIdentificacion());
 					return helper.getResponseNotIdentification(operacion.getGarante().getIdentificacion());
 				}
 				log.debug("CPERSONAGAR: " + cpersona);
+				log.debug("ESTADOCIVIL_GAR:" + operacion.getGarante().getEstadoCivilCOD());
 				cpersonaConGar = detailProcessor.getIdentificacion(operacion.getGarante().getIdentificacionConyuge());
 				if (cpersonaConGar == null && operacion.getGarante().getIdentificacionConyuge() != null) {
 					log.error("Identificacion no encontrada para " + operacion.getGarante().getIdentificacionConyuge());
@@ -99,6 +100,7 @@ public class ScoreWebService {
 				log.debug("CPERSONA_CONYUGEGAR: " + cpersonaConGar);
 			}
 			// 2 Actualizar información
+			log.debug("ESTADOCIVIL:" + operacion.getEstadoCivilCOD());
 			log.debug("SEPARACIONBIENES: " + operacion.isSeparacionBienes());
 			log.debug("NUMEROCARGA: " + operacion.getNumeroCarga());
 			log.debug("NIVELEDUCACIONCOD: " + operacion.getNivelEducacionCOD());
@@ -187,7 +189,7 @@ public class ScoreWebService {
 					numCuotas, plazoDias, tproductoCuotas, operacion.getSolicitudID(), operacion.getIdentificacion(),
 					operacion.getGarantiasReales());
 			Detail outDetail = detailProcessor.solicitudProcess(inDetailSol);
-		
+
 			RespuestaSolicitud resSol = new RespuestaSolicitud();
 			if (outDetail.getResponse().getCode().trim().equals("0")) {
 				resSol.setTieneError(false);
