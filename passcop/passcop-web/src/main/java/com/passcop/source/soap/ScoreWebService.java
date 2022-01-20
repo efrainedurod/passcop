@@ -1,5 +1,9 @@
 package com.passcop.source.soap;
 
+import java.sql.Date;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -10,6 +14,7 @@ import javax.jws.WebService;
 
 import org.slf4j.Logger;
 
+import com.fitbank.common.ApplicationDates;
 import com.fitbank.dto.management.Detail;
 import com.fitbank.dto.management.Table;
 import com.passcop.source.dao.VpersonaDao;
@@ -68,7 +73,6 @@ public class ScoreWebService {
 			DetailProcessor detailProcessor = new DetailProcessor();
 			log.debug("PARAMETROS DE ENTRADA");
 			log.debug("TRAMA: " + operacion.toString());
-
 			// 1) Verifica las indentificaicones del Deudor Garante y conyuge
 			String cpersona = detailProcessor.getIdentificacion(operacion.getIdentificacion());
 			if (cpersona == null && operacion.getIdentificacion() != null) {
@@ -84,7 +88,7 @@ public class ScoreWebService {
 			log.debug("CPERSONA_CONYUGE: " + cpersonaCon);
 			String cpersonaGar = null;
 			String cpersonaConGar = null;
-			if (operacion.getGarante() != null && operacion.getGarante().getIdentificacion() != null ) {
+			if (operacion.getGarante() != null && operacion.getGarante().getIdentificacion() != null) {
 				cpersonaGar = detailProcessor.getIdentificacion(operacion.getGarante().getIdentificacion());
 				if (cpersonaGar == null && operacion.getGarante().getIdentificacion() != null) {
 					log.error("Identificacion no encontrada para " + operacion.getGarante().getIdentificacion());
@@ -123,6 +127,7 @@ public class ScoreWebService {
 			// 1) Verifica Si el producto existe en el mapeo
 			String[] productFit = helper.getProduct(operacion.getProductoID());
 			if (productFit == null) {
+				log.error("Validacion No Exitosa No se puede identificar el Producto: " + operacion.getProductoID());
 				return helper.getResponseNotFoundProduct();
 			}
 			log.info("CGRUPOPRODUCTO: " + productFit[0] + ", CPRODUCTO: " + productFit[1]);

@@ -10,6 +10,8 @@ import com.fitbank.common.FileHelper;
 import com.fitbank.dto.management.Detail;
 import com.fitbank.dto.management.Record;
 import com.fitbank.dto.management.Table;
+import com.passcop.source.request.DetalleDeCuentas;
+import com.passcop.source.request.DetallePatrimonial;
 import com.passcop.source.request.GarantiasReales;
 import com.passcop.source.request.ReferenciasComerciales;
 import com.passcop.source.request.ReferenciasPersonales;
@@ -117,6 +119,33 @@ public class DetailProcessor implements Serializable {
 			}
 		}
 
+		// Setea los valores para los Ingresos y Egresos
+		Table tnatIngEg = inDetail.findTableByName("TNATURALINGRESOSEGRESOS");
+		if (tnatIngEg != null && operacion.getDetalledeCuentasSocio() != null) {
+			for (DetalleDeCuentas detPat : operacion.getDetalledeCuentasSocio()) {
+				Record r = new Record();
+				r.findFieldByNameCreate("GRUPOCUENTACODE").setValue(detPat.getGrupoCuentaCODE());
+				r.findFieldByNameCreate("VALORDETALLECUENTAS").setValue(detPat.getValorDetalleCuentas());
+				r.findFieldByNameCreate("CUENTAID").setValue(detPat.getCuentaID());
+				tnatIngEg.addRecord(r);
+			}
+		}
+
+		// Setea los valores para los Activos y Pasivos
+		Table tnatActPas = inDetail.findTableByName("TNATURALACTIVOSPASIVOS");
+		if (tnatActPas != null && operacion.getDetallePatrimonialSocio() != null) {
+			for (DetallePatrimonial detPat : operacion.getDetallePatrimonialSocio()) {
+				Record r = new Record();
+				r.findFieldByNameCreate("GRUPOCUENTACODEDETALLEPATRIMONIAL")
+						.setValue(detPat.getGrupoCuentaCODEDetallePatrimonial());
+				r.findFieldByNameCreate("VALORDETALLEPATRIMONIAL").setValue(detPat.getValorDetallePatrimonial());
+				r.findFieldByNameCreate("CUENTAIDDETALLEPATRIMONIAL").setValue(detPat.getCuentaIDDetallePatrimonial());
+				tnatActPas.addRecord(r);
+			}
+		}
+		// Setea el varlor de ventas
+		inDetail.findFieldByNameCreate("VENTASMONTOS").setValue(operacion.getVentasMontos());
+
 		// Se envía el Detail al UCI
 		String request = (String) UCIClient.send(inDetail.toErrorXml(), "127.0.0.1", 20091, 30);
 		Detail outDetail = Detail.valueOf(request);
@@ -159,10 +188,10 @@ public class DetailProcessor implements Serializable {
 	public Detail getSolicitudData(String[] pProductFit, int pPersonaId, String pUsuarioId, Calendar pFechaSol,
 			String pDestinoFondos, String pClasContable, String pIdentificacionConyuge, double pMontoSolicitud,
 			String pTipoCuota, String pFrecuencia, Integer pNumCuotas, Integer pPlazo, Table pTproductoCuotas,
-			int pSolicitudId, String pIdentificacion, GarantiasReales[] pGarantiasReales) throws Exception {
+			int pSolicitudId, String pIdentificacion, GarantiasReales[] pGarantiasReales)
+			throws Exception {
 		String messageSol = FileHelper.readFile("/home/fitbank/FitBank/score/062100.xml");
 		Detail detail = Detail.valueOf(messageSol);
-
 		// Setea Valores de la tabla TSOLICITUD
 		Table tsolicitud = detail.findTableByName("TSOLICITUD");
 		if (tsolicitud != null) {
@@ -230,7 +259,7 @@ public class DetailProcessor implements Serializable {
 						.next().findFieldByNameCreate("CGRUPOBALANCE_CAPITAL").getStringValue());
 			}
 		}
-
+		// Setea los valores para las garatias reales
 		Table tsoGar = detail.findTableByName("TSOLICITUDGARANTIASREALES");
 		if (tsoGar != null && pGarantiasReales != null) {
 			for (GarantiasReales gar : pGarantiasReales) {

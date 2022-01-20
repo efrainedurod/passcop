@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <datasources xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.ironjacamar.org/schema/datasources_3_0.xsd">
   <datasource jndi-name="java:jboss/datasources/passcopDS" pool-name="OracleDS">
-    <!--connection-url>jdbc:oracle:thin:@localhost:1521/ORCL</connection-url -->
-    <connection-url>jdbc:oracle:thin:@172.31.20.75:1521/TESTFIT</connection-url>
+    <connection-url>jdbc:oracle:thin:@localhost:1521/ORCL</connection-url>
+    <!--connection-url>jdbc:oracle:thin:@172.31.20.75:1521/TESTFIT</connection-url-->
     <connection-property name="v$session.program">PASSCOP</connection-property>
     <driver>oracle7</driver>
     <security>
