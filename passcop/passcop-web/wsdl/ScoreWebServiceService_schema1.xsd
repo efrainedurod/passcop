@@ -39,7 +39,7 @@
       <xs:element minOccurs="0" name="nivelEducacionCOD" type="xs:string"></xs:element>
       <xs:element minOccurs="0" name="nombres" type="xs:string"></xs:element>
       <xs:element minOccurs="0" name="nomreModulo" type="xs:string"></xs:element>
-      <xs:element minOccurs="0" name="numeroCarga" type="xs:short"></xs:element>
+      <xs:element name="numeroCarga" type="xs:int"></xs:element>
       <xs:element minOccurs="0" name="ocupacionCOD" type="xs:string"></xs:element>
       <xs:element name="personaID" type="xs:int"></xs:element>
       <xs:element minOccurs="0" name="referenciaUbicacion" type="xs:string"></xs:element>
@@ -113,9 +113,9 @@
       <xs:element minOccurs="0" name="estado" type="xs:string"></xs:element>
       <xs:element minOccurs="0" name="estadoCentralRiesgo" type="xs:string"></xs:element>
       <xs:element minOccurs="0" name="estadoCivilCOD" type="xs:string"></xs:element>
-      <xs:element minOccurs="0" name="fechaApertura" type="xs:dateTime"></xs:element>
-      <xs:element minOccurs="0" name="fechaNacimiento" type="xs:dateTime"></xs:element>
-      <xs:element minOccurs="0" name="fechaSolicitud" type="xs:dateTime"></xs:element>
+      <xs:element minOccurs="0" name="fechaApertura" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="fechaNacimiento" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="fechaSolicitud" type="xs:string"></xs:element>
       <xs:element minOccurs="0" name="formaPagoCOD" type="xs:string"></xs:element>
       <xs:element minOccurs="0" name="garante" type="tns:persona"></xs:element>
       <xs:element maxOccurs="unbounded" minOccurs="0" name="garantiasReales" nillable="true" type="tns:garantiasReales"></xs:element>
@@ -128,7 +128,7 @@
       <xs:element minOccurs="0" name="identificacionInformacionNegocio" type="xs:string"></xs:element>
       <xs:element minOccurs="0" name="identificacionSocio" type="xs:string"></xs:element>
       <xs:element minOccurs="0" name="identificacionSolicitud" type="xs:string"></xs:element>
-      <xs:element minOccurs="0" name="ingreso" type="xs:dateTime"></xs:element>
+      <xs:element minOccurs="0" name="ingreso" type="xs:string"></xs:element>
       <xs:element name="ingresosFamiliar" type="xs:double"></xs:element>
       <xs:element name="ingresosFamiliaresTotalPerdidasYGanancias" type="xs:double"></xs:element>
       <xs:element name="ingresosNegocio" type="xs:double"></xs:element>
@@ -148,7 +148,7 @@
       <xs:element minOccurs="0" name="nombreInformacionNegocio" type="xs:string"></xs:element>
       <xs:element minOccurs="0" name="nombreModulo" type="xs:string"></xs:element>
       <xs:element minOccurs="0" name="nombres" type="xs:string"></xs:element>
-      <xs:element minOccurs="0" name="numeroCarga" type="xs:short"></xs:element>
+      <xs:element name="numeroCarga" type="xs:int"></xs:element>
       <xs:element minOccurs="0" name="numeroCreditosIFI" type="xs:short"></xs:element>
       <xs:element minOccurs="0" name="numeroEmpleados" type="xs:short"></xs:element>
       <xs:element minOccurs="0" name="numeroOperaciones" type="xs:short"></xs:element>
@@ -306,6 +306,7 @@
       <xs:element minOccurs="0" name="seriePrincipalMotor" type="xs:string"></xs:element>
       <xs:element minOccurs="0" name="serieSecundariaMotor" type="xs:string"></xs:element>
       <xs:element name="tieneError" type="xs:boolean"></xs:element>
+      <xs:element minOccurs="0" name="tipoGarantia" type="xs:string"></xs:element>
       <xs:element minOccurs="0" name="tipoGarantiaCOD" type="xs:string"></xs:element>
       <xs:element minOccurs="0" name="usuarioID" type="xs:short"></xs:element>
       <xs:element name="valor" type="xs:double"></xs:element>

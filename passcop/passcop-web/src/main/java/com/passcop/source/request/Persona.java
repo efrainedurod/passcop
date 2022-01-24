@@ -36,7 +36,7 @@ public class Persona  implements java.io.Serializable {
 
     private java.lang.String sexoCOD;
 
-    private java.lang.Short numeroCarga;
+    private int numeroCarga;
 
     private boolean separacionBienes;
 
@@ -89,7 +89,8 @@ public class Persona  implements java.io.Serializable {
            int personaID,
            java.lang.String relacionCOD,
            java.lang.String nomreModulo,
-           short usuarioID/*,
+           short usuarioID,
+           int numeroCarga/*,
            java.lang.String identificacion,
            java.lang.String identificacionConyuge,
            java.lang.String tipoPersonaCOD,
@@ -100,7 +101,6 @@ public class Persona  implements java.io.Serializable {
            java.util.Calendar fechaNacimiento,
            java.lang.String estadoCivilCOD,
            java.lang.String sexoCOD,
-           java.lang.Short numeroCarga,
            boolean separacionBienes,
            java.lang.String nacionalidadCOD,
            java.lang.String nivelEducacionCOD,
@@ -127,6 +127,7 @@ public class Persona  implements java.io.Serializable {
            this.relacionCOD = relacionCOD;
            this.nomreModulo = nomreModulo;
            this.usuarioID = usuarioID;
+           this.numeroCarga = numeroCarga;
           /* this.identificacion = identificacion;
            this.identificacionConyuge = identificacionConyuge;
            this.tipoPersonaCOD = tipoPersonaCOD;
@@ -137,7 +138,7 @@ public class Persona  implements java.io.Serializable {
            this.fechaNacimiento = fechaNacimiento;
            this.estadoCivilCOD = estadoCivilCOD;
            this.sexoCOD = sexoCOD;
-           this.numeroCarga = numeroCarga;
+
            this.separacionBienes = separacionBienes;
            this.nacionalidadCOD = nacionalidadCOD;
            this.nivelEducacionCOD = nivelEducacionCOD;
@@ -448,7 +449,7 @@ public class Persona  implements java.io.Serializable {
      * 
      * @return numeroCarga
      */
-    public java.lang.Short getNumeroCarga() {
+    public int getNumeroCarga() {
         return numeroCarga;
     }
 
@@ -458,7 +459,7 @@ public class Persona  implements java.io.Serializable {
      * 
      * @param numeroCarga
      */
-    public void setNumeroCarga(java.lang.Short numeroCarga) {
+    public void setNumeroCarga(int numeroCarga) {
         this.numeroCarga = numeroCarga;
     }
 
@@ -903,233 +904,240 @@ public class Persona  implements java.io.Serializable {
     }
 
     private java.lang.Object __equalsCalc = null;
-    public synchronized boolean equals(java.lang.Object obj) {
-        if (!(obj instanceof Persona)) return false;
-        Persona other = (Persona) obj;
-        if (obj == null) return false;
-        if (this == obj) return true;
-        if (__equalsCalc != null) {
-            return (__equalsCalc == obj);
-        }
-        __equalsCalc = obj;
-        boolean _equals;
-        _equals = true && 
-            this.personaID == other.getPersonaID() &&
-            ((this.relacionCOD==null && other.getRelacionCOD()==null) || 
-             (this.relacionCOD!=null &&
-              this.relacionCOD.equals(other.getRelacionCOD()))) &&
-            ((this.nomreModulo==null && other.getNomreModulo()==null) || 
-             (this.nomreModulo!=null &&
-              this.nomreModulo.equals(other.getNomreModulo()))) &&
-            this.usuarioID == other.getUsuarioID() &&
-            ((this.identificacion==null && other.getIdentificacion()==null) || 
-             (this.identificacion!=null &&
-              this.identificacion.equals(other.getIdentificacion()))) &&
-            ((this.identificacionConyuge==null && other.getIdentificacionConyuge()==null) || 
-             (this.identificacionConyuge!=null &&
-              this.identificacionConyuge.equals(other.getIdentificacionConyuge()))) &&
-            ((this.tipoPersonaCOD==null && other.getTipoPersonaCOD()==null) || 
-             (this.tipoPersonaCOD!=null &&
-              this.tipoPersonaCOD.equals(other.getTipoPersonaCOD()))) &&
-            ((this.tipoIdentificacionCOD==null && other.getTipoIdentificacionCOD()==null) || 
-             (this.tipoIdentificacionCOD!=null &&
-              this.tipoIdentificacionCOD.equals(other.getTipoIdentificacionCOD()))) &&
-            ((this.apellidoPaterno==null && other.getApellidoPaterno()==null) || 
-             (this.apellidoPaterno!=null &&
-              this.apellidoPaterno.equals(other.getApellidoPaterno()))) &&
-            ((this.apellidoMaterno==null && other.getApellidoMaterno()==null) || 
-             (this.apellidoMaterno!=null &&
-              this.apellidoMaterno.equals(other.getApellidoMaterno()))) &&
-            ((this.nombres==null && other.getNombres()==null) || 
-             (this.nombres!=null &&
-              this.nombres.equals(other.getNombres()))) &&
-            ((this.fechaNacimiento==null && other.getFechaNacimiento()==null) || 
-             (this.fechaNacimiento!=null &&
-              this.fechaNacimiento.equals(other.getFechaNacimiento()))) &&
-            ((this.estadoCivilCOD==null && other.getEstadoCivilCOD()==null) || 
-             (this.estadoCivilCOD!=null &&
-              this.estadoCivilCOD.equals(other.getEstadoCivilCOD()))) &&
-            ((this.sexoCOD==null && other.getSexoCOD()==null) || 
-             (this.sexoCOD!=null &&
-              this.sexoCOD.equals(other.getSexoCOD()))) &&
-            ((this.numeroCarga==null && other.getNumeroCarga()==null) || 
-             (this.numeroCarga!=null &&
-              this.numeroCarga.equals(other.getNumeroCarga()))) &&
-            this.separacionBienes == other.isSeparacionBienes() &&
-            ((this.nacionalidadCOD==null && other.getNacionalidadCOD()==null) || 
-             (this.nacionalidadCOD!=null &&
-              this.nacionalidadCOD.equals(other.getNacionalidadCOD()))) &&
-            ((this.nivelEducacionCOD==null && other.getNivelEducacionCOD()==null) || 
-             (this.nivelEducacionCOD!=null &&
-              this.nivelEducacionCOD.equals(other.getNivelEducacionCOD()))) &&
-            ((this.ocupacionCOD==null && other.getOcupacionCOD()==null) || 
-             (this.ocupacionCOD!=null &&
-              this.ocupacionCOD.equals(other.getOcupacionCOD()))) &&
-            ((this.correo==null && other.getCorreo()==null) || 
-             (this.correo!=null &&
-              this.correo.equals(other.getCorreo()))) &&
-            ((this.fechaApertura==null && other.getFechaApertura()==null) || 
-             (this.fechaApertura!=null &&
-              this.fechaApertura.equals(other.getFechaApertura()))) &&
-            ((this.localidadCOD==null && other.getLocalidadCOD()==null) || 
-             (this.localidadCOD!=null &&
-              this.localidadCOD.equals(other.getLocalidadCOD()))) &&
-            ((this.direccion==null && other.getDireccion()==null) || 
-             (this.direccion!=null &&
-              this.direccion.equals(other.getDireccion()))) &&
-            ((this.tipoViviendaCOD==null && other.getTipoViviendaCOD()==null) || 
-             (this.tipoViviendaCOD!=null &&
-              this.tipoViviendaCOD.equals(other.getTipoViviendaCOD()))) &&
-            ((this.situacionViviendaCOD==null && other.getSituacionViviendaCOD()==null) || 
-             (this.situacionViviendaCOD!=null &&
-              this.situacionViviendaCOD.equals(other.getSituacionViviendaCOD()))) &&
-            this.viviendaHipotecada == other.isViviendaHipotecada() &&
-            ((this.duenoCasa==null && other.getDuenoCasa()==null) || 
-             (this.duenoCasa!=null &&
-              this.duenoCasa.equals(other.getDuenoCasa()))) &&
-            ((this.telefonoDuenoCasa==null && other.getTelefonoDuenoCasa()==null) || 
-             (this.telefonoDuenoCasa!=null &&
-              this.telefonoDuenoCasa.equals(other.getTelefonoDuenoCasa()))) &&
-            ((this.tiempoViviendaActual==null && other.getTiempoViviendaActual()==null) || 
-             (this.tiempoViviendaActual!=null &&
-              this.tiempoViviendaActual.equals(other.getTiempoViviendaActual()))) &&
-            ((this.unidadTiempoViviendaActualCOD==null && other.getUnidadTiempoViviendaActualCOD()==null) || 
-             (this.unidadTiempoViviendaActualCOD!=null &&
-              this.unidadTiempoViviendaActualCOD.equals(other.getUnidadTiempoViviendaActualCOD()))) &&
-            ((this.referenciaUbicacion==null && other.getReferenciaUbicacion()==null) || 
-             (this.referenciaUbicacion!=null &&
-              this.referenciaUbicacion.equals(other.getReferenciaUbicacion()))) &&
-            ((this.tiempoViviendaAnterior==null && other.getTiempoViviendaAnterior()==null) || 
-             (this.tiempoViviendaAnterior!=null &&
-              this.tiempoViviendaAnterior.equals(other.getTiempoViviendaAnterior()))) &&
-            ((this.unidadTiempoViviendaAnteriorCOD==null && other.getUnidadTiempoViviendaAnteriorCOD()==null) || 
-             (this.unidadTiempoViviendaAnteriorCOD!=null &&
-              this.unidadTiempoViviendaAnteriorCOD.equals(other.getUnidadTiempoViviendaAnteriorCOD()))) &&
-            ((this.telefonoDomicilio==null && other.getTelefonoDomicilio()==null) || 
-             (this.telefonoDomicilio!=null &&
-              this.telefonoDomicilio.equals(other.getTelefonoDomicilio()))) &&
-            ((this.telefonoCelular==null && other.getTelefonoCelular()==null) || 
-             (this.telefonoCelular!=null &&
-              this.telefonoCelular.equals(other.getTelefonoCelular()))) &&
-            this.tieneError == other.isTieneError() &&
-            ((this.mensaje==null && other.getMensaje()==null) || 
-             (this.mensaje!=null &&
-              this.mensaje.equals(other.getMensaje())));
-        __equalsCalc = null;
-        return _equals;
-    }
+    @Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Persona other = (Persona) obj;
+		if (__equalsCalc == null) {
+			if (other.__equalsCalc != null)
+				return false;
+		} else if (!__equalsCalc.equals(other.__equalsCalc))
+			return false;
+		if (__hashCodeCalc != other.__hashCodeCalc)
+			return false;
+		if (apellidoMaterno == null) {
+			if (other.apellidoMaterno != null)
+				return false;
+		} else if (!apellidoMaterno.equals(other.apellidoMaterno))
+			return false;
+		if (apellidoPaterno == null) {
+			if (other.apellidoPaterno != null)
+				return false;
+		} else if (!apellidoPaterno.equals(other.apellidoPaterno))
+			return false;
+		if (correo == null) {
+			if (other.correo != null)
+				return false;
+		} else if (!correo.equals(other.correo))
+			return false;
+		if (direccion == null) {
+			if (other.direccion != null)
+				return false;
+		} else if (!direccion.equals(other.direccion))
+			return false;
+		if (duenoCasa == null) {
+			if (other.duenoCasa != null)
+				return false;
+		} else if (!duenoCasa.equals(other.duenoCasa))
+			return false;
+		if (estadoCivilCOD == null) {
+			if (other.estadoCivilCOD != null)
+				return false;
+		} else if (!estadoCivilCOD.equals(other.estadoCivilCOD))
+			return false;
+		if (fechaApertura == null) {
+			if (other.fechaApertura != null)
+				return false;
+		} else if (!fechaApertura.equals(other.fechaApertura))
+			return false;
+		if (fechaNacimiento == null) {
+			if (other.fechaNacimiento != null)
+				return false;
+		} else if (!fechaNacimiento.equals(other.fechaNacimiento))
+			return false;
+		if (identificacion == null) {
+			if (other.identificacion != null)
+				return false;
+		} else if (!identificacion.equals(other.identificacion))
+			return false;
+		if (identificacionConyuge == null) {
+			if (other.identificacionConyuge != null)
+				return false;
+		} else if (!identificacionConyuge.equals(other.identificacionConyuge))
+			return false;
+		if (localidadCOD == null) {
+			if (other.localidadCOD != null)
+				return false;
+		} else if (!localidadCOD.equals(other.localidadCOD))
+			return false;
+		if (mensaje == null) {
+			if (other.mensaje != null)
+				return false;
+		} else if (!mensaje.equals(other.mensaje))
+			return false;
+		if (nacionalidadCOD == null) {
+			if (other.nacionalidadCOD != null)
+				return false;
+		} else if (!nacionalidadCOD.equals(other.nacionalidadCOD))
+			return false;
+		if (nivelEducacionCOD == null) {
+			if (other.nivelEducacionCOD != null)
+				return false;
+		} else if (!nivelEducacionCOD.equals(other.nivelEducacionCOD))
+			return false;
+		if (nombres == null) {
+			if (other.nombres != null)
+				return false;
+		} else if (!nombres.equals(other.nombres))
+			return false;
+		if (nomreModulo == null) {
+			if (other.nomreModulo != null)
+				return false;
+		} else if (!nomreModulo.equals(other.nomreModulo))
+			return false;
+		if (numeroCarga != other.numeroCarga)
+			return false;
+		if (ocupacionCOD == null) {
+			if (other.ocupacionCOD != null)
+				return false;
+		} else if (!ocupacionCOD.equals(other.ocupacionCOD))
+			return false;
+		if (personaID != other.personaID)
+			return false;
+		if (referenciaUbicacion == null) {
+			if (other.referenciaUbicacion != null)
+				return false;
+		} else if (!referenciaUbicacion.equals(other.referenciaUbicacion))
+			return false;
+		if (relacionCOD == null) {
+			if (other.relacionCOD != null)
+				return false;
+		} else if (!relacionCOD.equals(other.relacionCOD))
+			return false;
+		if (separacionBienes != other.separacionBienes)
+			return false;
+		if (sexoCOD == null) {
+			if (other.sexoCOD != null)
+				return false;
+		} else if (!sexoCOD.equals(other.sexoCOD))
+			return false;
+		if (situacionViviendaCOD == null) {
+			if (other.situacionViviendaCOD != null)
+				return false;
+		} else if (!situacionViviendaCOD.equals(other.situacionViviendaCOD))
+			return false;
+		if (telefonoCelular == null) {
+			if (other.telefonoCelular != null)
+				return false;
+		} else if (!telefonoCelular.equals(other.telefonoCelular))
+			return false;
+		if (telefonoDomicilio == null) {
+			if (other.telefonoDomicilio != null)
+				return false;
+		} else if (!telefonoDomicilio.equals(other.telefonoDomicilio))
+			return false;
+		if (telefonoDuenoCasa == null) {
+			if (other.telefonoDuenoCasa != null)
+				return false;
+		} else if (!telefonoDuenoCasa.equals(other.telefonoDuenoCasa))
+			return false;
+		if (tiempoViviendaActual == null) {
+			if (other.tiempoViviendaActual != null)
+				return false;
+		} else if (!tiempoViviendaActual.equals(other.tiempoViviendaActual))
+			return false;
+		if (tiempoViviendaAnterior == null) {
+			if (other.tiempoViviendaAnterior != null)
+				return false;
+		} else if (!tiempoViviendaAnterior.equals(other.tiempoViviendaAnterior))
+			return false;
+		if (tieneError != other.tieneError)
+			return false;
+		if (tipoIdentificacionCOD == null) {
+			if (other.tipoIdentificacionCOD != null)
+				return false;
+		} else if (!tipoIdentificacionCOD.equals(other.tipoIdentificacionCOD))
+			return false;
+		if (tipoPersonaCOD == null) {
+			if (other.tipoPersonaCOD != null)
+				return false;
+		} else if (!tipoPersonaCOD.equals(other.tipoPersonaCOD))
+			return false;
+		if (tipoViviendaCOD == null) {
+			if (other.tipoViviendaCOD != null)
+				return false;
+		} else if (!tipoViviendaCOD.equals(other.tipoViviendaCOD))
+			return false;
+		if (unidadTiempoViviendaActualCOD == null) {
+			if (other.unidadTiempoViviendaActualCOD != null)
+				return false;
+		} else if (!unidadTiempoViviendaActualCOD.equals(other.unidadTiempoViviendaActualCOD))
+			return false;
+		if (unidadTiempoViviendaAnteriorCOD == null) {
+			if (other.unidadTiempoViviendaAnteriorCOD != null)
+				return false;
+		} else if (!unidadTiempoViviendaAnteriorCOD.equals(other.unidadTiempoViviendaAnteriorCOD))
+			return false;
+		if (usuarioID != other.usuarioID)
+			return false;
+		if (viviendaHipotecada != other.viviendaHipotecada)
+			return false;
+		return true;
+	}
 
     private boolean __hashCodeCalc = false;
-    public synchronized int hashCode() {
-        if (__hashCodeCalc) {
-            return 0;
-        }
-        __hashCodeCalc = true;
-        int _hashCode = 1;
-        _hashCode += getPersonaID();
-        if (getRelacionCOD() != null) {
-            _hashCode += getRelacionCOD().hashCode();
-        }
-        if (getNomreModulo() != null) {
-            _hashCode += getNomreModulo().hashCode();
-        }
-        _hashCode += getUsuarioID();
-        if (getIdentificacion() != null) {
-            _hashCode += getIdentificacion().hashCode();
-        }
-        if (getIdentificacionConyuge() != null) {
-            _hashCode += getIdentificacionConyuge().hashCode();
-        }
-        if (getTipoPersonaCOD() != null) {
-            _hashCode += getTipoPersonaCOD().hashCode();
-        }
-        if (getTipoIdentificacionCOD() != null) {
-            _hashCode += getTipoIdentificacionCOD().hashCode();
-        }
-        if (getApellidoPaterno() != null) {
-            _hashCode += getApellidoPaterno().hashCode();
-        }
-        if (getApellidoMaterno() != null) {
-            _hashCode += getApellidoMaterno().hashCode();
-        }
-        if (getNombres() != null) {
-            _hashCode += getNombres().hashCode();
-        }
-        if (getFechaNacimiento() != null) {
-            _hashCode += getFechaNacimiento().hashCode();
-        }
-        if (getEstadoCivilCOD() != null) {
-            _hashCode += getEstadoCivilCOD().hashCode();
-        }
-        if (getSexoCOD() != null) {
-            _hashCode += getSexoCOD().hashCode();
-        }
-        if (getNumeroCarga() != null) {
-            _hashCode += getNumeroCarga().hashCode();
-        }
-        _hashCode += (isSeparacionBienes() ? Boolean.TRUE : Boolean.FALSE).hashCode();
-        if (getNacionalidadCOD() != null) {
-            _hashCode += getNacionalidadCOD().hashCode();
-        }
-        if (getNivelEducacionCOD() != null) {
-            _hashCode += getNivelEducacionCOD().hashCode();
-        }
-        if (getOcupacionCOD() != null) {
-            _hashCode += getOcupacionCOD().hashCode();
-        }
-        if (getCorreo() != null) {
-            _hashCode += getCorreo().hashCode();
-        }
-        if (getFechaApertura() != null) {
-            _hashCode += getFechaApertura().hashCode();
-        }
-        if (getLocalidadCOD() != null) {
-            _hashCode += getLocalidadCOD().hashCode();
-        }
-        if (getDireccion() != null) {
-            _hashCode += getDireccion().hashCode();
-        }
-        if (getTipoViviendaCOD() != null) {
-            _hashCode += getTipoViviendaCOD().hashCode();
-        }
-        if (getSituacionViviendaCOD() != null) {
-            _hashCode += getSituacionViviendaCOD().hashCode();
-        }
-        _hashCode += (isViviendaHipotecada() ? Boolean.TRUE : Boolean.FALSE).hashCode();
-        if (getDuenoCasa() != null) {
-            _hashCode += getDuenoCasa().hashCode();
-        }
-        if (getTelefonoDuenoCasa() != null) {
-            _hashCode += getTelefonoDuenoCasa().hashCode();
-        }
-        if (getTiempoViviendaActual() != null) {
-            _hashCode += getTiempoViviendaActual().hashCode();
-        }
-        if (getUnidadTiempoViviendaActualCOD() != null) {
-            _hashCode += getUnidadTiempoViviendaActualCOD().hashCode();
-        }
-        if (getReferenciaUbicacion() != null) {
-            _hashCode += getReferenciaUbicacion().hashCode();
-        }
-        if (getTiempoViviendaAnterior() != null) {
-            _hashCode += getTiempoViviendaAnterior().hashCode();
-        }
-        if (getUnidadTiempoViviendaAnteriorCOD() != null) {
-            _hashCode += getUnidadTiempoViviendaAnteriorCOD().hashCode();
-        }
-        if (getTelefonoDomicilio() != null) {
-            _hashCode += getTelefonoDomicilio().hashCode();
-        }
-        if (getTelefonoCelular() != null) {
-            _hashCode += getTelefonoCelular().hashCode();
-        }
-        _hashCode += (isTieneError() ? Boolean.TRUE : Boolean.FALSE).hashCode();
-        if (getMensaje() != null) {
-            _hashCode += getMensaje().hashCode();
-        }
-        __hashCodeCalc = false;
-        return _hashCode;
-    }
+    @Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((__equalsCalc == null) ? 0 : __equalsCalc.hashCode());
+		result = prime * result + (__hashCodeCalc ? 1231 : 1237);
+		result = prime * result + ((apellidoMaterno == null) ? 0 : apellidoMaterno.hashCode());
+		result = prime * result + ((apellidoPaterno == null) ? 0 : apellidoPaterno.hashCode());
+		result = prime * result + ((correo == null) ? 0 : correo.hashCode());
+		result = prime * result + ((direccion == null) ? 0 : direccion.hashCode());
+		result = prime * result + ((duenoCasa == null) ? 0 : duenoCasa.hashCode());
+		result = prime * result + ((estadoCivilCOD == null) ? 0 : estadoCivilCOD.hashCode());
+		result = prime * result + ((fechaApertura == null) ? 0 : fechaApertura.hashCode());
+		result = prime * result + ((fechaNacimiento == null) ? 0 : fechaNacimiento.hashCode());
+		result = prime * result + ((identificacion == null) ? 0 : identificacion.hashCode());
+		result = prime * result + ((identificacionConyuge == null) ? 0 : identificacionConyuge.hashCode());
+		result = prime * result + ((localidadCOD == null) ? 0 : localidadCOD.hashCode());
+		result = prime * result + ((mensaje == null) ? 0 : mensaje.hashCode());
+		result = prime * result + ((nacionalidadCOD == null) ? 0 : nacionalidadCOD.hashCode());
+		result = prime * result + ((nivelEducacionCOD == null) ? 0 : nivelEducacionCOD.hashCode());
+		result = prime * result + ((nombres == null) ? 0 : nombres.hashCode());
+		result = prime * result + ((nomreModulo == null) ? 0 : nomreModulo.hashCode());
+		result = prime * result + numeroCarga;
+		result = prime * result + ((ocupacionCOD == null) ? 0 : ocupacionCOD.hashCode());
+		result = prime * result + personaID;
+		result = prime * result + ((referenciaUbicacion == null) ? 0 : referenciaUbicacion.hashCode());
+		result = prime * result + ((relacionCOD == null) ? 0 : relacionCOD.hashCode());
+		result = prime * result + (separacionBienes ? 1231 : 1237);
+		result = prime * result + ((sexoCOD == null) ? 0 : sexoCOD.hashCode());
+		result = prime * result + ((situacionViviendaCOD == null) ? 0 : situacionViviendaCOD.hashCode());
+		result = prime * result + ((telefonoCelular == null) ? 0 : telefonoCelular.hashCode());
+		result = prime * result + ((telefonoDomicilio == null) ? 0 : telefonoDomicilio.hashCode());
+		result = prime * result + ((telefonoDuenoCasa == null) ? 0 : telefonoDuenoCasa.hashCode());
+		result = prime * result + ((tiempoViviendaActual == null) ? 0 : tiempoViviendaActual.hashCode());
+		result = prime * result + ((tiempoViviendaAnterior == null) ? 0 : tiempoViviendaAnterior.hashCode());
+		result = prime * result + (tieneError ? 1231 : 1237);
+		result = prime * result + ((tipoIdentificacionCOD == null) ? 0 : tipoIdentificacionCOD.hashCode());
+		result = prime * result + ((tipoPersonaCOD == null) ? 0 : tipoPersonaCOD.hashCode());
+		result = prime * result + ((tipoViviendaCOD == null) ? 0 : tipoViviendaCOD.hashCode());
+		result = prime * result
+				+ ((unidadTiempoViviendaActualCOD == null) ? 0 : unidadTiempoViviendaActualCOD.hashCode());
+		result = prime * result
+				+ ((unidadTiempoViviendaAnteriorCOD == null) ? 0 : unidadTiempoViviendaAnteriorCOD.hashCode());
+		result = prime * result + usuarioID;
+		result = prime * result + (viviendaHipotecada ? 1231 : 1237);
+		return result;
+	}
 
     // Type metadata
     private static org.apache.axis.description.TypeDesc typeDesc =
@@ -1235,8 +1243,8 @@ public class Persona  implements java.io.Serializable {
         elemField = new org.apache.axis.description.ElementDesc();
         elemField.setFieldName("numeroCarga");
         elemField.setXmlName(new javax.xml.namespace.QName("http://tempuri.org/", "NumeroCarga"));
-        elemField.setXmlType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "short"));
-        elemField.setNillable(true);
+        elemField.setXmlType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "int"));
+        elemField.setNillable(false);
         typeDesc.addFieldDesc(elemField);
         elemField = new org.apache.axis.description.ElementDesc();
         elemField.setFieldName("separacionBienes");

@@ -121,6 +121,7 @@ public class ScoreWebService {
 				log.error(actualziarDatos.getMensajeTecnico());
 				return actualziarDatos;
 			}
+			
 			log.info("FIN - ACTUALIZACIÓN DE INFORMACIÓN DEL DEUDOR: " + operacion.getIdentificacion());
 
 			log.info("INICIO - CREACIÓN DE SOLICITUD PARA LA PESONA: " + operacion.getIdentificacion());

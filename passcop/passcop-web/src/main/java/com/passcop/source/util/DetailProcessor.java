@@ -185,7 +185,7 @@ public class DetailProcessor implements Serializable {
 		return cpersona;
 	}
 
-	public Detail getSolicitudData(String[] pProductFit, int pPersonaId, String pUsuarioId, Calendar pFechaSol,
+	public Detail getSolicitudData(String[] pProductFit, int pPersonaId, String pUsuarioId, String pFechaSol,
 			String pDestinoFondos, String pClasContable, String pIdentificacionConyuge, double pMontoSolicitud,
 			String pTipoCuota, String pFrecuencia, Integer pNumCuotas, Integer pPlazo, Table pTproductoCuotas,
 			int pSolicitudId, String pIdentificacion, GarantiasReales[] pGarantiasReales)
@@ -201,7 +201,7 @@ public class DetailProcessor implements Serializable {
 				r.findFieldByNameCreate("CPERSONA_CLIENTE").setValue(pPersonaId);
 				r.findFieldByNameCreate("CUSUARIO_OFICIALCUENTA").setValue(pUsuarioId);
 				r.findFieldByNameCreate("CUSUARIO_INGRESO").setValue(pUsuarioId);
-				r.findFieldByNameCreate("FSOLICITUD").setValue(covertCalendarToDate(pFechaSol));
+//				r.findFieldByNameCreate("FSOLICITUD").setValue(covertCalendarToDate(pFechaSol));
 				r.findFieldByNameCreate("CDESTINOFONDOS").setValue(pDestinoFondos);
 				if (pClasContable != null) {
 					r.findFieldByNameCreate("CCLASIFICACIONCONTABLE").setValue(pClasContable);

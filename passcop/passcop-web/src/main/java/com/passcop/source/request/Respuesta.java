@@ -60,7 +60,7 @@ public class Respuesta  implements java.io.Serializable {
 
     private int personaID;
 
-    private java.util.Calendar fechaSolicitud;
+    private java.lang.String fechaSolicitud;
 
     private java.lang.String relacionCOD;
 
@@ -78,13 +78,13 @@ public class Respuesta  implements java.io.Serializable {
 
     private java.lang.String nombres;
 
-    private java.util.Calendar fechaNacimiento;
+    private java.lang.String fechaNacimiento;
 
     private java.lang.String estadoCivilCOD;
 
     private java.lang.String sexoCOD;
 
-    private java.lang.Short numeroCarga;
+    private int numeroCarga;
 
     private boolean separacionBienes;
 
@@ -96,7 +96,7 @@ public class Respuesta  implements java.io.Serializable {
 
     private java.lang.String correo;
 
-    private java.util.Calendar fechaApertura;
+    private java.lang.String fechaApertura;
 
     private java.lang.String localidadCOD;
 
@@ -170,7 +170,7 @@ public class Respuesta  implements java.io.Serializable {
 
     private boolean comercio;
 
-    private java.util.Calendar ingreso;
+    private java.lang.String ingreso;
 
     private java.lang.String estado;
 
@@ -341,7 +341,7 @@ public class Respuesta  implements java.io.Serializable {
            short usuarioIDSolicitud,
            java.lang.String identificacionSolicitud,
            int personaID,
-           java.util.Calendar fechaSolicitud,
+           java.lang.String fechaSolicitud,
            java.lang.String relacionCOD,
            java.lang.String identificacion,
            java.lang.String identificacionConyuge,
@@ -350,16 +350,16 @@ public class Respuesta  implements java.io.Serializable {
            java.lang.String apellidoPaterno,
            java.lang.String apellidoMaterno,
            java.lang.String nombres,
-           java.util.Calendar fechaNacimiento,
+           java.lang.String fechaNacimiento,
            java.lang.String estadoCivilCOD,
            java.lang.String sexoCOD,
-           java.lang.Short numeroCarga,
+           int numeroCarga,
            boolean separacionBienes,
            java.lang.String nacionalidadCOD,
            java.lang.String nivelEducacionCOD,
            java.lang.String ocupacionCOD,
            java.lang.String correo,
-           java.util.Calendar fechaApertura,
+           java.lang.String fechaApertura,
            java.lang.String localidadCOD,
            java.lang.String direccion,
            java.lang.String tipoViviendaCOD,
@@ -396,7 +396,7 @@ public class Respuesta  implements java.io.Serializable {
            java.lang.String unidadAntiguedadNegocioMismoLugarCOD,
            java.lang.String tipoLocalCOD,
            boolean comercio,
-           java.util.Calendar ingreso,
+           java.lang.String ingreso,
            java.lang.String estado,
            double latitud,
            double longitud,
@@ -1126,7 +1126,7 @@ public class Respuesta  implements java.io.Serializable {
      * 
      * @return fechaSolicitud
      */
-    public java.util.Calendar getFechaSolicitud() {
+    public java.lang.String getFechaSolicitud() {
         return fechaSolicitud;
     }
 
@@ -1136,7 +1136,7 @@ public class Respuesta  implements java.io.Serializable {
      * 
      * @param fechaSolicitud
      */
-    public void setFechaSolicitud(java.util.Calendar fechaSolicitud) {
+    public void setFechaSolicitud(java.lang.String fechaSolicitud) {
         this.fechaSolicitud = fechaSolicitud;
     }
 
@@ -1306,7 +1306,7 @@ public class Respuesta  implements java.io.Serializable {
      * 
      * @return fechaNacimiento
      */
-    public java.util.Calendar getFechaNacimiento() {
+    public java.lang.String getFechaNacimiento() {
         return fechaNacimiento;
     }
 
@@ -1316,7 +1316,7 @@ public class Respuesta  implements java.io.Serializable {
      * 
      * @param fechaNacimiento
      */
-    public void setFechaNacimiento(java.util.Calendar fechaNacimiento) {
+    public void setFechaNacimiento(java.lang.String fechaNacimiento) {
         this.fechaNacimiento = fechaNacimiento;
     }
 
@@ -1366,7 +1366,7 @@ public class Respuesta  implements java.io.Serializable {
      * 
      * @return numeroCarga
      */
-    public java.lang.Short getNumeroCarga() {
+    public int getNumeroCarga() {
         return numeroCarga;
     }
 
@@ -1376,7 +1376,7 @@ public class Respuesta  implements java.io.Serializable {
      * 
      * @param numeroCarga
      */
-    public void setNumeroCarga(java.lang.Short numeroCarga) {
+    public void setNumeroCarga(int numeroCarga) {
         this.numeroCarga = numeroCarga;
     }
 
@@ -1486,7 +1486,7 @@ public class Respuesta  implements java.io.Serializable {
      * 
      * @return fechaApertura
      */
-    public java.util.Calendar getFechaApertura() {
+    public java.lang.String getFechaApertura() {
         return fechaApertura;
     }
 
@@ -1496,7 +1496,7 @@ public class Respuesta  implements java.io.Serializable {
      * 
      * @param fechaApertura
      */
-    public void setFechaApertura(java.util.Calendar fechaApertura) {
+    public void setFechaApertura(java.lang.String fechaApertura) {
         this.fechaApertura = fechaApertura;
     }
 
@@ -2226,7 +2226,7 @@ public class Respuesta  implements java.io.Serializable {
      * 
      * @return ingreso
      */
-    public java.util.Calendar getIngreso() {
+    public java.lang.String getIngreso() {
         return ingreso;
     }
 
@@ -2236,7 +2236,7 @@ public class Respuesta  implements java.io.Serializable {
      * 
      * @param ingreso
      */
-    public void setIngreso(java.util.Calendar ingreso) {
+    public void setIngreso(java.lang.String ingreso) {
         this.ingreso = ingreso;
     }
 
@@ -3959,10 +3959,7 @@ public class Respuesta  implements java.io.Serializable {
 				return false;
 		} else if (!nombres.equals(other.nombres))
 			return false;
-		if (numeroCarga == null) {
-			if (other.numeroCarga != null)
-				return false;
-		} else if (!numeroCarga.equals(other.numeroCarga))
+		if (numeroCarga != other.numeroCarga)
 			return false;
 		if (numeroCreditosIFI == null) {
 			if (other.numeroCreditosIFI != null)
@@ -4360,7 +4357,7 @@ public class Respuesta  implements java.io.Serializable {
 		result = prime * result + ((nombreInformacionNegocio == null) ? 0 : nombreInformacionNegocio.hashCode());
 		result = prime * result + ((nombreModulo == null) ? 0 : nombreModulo.hashCode());
 		result = prime * result + ((nombres == null) ? 0 : nombres.hashCode());
-		result = prime * result + ((numeroCarga == null) ? 0 : numeroCarga.hashCode());
+		result = prime * result + numeroCarga;
 		result = prime * result + ((numeroCreditosIFI == null) ? 0 : numeroCreditosIFI.hashCode());
 		result = prime * result + ((numeroEmpleados == null) ? 0 : numeroEmpleados.hashCode());
 		result = prime * result + ((numeroOperaciones == null) ? 0 : numeroOperaciones.hashCode());
