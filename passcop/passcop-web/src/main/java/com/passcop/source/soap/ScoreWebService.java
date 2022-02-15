@@ -1,9 +1,5 @@
 package com.passcop.source.soap;
 
-import java.sql.Date;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -14,7 +10,6 @@ import javax.jws.WebService;
 
 import org.slf4j.Logger;
 
-import com.fitbank.common.ApplicationDates;
 import com.fitbank.dto.management.Detail;
 import com.fitbank.dto.management.Table;
 import com.passcop.source.dao.VpersonaDao;
@@ -137,7 +132,7 @@ public class ScoreWebService {
 			log.info("FIN - ACTUALIZACIÓN DE INFORMACIÓN DEL DEUDOR: " + operacion.getIdentificacion());
 
 			log.info("INICIO - CREACIÓN DE SOLICITUD PARA LA PESONA: " + operacion.getIdentificacion());
-			// 1) Verifica Si el producto existe en el mapeo
+			// 3) Verifica Si el producto existe en el mapeo
 			String[] productFit = helper.getProduct(operacion.getProductoID());
 			if (productFit == null) {
 				log.error("Validacion No Exitosa No se puede identificar el Producto: " + operacion.getProductoID());
@@ -147,7 +142,7 @@ public class ScoreWebService {
 
 			int idPersona = Integer.parseInt(cpersona);
 
-			// 3) Verifica el valor del Destino de Fondos
+			// 4) Verifica el valor del Destino de Fondos
 			RespuestaSolicitud destinoFodos = detailProcessor.getDestinoFondos(productFit,
 					operacion.getDestinoEconomicoCOD());
 			if (destinoFodos.isTieneError() == true) {
@@ -156,7 +151,7 @@ public class ScoreWebService {
 			}
 			log.info("CDESTINOFONDOS: " + destinoFodos.getMensaje());
 
-			// 4) Consulta la clacificación contable
+			// 5) Consulta la clacificación contable
 			RespuestaSolicitud clasificacionCon = detailProcessor.getClasificacionContable(productFit,
 					destinoFodos.getMensaje());
 			if (clasificacionCon.isTieneError() == true) {
@@ -164,7 +159,7 @@ public class ScoreWebService {
 			}
 			log.info("CCLASIFICACIONCONTABLE: " + clasificacionCon.getMensaje());
 
-			// 5) Consulta la tproductoCuotas contable
+			// 6) Consulta la tproductoCuotas contable
 			RespuestaSolicitud validaParametros = helper.verifyParameters(operacion.getPlazo(),
 					operacion.getFormaPagoCOD());
 			if (validaParametros.isTieneError() == true) {
@@ -197,7 +192,7 @@ public class ScoreWebService {
 			log.info("TASA:"
 					+ tproductoCuotas.getRecords().iterator().next().findFieldByNameCreate("TASA").getStringValue());
 
-			// 6) Envía las transacción 062100 al CORE
+			// 7s) Envía las transacción 062100 al CORE
 			String tipoCuota = helper.getTipoCuota(operacion.getTipoCuotaCOD());
 
 			// Setea los valores adicionales del Detail
