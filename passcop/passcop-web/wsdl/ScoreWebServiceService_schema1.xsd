@@ -50,7 +50,7 @@
       <xs:element minOccurs="0" name="telefonoCelular" type="xs:string"></xs:element>
       <xs:element minOccurs="0" name="telefonoDomicilio" type="xs:string"></xs:element>
       <xs:element minOccurs="0" name="telefonoDuenoCasa" type="xs:string"></xs:element>
-      <xs:element minOccurs="0" name="tiempoViviendaActual" type="xs:short"></xs:element>
+      <xs:element name="tiempoViviendaActual" type="xs:int"></xs:element>
       <xs:element minOccurs="0" name="tiempoViviendaAnterior" type="xs:short"></xs:element>
       <xs:element name="tieneError" type="xs:boolean"></xs:element>
       <xs:element minOccurs="0" name="tipoIdentificacionCOD" type="xs:string"></xs:element>
@@ -157,7 +157,7 @@
       <xs:element minOccurs="0" name="ocupacionCOD" type="xs:string"></xs:element>
       <xs:element name="patrimonioMontos" type="xs:double"></xs:element>
       <xs:element minOccurs="0" name="peorCalificacion12MesesCOD" type="xs:string"></xs:element>
-      <xs:element minOccurs="0" name="periodoGracia" type="xs:int"></xs:element>
+      <xs:element name="periodoGracia" type="xs:int"></xs:element>
       <xs:element name="personaID" type="xs:int"></xs:element>
       <xs:element minOccurs="0" name="personaIdCentralRiesgo" type="xs:int"></xs:element>
       <xs:element name="plazo" type="xs:short"></xs:element>
@@ -186,7 +186,7 @@
       <xs:element minOccurs="0" name="telefonoDuenoCasa" type="xs:string"></xs:element>
       <xs:element minOccurs="0" name="telefonoReferenciasComerciales" type="xs:string"></xs:element>
       <xs:element minOccurs="0" name="telefonoTrabajoConyuge" type="xs:string"></xs:element>
-      <xs:element minOccurs="0" name="tiempoViviendaActual" type="xs:short"></xs:element>
+      <xs:element name="tiempoViviendaActual" type="xs:int"></xs:element>
       <xs:element minOccurs="0" name="tiempoViviendaAnterior" type="xs:short"></xs:element>
       <xs:element name="tieneError" type="xs:boolean"></xs:element>
       <xs:element minOccurs="0" name="tipoCuotaCOD" type="xs:string"></xs:element>
@@ -247,7 +247,7 @@
 
   <xs:complexType name="detallePatrimonial">
     <xs:sequence>
-      <xs:element minOccurs="0" name="cantidad" type="xs:int"></xs:element>
+      <xs:element name="cantidad" type="xs:int"></xs:element>
       <xs:element name="circulante" type="xs:boolean"></xs:element>
       <xs:element minOccurs="0" name="cuentaDetallePatrimonial" type="xs:string"></xs:element>
       <xs:element name="cuentaIDDetallePatrimonial" type="xs:int"></xs:element>

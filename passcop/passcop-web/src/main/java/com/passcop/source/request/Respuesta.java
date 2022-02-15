@@ -50,7 +50,7 @@ public class Respuesta  implements java.io.Serializable {
 
     private double IVA;
 
-    private java.lang.Integer periodoGracia;
+    private int periodoGracia;
 
     private java.lang.Boolean interesesAmortizacion;
 
@@ -112,7 +112,7 @@ public class Respuesta  implements java.io.Serializable {
 
     private java.lang.String telefonoDuenoCasa;
 
-    private java.lang.Short tiempoViviendaActual;
+    private int tiempoViviendaActual;
 
     private java.lang.String unidadTiempoViviendaActualCOD;
 
@@ -336,7 +336,7 @@ public class Respuesta  implements java.io.Serializable {
            java.lang.String decisionCOD,
            java.lang.String observacion,
            double IVA,
-           java.lang.Integer periodoGracia,
+           int periodoGracia,
            java.lang.Boolean interesesAmortizacion,
            short usuarioIDSolicitud,
            java.lang.String identificacionSolicitud,
@@ -367,7 +367,7 @@ public class Respuesta  implements java.io.Serializable {
            boolean viviendaHipotecada,
            java.lang.String duenoCasa,
            java.lang.String telefonoDuenoCasa,
-           java.lang.Short tiempoViviendaActual,
+           int tiempoViviendaActual,
            java.lang.String unidadTiempoViviendaActualCOD,
            java.lang.String referenciaUbicacion,
            java.lang.Short tiempoViviendaAnterior,
@@ -1026,7 +1026,7 @@ public class Respuesta  implements java.io.Serializable {
      * 
      * @return periodoGracia
      */
-    public java.lang.Integer getPeriodoGracia() {
+    public int getPeriodoGracia() {
         return periodoGracia;
     }
 
@@ -1036,7 +1036,7 @@ public class Respuesta  implements java.io.Serializable {
      * 
      * @param periodoGracia
      */
-    public void setPeriodoGracia(java.lang.Integer periodoGracia) {
+    public void setPeriodoGracia(int periodoGracia) {
         this.periodoGracia = periodoGracia;
     }
 
@@ -1646,7 +1646,7 @@ public class Respuesta  implements java.io.Serializable {
      * 
      * @return tiempoViviendaActual
      */
-    public java.lang.Short getTiempoViviendaActual() {
+    public int getTiempoViviendaActual() {
         return tiempoViviendaActual;
     }
 
@@ -1656,7 +1656,7 @@ public class Respuesta  implements java.io.Serializable {
      * 
      * @param tiempoViviendaActual
      */
-    public void setTiempoViviendaActual(java.lang.Short tiempoViviendaActual) {
+    public void setTiempoViviendaActual(int tiempoViviendaActual) {
         this.tiempoViviendaActual = tiempoViviendaActual;
     }
 
@@ -3998,10 +3998,7 @@ public class Respuesta  implements java.io.Serializable {
 				return false;
 		} else if (!peorCalificacion12MesesCOD.equals(other.peorCalificacion12MesesCOD))
 			return false;
-		if (periodoGracia == null) {
-			if (other.periodoGracia != null)
-				return false;
-		} else if (!periodoGracia.equals(other.periodoGracia))
+		if (periodoGracia != other.periodoGracia)
 			return false;
 		if (personaID != other.personaID)
 			return false;
@@ -4113,10 +4110,7 @@ public class Respuesta  implements java.io.Serializable {
 				return false;
 		} else if (!telefonoTrabajoConyuge.equals(other.telefonoTrabajoConyuge))
 			return false;
-		if (tiempoViviendaActual == null) {
-			if (other.tiempoViviendaActual != null)
-				return false;
-		} else if (!tiempoViviendaActual.equals(other.tiempoViviendaActual))
+		if (tiempoViviendaActual != other.tiempoViviendaActual)
 			return false;
 		if (tiempoViviendaAnterior == null) {
 			if (other.tiempoViviendaAnterior != null)
@@ -4368,7 +4362,7 @@ public class Respuesta  implements java.io.Serializable {
 		temp = Double.doubleToLongBits(patrimonioMontos);
 		result = prime * result + (int) (temp ^ (temp >>> 32));
 		result = prime * result + ((peorCalificacion12MesesCOD == null) ? 0 : peorCalificacion12MesesCOD.hashCode());
-		result = prime * result + ((periodoGracia == null) ? 0 : periodoGracia.hashCode());
+		result = prime * result + periodoGracia;
 		result = prime * result + personaID;
 		result = prime * result + ((personaIdCentralRiesgo == null) ? 0 : personaIdCentralRiesgo.hashCode());
 		result = prime * result + plazo;
@@ -4401,7 +4395,7 @@ public class Respuesta  implements java.io.Serializable {
 		result = prime * result
 				+ ((telefonoReferenciasComerciales == null) ? 0 : telefonoReferenciasComerciales.hashCode());
 		result = prime * result + ((telefonoTrabajoConyuge == null) ? 0 : telefonoTrabajoConyuge.hashCode());
-		result = prime * result + ((tiempoViviendaActual == null) ? 0 : tiempoViviendaActual.hashCode());
+		result = prime * result + tiempoViviendaActual;
 		result = prime * result + ((tiempoViviendaAnterior == null) ? 0 : tiempoViviendaAnterior.hashCode());
 		result = prime * result + (tieneError ? 1231 : 1237);
 		result = prime * result + ((tipoCuotaCOD == null) ? 0 : tipoCuotaCOD.hashCode());
@@ -4714,7 +4708,7 @@ public class Respuesta  implements java.io.Serializable {
         elemField = new org.apache.axis.description.ElementDesc();
         elemField.setFieldName("numeroCarga");
         elemField.setXmlName(new javax.xml.namespace.QName("http://tempuri.org/", "NumeroCarga"));
-        elemField.setXmlType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "short"));
+        elemField.setXmlType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "int"));
         elemField.setNillable(true);
         typeDesc.addFieldDesc(elemField);
         elemField = new org.apache.axis.description.ElementDesc();
@@ -4808,7 +4802,7 @@ public class Respuesta  implements java.io.Serializable {
         elemField = new org.apache.axis.description.ElementDesc();
         elemField.setFieldName("tiempoViviendaActual");
         elemField.setXmlName(new javax.xml.namespace.QName("http://tempuri.org/", "TiempoViviendaActual"));
-        elemField.setXmlType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "short"));
+        elemField.setXmlType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "int"));
         elemField.setNillable(true);
         typeDesc.addFieldDesc(elemField);
         elemField = new org.apache.axis.description.ElementDesc();

@@ -131,7 +131,7 @@ public class ClientSample {
 		personaCon.setViviendaHipotecada(false); // La cooperativa Debe definir la fuente
 		personaCon.setDuenoCasa("JOSE JIMENEZ");
 		personaCon.setTelefonoDuenoCasa("");
-		personaCon.setTiempoViviendaActual(new Short("16"));
+		personaCon.setTiempoViviendaActual(16);
 		personaCon.setUnidadTiempoViviendaActualCOD("M");
 		personaCon.setReferenciaUbicacion("A TRES CUADRAS DE LA UPC");
 		personaCon.setTiempoViviendaAnterior(null); // El campo no existe en Fitbank
@@ -170,7 +170,7 @@ public class ClientSample {
 		personaConSoc.setViviendaHipotecada(false); // La cooperativa Debe definir la fuente
 		personaConSoc.setDuenoCasa("JOSE JIMENEZ");
 		personaConSoc.setTelefonoDuenoCasa("");
-		personaConSoc.setTiempoViviendaActual(new Short("24"));
+		personaConSoc.setTiempoViviendaActual(24);
 		personaConSoc.setUnidadTiempoViviendaActualCOD("M");
 		personaConSoc.setReferenciaUbicacion("A TRES CUADRAS DE LA UPC");
 		personaConSoc.setTiempoViviendaAnterior(null); // El campo no existe en Fitbank
@@ -197,26 +197,26 @@ public class ClientSample {
 		DetallePatrimonial detPatSoc = new DetallePatrimonial();
 		detPatSoc.setCantidad(1);
 		detPatSoc.setCirculante(true);
-		detPatSoc.setCuentaDetallePatrimonial("1234");
-		detPatSoc.setCuentaIDDetallePatrimonial(4);
+		detPatSoc.setCuentaDetallePatrimonial("ACTIVO");
+		detPatSoc.setCuentaIDDetallePatrimonial(2);
 		detPatSoc.setDescripcion("CASA");
 		detPatSoc.setDetallar(true);
-		detPatSoc.setGrupoCuentaCODEDetallePatrimonial("X");
+		detPatSoc.setGrupoCuentaCODEDetallePatrimonial("ACTIVO");
 		detPatSoc.setInventario(true);
 		detPatSoc.setOrden(1);
-		detPatSoc.setValorDetallePatrimonial(1000);
+		detPatSoc.setValorDetallePatrimonial(100000);
 		// Se crea el objeto Detalle Patrimonio Socio
 		DetallePatrimonial detPatSoc2 = new DetallePatrimonial();
-		detPatSoc2.setCantidad(1);
+		detPatSoc2.setCantidad(10);
 		detPatSoc2.setCirculante(true);
-		detPatSoc2.setCuentaDetallePatrimonial("1234");
-		detPatSoc2.setCuentaIDDetallePatrimonial(4);
+		detPatSoc2.setCuentaDetallePatrimonial("PASIVO");
+		detPatSoc2.setCuentaIDDetallePatrimonial(32);
 		detPatSoc2.setDescripcion("DEPARA");
 		detPatSoc2.setDetallar(true);
-		detPatSoc2.setGrupoCuentaCODEDetallePatrimonial("X");
+		detPatSoc2.setGrupoCuentaCODEDetallePatrimonial("PASIVO");
 		detPatSoc2.setInventario(true);
 		detPatSoc2.setOrden(1);
-		detPatSoc2.setValorDetallePatrimonial(2000);
+		detPatSoc2.setValorDetallePatrimonial(10000);
 
 		listDetPatSoc.add(detPatSoc);
 		listDetPatSoc.add(detPatSoc2);
@@ -224,16 +224,16 @@ public class ClientSample {
 		// Se crea el objeto Detalle cuentas Garante
 		DetalleDeCuentas detCuen1 = new DetalleDeCuentas();
 		detCuen1.setCirculante(true);
-		detCuen1.setCuentaID(1);
+		detCuen1.setCuentaID(5);
 		detCuen1.setDetallar(true);
-		detCuen1.setGrupoCuentaCODE("02");
+		detCuen1.setGrupoCuentaCODE("EGRESO");
 		detCuen1.setInfEconFamiliarID(2);
 		detCuen1.setInstitucionID(new Short("1"));
 		detCuen1.setInventario(true);
 		detCuen1.setNombreDetalleCuenta("CUENTA 1");
 		detCuen1.setOrden(2);
 		detCuen1.setPersonaID(5932);
-		detCuen1.setValorDetalleCuentas(1000);
+		detCuen1.setValorDetalleCuentas(200);
 
 		DetalleDeCuentas detCuen2 = new DetalleDeCuentas();
 		detCuen2.setCirculante(true);
@@ -258,7 +258,7 @@ public class ClientSample {
 		detCuen3.setCirculante(true);
 		detCuen3.setCuentaID(1);
 		detCuen3.setDetallar(true);
-		detCuen3.setGrupoCuentaCODE("02");
+		detCuen3.setGrupoCuentaCODE("INGRESO");
 		detCuen3.setInfEconFamiliarID(2);
 		detCuen3.setInstitucionID(new Short("1"));
 		detCuen3.setInventario(true);
@@ -269,16 +269,16 @@ public class ClientSample {
 
 		DetalleDeCuentas detCuen4 = new DetalleDeCuentas();
 		detCuen4.setCirculante(true);
-		detCuen4.setCuentaID(1);
+		detCuen4.setCuentaID(5);
 		detCuen4.setDetallar(true);
-		detCuen4.setGrupoCuentaCODE("02");
+		detCuen4.setGrupoCuentaCODE("EGRESO");
 		detCuen4.setInfEconFamiliarID(2);
 		detCuen4.setInstitucionID(new Short("1"));
 		detCuen4.setInventario(true);
 		detCuen4.setNombreDetalleCuenta("CUENTA 1");
 		detCuen4.setOrden(2);
 		detCuen4.setPersonaID(5932);
-		detCuen4.setValorDetalleCuentas(10001);
+		detCuen4.setValorDetalleCuentas(300);
 
 		List<DetalleDeCuentas> detalleCuentasSoc = new ArrayList<DetalleDeCuentas>();
 		detalleCuentasSoc.add(detCuen3);
@@ -310,17 +310,17 @@ public class ClientSample {
 		personaGarante.setNomreModulo("Personas");
 		personaGarante.setUsuarioID(new Short("1"));
 		personaGarante.setIdentificacion("0602912545");
-		personaGarante.setIdentificacionConyuge("0603185026");
+		personaGarante.setIdentificacionConyuge("");
 		personaGarante.setTipoPersonaCOD("NAT");
 		personaGarante.setTipoIdentificacionCOD("CED");
 		personaGarante.setApellidoPaterno("TENDELEMA");
 		personaGarante.setApellidoMaterno("LOPEZ");
 		personaGarante.setNombres("TOMASA");
 		personaGarante.setFechaNacimiento(null);
-//		personaGarante.setEstadoCivilCOD("1");
+		personaGarante.setEstadoCivilCOD("1");
 		personaGarante.setSexoCOD("F");
 		personaGarante.setNumeroCarga(new Short("1"));
-//		personaGarante.setSeparacionBienes(false);
+		personaGarante.setSeparacionBienes(false);
 		personaGarante.setNacionalidadCOD("EC");
 		personaGarante.setNivelEducacionCOD("3");
 		personaGarante.setOcupacionCOD("328");
@@ -333,7 +333,7 @@ public class ClientSample {
 		personaGarante.setViviendaHipotecada(false); // La cooperativa Debe definir la fuente
 		personaGarante.setDuenoCasa("JOSE JIMENEZ");
 		personaGarante.setTelefonoDuenoCasa("");
-		personaGarante.setTiempoViviendaActual(new Short("24"));
+		personaGarante.setTiempoViviendaActual(24);
 		personaGarante.setUnidadTiempoViviendaActualCOD("M");
 		personaGarante.setReferenciaUbicacion("A TRES CUADRAS DE LA UPC");
 		personaGarante.setTiempoViviendaAnterior(null); // El campo no existe en Fitbank
@@ -343,8 +343,8 @@ public class ClientSample {
 		personaGarante.setTieneError(false);
 		personaGarante.setMensaje("D204");
 		
-		Persona persona1 = new Persona();
-		res.setGarante(persona1);
+
+		res.setGarante(personaGarante);
 		// Objeto de garantias reales
 
 		GarantiasReales garReal1 = new GarantiasReales();
@@ -422,7 +422,7 @@ public class ClientSample {
 		res.setGastosTotalesPerdidasYGanancias(5000);
 		res.setIVA(500);
 		res.setIdentificacion("1804073268");
-		res.setIdentificacionConyuge("1716517394");
+		res.setIdentificacionConyuge("");
 		res.setIdentificacionGarante("1234567893");
 		res.setIdentificacionInformacionNegocio("1234567894");
 		res.setIdentificacionSocio("1234567895");
@@ -578,7 +578,7 @@ public class ClientSample {
 		personaSoc.setViviendaHipotecada(false); // La cooperativa Debe definir la fuente
 		personaSoc.setDuenoCasa("JOSE JIMENEZ");
 		personaSoc.setTelefonoDuenoCasa("");
-		personaSoc.setTiempoViviendaActual(new Short("24"));
+		personaSoc.setTiempoViviendaActual(24);
 		personaSoc.setUnidadTiempoViviendaActualCOD("A");
 		personaSoc.setReferenciaUbicacion("A TRES CUADRAS DE LA UPC");
 		personaSoc.setTiempoViviendaAnterior(null); // El campo no existe en Fitbank
@@ -597,7 +597,7 @@ public class ClientSample {
 		res.setTelefonoDuenoCasa("123121212");
 		res.setTelefonoReferenciasComerciales("123132121212");
 		res.setTelefonoTrabajoConyuge("234322323");
-		res.setTiempoViviendaActual(new Short("16"));
+		res.setTiempoViviendaActual(16);
 		res.setTiempoViviendaAnterior(new Short("0"));
 		res.setTieneError(false);
 		res.setTipoCuotaCOD("F");
@@ -631,7 +631,7 @@ public class ClientSample {
 		res.setUtilidadNegocioTotalPerdidasYGanancias(10000);
 		res.setUtilidadNetaPersidasYGanancias(10000);
 		res.setValorReferenciasComerciales(10000);
-		res.setVentasMontos(10000);
+		res.setVentasMontos(10001);
 		res.setVentasTotalesPerdidasYGanancias(10000);
 		res.setViviendaHipotecada(true);
 

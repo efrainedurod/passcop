@@ -24,7 +24,7 @@ public class DetallePatrimonial  implements java.io.Serializable {
 
     private java.lang.String descripcion;
 
-    private java.lang.Integer cantidad;
+    private int cantidad;
 
     private double valorDetallePatrimonial;
 
@@ -40,7 +40,7 @@ public class DetallePatrimonial  implements java.io.Serializable {
            boolean inventario,
            int orden,
            java.lang.String descripcion,
-           java.lang.Integer cantidad,
+           int cantidad,
            double valorDetallePatrimonial) {
            this.cuentaIDDetallePatrimonial = cuentaIDDetallePatrimonial;
            this.cuentaDetallePatrimonial = cuentaDetallePatrimonial;
@@ -220,7 +220,7 @@ public class DetallePatrimonial  implements java.io.Serializable {
      * 
      * @return cantidad
      */
-    public java.lang.Integer getCantidad() {
+    public int getCantidad() {
         return cantidad;
     }
 
@@ -230,7 +230,7 @@ public class DetallePatrimonial  implements java.io.Serializable {
      * 
      * @param cantidad
      */
-    public void setCantidad(java.lang.Integer cantidad) {
+    public void setCantidad(int cantidad) {
         this.cantidad = cantidad;
     }
 
@@ -271,10 +271,7 @@ public class DetallePatrimonial  implements java.io.Serializable {
 			return false;
 		if (__hashCodeCalc != other.__hashCodeCalc)
 			return false;
-		if (cantidad == null) {
-			if (other.cantidad != null)
-				return false;
-		} else if (!cantidad.equals(other.cantidad))
+		if (cantidad != other.cantidad)
 			return false;
 		if (circulante != other.circulante)
 			return false;
@@ -313,7 +310,7 @@ public class DetallePatrimonial  implements java.io.Serializable {
 		int result = 1;
 		result = prime * result + ((__equalsCalc == null) ? 0 : __equalsCalc.hashCode());
 		result = prime * result + (__hashCodeCalc ? 1231 : 1237);
-		result = prime * result + ((cantidad == null) ? 0 : cantidad.hashCode());
+		result = prime * result + cantidad;
 		result = prime * result + (circulante ? 1231 : 1237);
 		result = prime * result + ((cuentaDetallePatrimonial == null) ? 0 : cuentaDetallePatrimonial.hashCode());
 		result = prime * result + cuentaIDDetallePatrimonial;

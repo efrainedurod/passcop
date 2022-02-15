@@ -157,13 +157,4 @@ public class RespuestaSolicitud {
         this.tieneError = value;
     }
 
-	@Override
-	public String toString() {
-		return "RespuestaSolicitud [mensaje=" + mensaje + ", mensajePersonalizado=" + mensajePersonalizado
-				+ ", mensajeTecnico=" + mensajeTecnico + ", respuestaCOD=" + respuestaCOD + ", tieneError=" + tieneError
-				+ "]";
-	}
-    
-    
-
 }

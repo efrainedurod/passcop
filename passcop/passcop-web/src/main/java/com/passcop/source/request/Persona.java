@@ -64,7 +64,7 @@ public class Persona  implements java.io.Serializable {
 
     private java.lang.String telefonoDuenoCasa;
 
-    private java.lang.Short tiempoViviendaActual;
+    private int tiempoViviendaActual;
 
     private java.lang.String unidadTiempoViviendaActualCOD;
 
@@ -114,7 +114,6 @@ public class Persona  implements java.io.Serializable {
            boolean viviendaHipotecada,
            java.lang.String duenoCasa,
            java.lang.String telefonoDuenoCasa,
-           java.lang.Short tiempoViviendaActual,
            java.lang.String unidadTiempoViviendaActualCOD,
            java.lang.String referenciaUbicacion,
            java.lang.Short tiempoViviendaAnterior,
@@ -128,6 +127,7 @@ public class Persona  implements java.io.Serializable {
            this.nomreModulo = nomreModulo;
            this.usuarioID = usuarioID;
            this.numeroCarga = numeroCarga;
+           this.tiempoViviendaActual = tiempoViviendaActual;
           /* this.identificacion = identificacion;
            this.identificacionConyuge = identificacionConyuge;
            this.tipoPersonaCOD = tipoPersonaCOD;
@@ -152,7 +152,6 @@ public class Persona  implements java.io.Serializable {
            this.viviendaHipotecada = viviendaHipotecada;
            this.duenoCasa = duenoCasa;
            this.telefonoDuenoCasa = telefonoDuenoCasa;
-           this.tiempoViviendaActual = tiempoViviendaActual;
            this.unidadTiempoViviendaActualCOD = unidadTiempoViviendaActualCOD;
            this.referenciaUbicacion = referenciaUbicacion;
            this.tiempoViviendaAnterior = tiempoViviendaAnterior;
@@ -729,7 +728,7 @@ public class Persona  implements java.io.Serializable {
      * 
      * @return tiempoViviendaActual
      */
-    public java.lang.Short getTiempoViviendaActual() {
+    public int getTiempoViviendaActual() {
         return tiempoViviendaActual;
     }
 
@@ -739,7 +738,7 @@ public class Persona  implements java.io.Serializable {
      * 
      * @param tiempoViviendaActual
      */
-    public void setTiempoViviendaActual(java.lang.Short tiempoViviendaActual) {
+    public void setTiempoViviendaActual(int tiempoViviendaActual) {
         this.tiempoViviendaActual = tiempoViviendaActual;
     }
 
@@ -1046,10 +1045,7 @@ public class Persona  implements java.io.Serializable {
 				return false;
 		} else if (!telefonoDuenoCasa.equals(other.telefonoDuenoCasa))
 			return false;
-		if (tiempoViviendaActual == null) {
-			if (other.tiempoViviendaActual != null)
-				return false;
-		} else if (!tiempoViviendaActual.equals(other.tiempoViviendaActual))
+		if (tiempoViviendaActual != other.tiempoViviendaActual)
 			return false;
 		if (tiempoViviendaAnterior == null) {
 			if (other.tiempoViviendaAnterior != null)
@@ -1124,7 +1120,7 @@ public class Persona  implements java.io.Serializable {
 		result = prime * result + ((telefonoCelular == null) ? 0 : telefonoCelular.hashCode());
 		result = prime * result + ((telefonoDomicilio == null) ? 0 : telefonoDomicilio.hashCode());
 		result = prime * result + ((telefonoDuenoCasa == null) ? 0 : telefonoDuenoCasa.hashCode());
-		result = prime * result + ((tiempoViviendaActual == null) ? 0 : tiempoViviendaActual.hashCode());
+		result = prime * result + tiempoViviendaActual;
 		result = prime * result + ((tiempoViviendaAnterior == null) ? 0 : tiempoViviendaAnterior.hashCode());
 		result = prime * result + (tieneError ? 1231 : 1237);
 		result = prime * result + ((tipoIdentificacionCOD == null) ? 0 : tipoIdentificacionCOD.hashCode());
@@ -1337,7 +1333,7 @@ public class Persona  implements java.io.Serializable {
         elemField = new org.apache.axis.description.ElementDesc();
         elemField.setFieldName("tiempoViviendaActual");
         elemField.setXmlName(new javax.xml.namespace.QName("http://tempuri.org/", "TiempoViviendaActual"));
-        elemField.setXmlType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "short"));
+        elemField.setXmlType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "int"));
         elemField.setNillable(true);
         typeDesc.addFieldDesc(elemField);
         elemField = new org.apache.axis.description.ElementDesc();

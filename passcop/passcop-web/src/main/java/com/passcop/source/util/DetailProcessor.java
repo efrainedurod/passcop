@@ -65,6 +65,36 @@ public class DetailProcessor implements Serializable {
 				tper.addRecord(deudor);
 			}
 
+			if (pCpersonaCon != null) {
+				Record deudor = new Record();
+				deudor.findFieldByNameCreate("CPERSONA").setValue(pCpersonaCon);
+				deudor.findFieldByNameCreate("CPERSONACON").setValue(pCpersona);
+				deudor.findFieldByNameCreate("ESTADOCIVILCOD")
+						.setValue(operacion.getConyugeSocio().getEstadoCivilCOD());
+				deudor.findFieldByNameCreate("SEPARACIONBIENES")
+						.setValue(operacion.getConyugeSocio().isSeparacionBienes());
+				deudor.findFieldByNameCreate("NUMEROCARGA").setValue(operacion.getConyugeSocio().getNumeroCarga());
+				deudor.findFieldByNameCreate("NIVELEDUCACIONCOD")
+						.setValue(operacion.getConyugeSocio().getNivelEducacionCOD());
+				deudor.findFieldByNameCreate("OCUPACIONCOD").setValue(operacion.getConyugeSocio().getOcupacionCOD());
+				deudor.findFieldByNameCreate("CORREO").setValue(operacion.getConyugeSocio().getCorreo());
+				deudor.findFieldByNameCreate("DIRECCION").setValue(operacion.getConyugeSocio().getDireccion());
+				deudor.findFieldByNameCreate("TIPOVIVIENDACOD")
+						.setValue(operacion.getConyugeSocio().getTipoViviendaCOD());
+				deudor.findFieldByNameCreate("UNIDADTIEMPOVIVIENDAACTUALCOD")
+						.setValue(operacion.getUnidadTiempoViviendaActualCOD());
+				deudor.findFieldByNameCreate("TIEMPOVIVIENDAACTUAL")
+						.setValue(operacion.getConyugeSocio().getTiempoViviendaActual());
+				deudor.findFieldByNameCreate("TELEFONOCELULAR")
+						.setValue(operacion.getConyugeSocio().getTelefonoCelular());
+				deudor.findFieldByNameCreate("TELEFONODOMICILIO")
+						.setValue(operacion.getConyugeSocio().getTelefonoDomicilio());
+				deudor.findFieldByNameCreate("DUENOCASA").setValue(operacion.getConyugeSocio().getDuenoCasa());
+				deudor.findFieldByNameCreate("REFERENCIAUBICACION")
+						.setValue(operacion.getConyugeSocio().getReferenciaUbicacion());
+				tper.addRecord(deudor);
+			}
+
 			if (operacion.getGarante() != null && pCpersonaGar != null) {
 				Record garante = new Record();
 				garante.findFieldByNameCreate("CPERSONA").setValue(pCpersonaGar);
@@ -88,6 +118,36 @@ public class DetailProcessor implements Serializable {
 				garante.findFieldByNameCreate("DUENOCASA").setValue(operacion.getGarante().getDuenoCasa());
 				garante.findFieldByNameCreate("REFERENCIAUBICACION")
 						.setValue(operacion.getGarante().getReferenciaUbicacion());
+				tper.addRecord(garante);
+			}
+
+			if (operacion.getGarante() != null && pCpersonaConGar != null) {
+				Record garante = new Record();
+				garante.findFieldByNameCreate("CPERSONA").setValue(pCpersonaConGar);
+				garante.findFieldByNameCreate("CPERSONACON").setValue(pCpersonaGar);
+				garante.findFieldByNameCreate("ESTADOCIVILCOD")
+						.setValue(operacion.getConyugeGarante().getEstadoCivilCOD());
+				garante.findFieldByNameCreate("SEPARACIONBIENES")
+						.setValue(operacion.getConyugeGarante().isSeparacionBienes());
+				garante.findFieldByNameCreate("NUMEROCARGA").setValue(operacion.getConyugeGarante().getNumeroCarga());
+				garante.findFieldByNameCreate("NIVELEDUCACIONCOD")
+						.setValue(operacion.getConyugeGarante().getNivelEducacionCOD());
+				garante.findFieldByNameCreate("OCUPACIONCOD").setValue(operacion.getConyugeGarante().getOcupacionCOD());
+				garante.findFieldByNameCreate("CORREO").setValue(operacion.getConyugeGarante().getCorreo());
+				garante.findFieldByNameCreate("DIRECCION").setValue(operacion.getConyugeGarante().getDireccion());
+				garante.findFieldByNameCreate("TIPOVIVIENDACOD")
+						.setValue(operacion.getConyugeGarante().getTipoViviendaCOD());
+				garante.findFieldByNameCreate("UNIDADTIEMPOVIVIENDAACTUALCOD")
+						.setValue(operacion.getConyugeGarante().getUnidadTiempoViviendaActualCOD());
+				garante.findFieldByNameCreate("TIEMPOVIVIENDAACTUAL")
+						.setValue(operacion.getConyugeGarante().getTiempoViviendaActual());
+				garante.findFieldByNameCreate("TELEFONOCELULAR")
+						.setValue(operacion.getConyugeGarante().getTelefonoCelular());
+				garante.findFieldByNameCreate("TELEFONODOMICILIO")
+						.setValue(operacion.getConyugeGarante().getTelefonoDomicilio());
+				garante.findFieldByNameCreate("DUENOCASA").setValue(operacion.getConyugeGarante().getDuenoCasa());
+				garante.findFieldByNameCreate("REFERENCIAUBICACION")
+						.setValue(operacion.getConyugeGarante().getReferenciaUbicacion());
 				tper.addRecord(garante);
 			}
 
@@ -166,6 +226,7 @@ public class DetailProcessor implements Serializable {
 
 	public String getIdentificacion(String pIdentificacion) throws Exception {
 		String cpersona = null;
+		
 		String message = FileHelper.readFile("/home/fitbank/FitBank/score/4-lv-identificacion.xml");
 		Detail inDetail = Detail.valueOf(message);
 		Table tpro = inDetail.findTableByName("TPERSONA");
@@ -188,7 +249,7 @@ public class DetailProcessor implements Serializable {
 	public Detail getSolicitudData(String[] pProductFit, int pPersonaId, String pUsuarioId, String pFechaSol,
 			String pDestinoFondos, String pClasContable, String pIdentificacionConyuge, double pMontoSolicitud,
 			String pTipoCuota, String pFrecuencia, Integer pNumCuotas, Integer pPlazo, Table pTproductoCuotas,
-			int pSolicitudId, String pIdentificacion, GarantiasReales[] pGarantiasReales)
+			int pSolicitudId, String pIdentificacion, GarantiasReales[] pGarantiasReales, String pCpersonaGar)
 			throws Exception {
 		String messageSol = FileHelper.readFile("/home/fitbank/FitBank/score/062100.xml");
 		Detail detail = Detail.valueOf(messageSol);
@@ -211,12 +272,19 @@ public class DetailProcessor implements Serializable {
 		// Setea Valores de la tabla TSOLICITUDPERSONAS
 		Table tsolicitudPersona = detail.findTableByName("TSOLICITUDPERSONAS");
 		if (tsolicitudPersona != null) {
-			for (Record r : tsolicitudPersona.getRecords()) {
-				r.findFieldByNameCreate("CPERSONA").setValue(pPersonaId);
-				if (pIdentificacionConyuge != null) {
-					r.findFieldByNameCreate("CPERSONA_VINCULADA").setValue(pIdentificacionConyuge);
-					r.findFieldByNameCreate("CTIPOVINCULACION").setValue("31");
-				}
+
+			Record r = new Record();
+			r.findFieldByNameCreate("SECUENCIA").setValue(1);
+			r.findFieldByNameCreate("CPERSONA").setValue(pPersonaId);
+			r.findFieldByNameCreate("CRELACIONPRODUCTO").setValue("DEU");
+			tsolicitudPersona.addRecord(r);
+			if (pCpersonaGar != null) {
+				Record rgar = new Record();
+				rgar.findFieldByNameCreate("SECUENCIA").setValue(1);
+				rgar.findFieldByNameCreate("TITULARIDAD").setValue("Y");
+				rgar.findFieldByNameCreate("CPERSONA").setValue(pCpersonaGar);
+				rgar.findFieldByNameCreate("CRELACIONPRODUCTO").setValue("GAR");
+				tsolicitudPersona.addRecord(rgar);
 			}
 		}
 		// Setea Valores de la tabla TSOLICITUDCOLOCACIONES

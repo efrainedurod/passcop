@@ -16,7 +16,7 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent&gt;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
  *       &lt;sequence&gt;
- *         &lt;element name="cantidad" type="{http://www.w3.org/2001/XMLSchema}int" minOccurs="0"/&gt;
+ *         &lt;element name="cantidad" type="{http://www.w3.org/2001/XMLSchema}int"/&gt;
  *         &lt;element name="circulante" type="{http://www.w3.org/2001/XMLSchema}boolean"/&gt;
  *         &lt;element name="cuentaDetallePatrimonial" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/&gt;
  *         &lt;element name="cuentaIDDetallePatrimonial" type="{http://www.w3.org/2001/XMLSchema}int"/&gt;
@@ -49,7 +49,7 @@ import javax.xml.bind.annotation.XmlType;
 })
 public class DetallePatrimonial {
 
-    protected Integer cantidad;
+    protected int cantidad;
     protected boolean circulante;
     protected String cuentaDetallePatrimonial;
     protected int cuentaIDDetallePatrimonial;
@@ -63,24 +63,16 @@ public class DetallePatrimonial {
     /**
      * Gets the value of the cantidad property.
      * 
-     * @return
-     *     possible object is
-     *     {@link Integer }
-     *     
      */
-    public Integer getCantidad() {
+    public int getCantidad() {
         return cantidad;
     }
 
     /**
      * Sets the value of the cantidad property.
      * 
-     * @param value
-     *     allowed object is
-     *     {@link Integer }
-     *     
      */
-    public void setCantidad(Integer value) {
+    public void setCantidad(int value) {
         this.cantidad = value;
     }
 

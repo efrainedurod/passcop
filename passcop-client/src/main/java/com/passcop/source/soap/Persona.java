@@ -34,7 +34,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *         &lt;element name="nivelEducacionCOD" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/&gt;
  *         &lt;element name="nombres" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/&gt;
  *         &lt;element name="nomreModulo" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/&gt;
- *         &lt;element name="numeroCarga" type="{http://www.w3.org/2001/XMLSchema}short" minOccurs="0"/&gt;
+ *         &lt;element name="numeroCarga" type="{http://www.w3.org/2001/XMLSchema}int"/&gt;
  *         &lt;element name="ocupacionCOD" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/&gt;
  *         &lt;element name="personaID" type="{http://www.w3.org/2001/XMLSchema}int"/&gt;
  *         &lt;element name="referenciaUbicacion" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/&gt;
@@ -45,7 +45,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *         &lt;element name="telefonoCelular" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/&gt;
  *         &lt;element name="telefonoDomicilio" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/&gt;
  *         &lt;element name="telefonoDuenoCasa" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/&gt;
- *         &lt;element name="tiempoViviendaActual" type="{http://www.w3.org/2001/XMLSchema}short" minOccurs="0"/&gt;
+ *         &lt;element name="tiempoViviendaActual" type="{http://www.w3.org/2001/XMLSchema}int"/&gt;
  *         &lt;element name="tiempoViviendaAnterior" type="{http://www.w3.org/2001/XMLSchema}short" minOccurs="0"/&gt;
  *         &lt;element name="tieneError" type="{http://www.w3.org/2001/XMLSchema}boolean"/&gt;
  *         &lt;element name="tipoIdentificacionCOD" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/&gt;
@@ -123,7 +123,7 @@ public class Persona {
     protected String nivelEducacionCOD;
     protected String nombres;
     protected String nomreModulo;
-    protected Short numeroCarga;
+    protected int numeroCarga;
     protected String ocupacionCOD;
     protected int personaID;
     protected String referenciaUbicacion;
@@ -134,7 +134,7 @@ public class Persona {
     protected String telefonoCelular;
     protected String telefonoDomicilio;
     protected String telefonoDuenoCasa;
-    protected Short tiempoViviendaActual;
+    protected int tiempoViviendaActual;
     protected Short tiempoViviendaAnterior;
     protected boolean tieneError;
     protected String tipoIdentificacionCOD;
@@ -532,24 +532,16 @@ public class Persona {
     /**
      * Gets the value of the numeroCarga property.
      * 
-     * @return
-     *     possible object is
-     *     {@link Short }
-     *     
      */
-    public Short getNumeroCarga() {
+    public int getNumeroCarga() {
         return numeroCarga;
     }
 
     /**
      * Sets the value of the numeroCarga property.
      * 
-     * @param value
-     *     allowed object is
-     *     {@link Short }
-     *     
      */
-    public void setNumeroCarga(Short value) {
+    public void setNumeroCarga(int value) {
         this.numeroCarga = value;
     }
 
@@ -780,24 +772,16 @@ public class Persona {
     /**
      * Gets the value of the tiempoViviendaActual property.
      * 
-     * @return
-     *     possible object is
-     *     {@link Short }
-     *     
      */
-    public Short getTiempoViviendaActual() {
+    public int getTiempoViviendaActual() {
         return tiempoViviendaActual;
     }
 
     /**
      * Sets the value of the tiempoViviendaActual property.
      * 
-     * @param value
-     *     allowed object is
-     *     {@link Short }
-     *     
      */
-    public void setTiempoViviendaActual(Short value) {
+    public void setTiempoViviendaActual(int value) {
         this.tiempoViviendaActual = value;
     }
 

@@ -6,9 +6,7 @@ import java.util.List;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlSchemaType;
 import javax.xml.bind.annotation.XmlType;
-import javax.xml.datatype.XMLGregorianCalendar;
 
 /**
  * <p>
@@ -65,9 +63,9 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *         &lt;element name="estado" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/&gt;
  *         &lt;element name="estadoCentralRiesgo" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/&gt;
  *         &lt;element name="estadoCivilCOD" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/&gt;
- *         &lt;element name="fechaApertura" type="{http://www.w3.org/2001/XMLSchema}dateTime" minOccurs="0"/&gt;
- *         &lt;element name="fechaNacimiento" type="{http://www.w3.org/2001/XMLSchema}dateTime" minOccurs="0"/&gt;
- *         &lt;element name="fechaSolicitud" type="{http://www.w3.org/2001/XMLSchema}dateTime" minOccurs="0"/&gt;
+ *         &lt;element name="fechaApertura" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/&gt;
+ *         &lt;element name="fechaNacimiento" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/&gt;
+ *         &lt;element name="fechaSolicitud" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/&gt;
  *         &lt;element name="formaPagoCOD" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/&gt;
  *         &lt;element name="garante" type="{http://soap.source.passcop.com/}persona" minOccurs="0"/&gt;
  *         &lt;element name="garantiasReales" type="{http://soap.source.passcop.com/}garantiasReales" maxOccurs="unbounded" minOccurs="0"/&gt;
@@ -80,7 +78,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *         &lt;element name="identificacionInformacionNegocio" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/&gt;
  *         &lt;element name="identificacionSocio" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/&gt;
  *         &lt;element name="identificacionSolicitud" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/&gt;
- *         &lt;element name="ingreso" type="{http://www.w3.org/2001/XMLSchema}dateTime" minOccurs="0"/&gt;
+ *         &lt;element name="ingreso" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/&gt;
  *         &lt;element name="ingresosFamiliar" type="{http://www.w3.org/2001/XMLSchema}double"/&gt;
  *         &lt;element name="ingresosFamiliaresTotalPerdidasYGanancias" type="{http://www.w3.org/2001/XMLSchema}double"/&gt;
  *         &lt;element name="ingresosNegocio" type="{http://www.w3.org/2001/XMLSchema}double"/&gt;
@@ -100,7 +98,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *         &lt;element name="nombreInformacionNegocio" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/&gt;
  *         &lt;element name="nombreModulo" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/&gt;
  *         &lt;element name="nombres" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/&gt;
- *         &lt;element name="numeroCarga" type="{http://www.w3.org/2001/XMLSchema}short" minOccurs="0"/&gt;
+ *         &lt;element name="numeroCarga" type="{http://www.w3.org/2001/XMLSchema}int"/&gt;
  *         &lt;element name="numeroCreditosIFI" type="{http://www.w3.org/2001/XMLSchema}short" minOccurs="0"/&gt;
  *         &lt;element name="numeroEmpleados" type="{http://www.w3.org/2001/XMLSchema}short" minOccurs="0"/&gt;
  *         &lt;element name="numeroOperaciones" type="{http://www.w3.org/2001/XMLSchema}short" minOccurs="0"/&gt;
@@ -109,7 +107,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *         &lt;element name="ocupacionCOD" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/&gt;
  *         &lt;element name="patrimonioMontos" type="{http://www.w3.org/2001/XMLSchema}double"/&gt;
  *         &lt;element name="peorCalificacion12MesesCOD" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/&gt;
- *         &lt;element name="periodoGracia" type="{http://www.w3.org/2001/XMLSchema}int" minOccurs="0"/&gt;
+ *         &lt;element name="periodoGracia" type="{http://www.w3.org/2001/XMLSchema}int"/&gt;
  *         &lt;element name="personaID" type="{http://www.w3.org/2001/XMLSchema}int"/&gt;
  *         &lt;element name="personaIdCentralRiesgo" type="{http://www.w3.org/2001/XMLSchema}int" minOccurs="0"/&gt;
  *         &lt;element name="plazo" type="{http://www.w3.org/2001/XMLSchema}short"/&gt;
@@ -138,7 +136,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *         &lt;element name="telefonoDuenoCasa" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/&gt;
  *         &lt;element name="telefonoReferenciasComerciales" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/&gt;
  *         &lt;element name="telefonoTrabajoConyuge" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/&gt;
- *         &lt;element name="tiempoViviendaActual" type="{http://www.w3.org/2001/XMLSchema}short" minOccurs="0"/&gt;
+ *         &lt;element name="tiempoViviendaActual" type="{http://www.w3.org/2001/XMLSchema}int"/&gt;
  *         &lt;element name="tiempoViviendaAnterior" type="{http://www.w3.org/2001/XMLSchema}short" minOccurs="0"/&gt;
  *         &lt;element name="tieneError" type="{http://www.w3.org/2001/XMLSchema}boolean"/&gt;
  *         &lt;element name="tipoCuotaCOD" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/&gt;
@@ -265,12 +263,9 @@ public class Respuesta {
 	protected String estado;
 	protected String estadoCentralRiesgo;
 	protected String estadoCivilCOD;
-	@XmlSchemaType(name = "dateTime")
-	protected XMLGregorianCalendar fechaApertura;
-	@XmlSchemaType(name = "dateTime")
-	protected XMLGregorianCalendar fechaNacimiento;
-	@XmlSchemaType(name = "dateTime")
-	protected XMLGregorianCalendar fechaSolicitud;
+	protected String fechaApertura;
+	protected String fechaNacimiento;
+	protected String fechaSolicitud;
 	protected String formaPagoCOD;
 	protected Persona garante;
 	@XmlElement(nillable = true)
@@ -285,8 +280,7 @@ public class Respuesta {
 	protected String identificacionInformacionNegocio;
 	protected String identificacionSocio;
 	protected String identificacionSolicitud;
-	@XmlSchemaType(name = "dateTime")
-	protected XMLGregorianCalendar ingreso;
+	protected String ingreso;
 	protected double ingresosFamiliar;
 	protected double ingresosFamiliaresTotalPerdidasYGanancias;
 	protected double ingresosNegocio;
@@ -306,7 +300,7 @@ public class Respuesta {
 	protected String nombreInformacionNegocio;
 	protected String nombreModulo;
 	protected String nombres;
-	protected Short numeroCarga;
+	protected int numeroCarga;
 	protected Short numeroCreditosIFI;
 	protected Short numeroEmpleados;
 	protected Short numeroOperaciones;
@@ -315,7 +309,7 @@ public class Respuesta {
 	protected String ocupacionCOD;
 	protected double patrimonioMontos;
 	protected String peorCalificacion12MesesCOD;
-	protected Integer periodoGracia;
+	protected int periodoGracia;
 	protected int personaID;
 	protected Integer personaIdCentralRiesgo;
 	protected short plazo;
@@ -347,7 +341,7 @@ public class Respuesta {
 	protected String telefonoDuenoCasa;
 	protected String telefonoReferenciasComerciales;
 	protected String telefonoTrabajoConyuge;
-	protected Short tiempoViviendaActual;
+	protected int tiempoViviendaActual;
 	protected Short tiempoViviendaAnterior;
 	protected boolean tieneError;
 	protected String tipoCuotaCOD;
@@ -946,10 +940,6 @@ public class Respuesta {
 		return this.detalledeCuentasGarante;
 	}
 
-	public void setDetalledeCuentasGarante(List<DetalleDeCuentas> detalledeCuentasGarante) {
-		this.detalledeCuentasGarante = detalledeCuentasGarante;
-	}
-
 	/**
 	 * Gets the value of the detalledeCuentasSocio property.
 	 * 
@@ -980,8 +970,8 @@ public class Respuesta {
 		return this.detalledeCuentasSocio;
 	}
 
-	public void setDetalledeCuentasSocio(List<DetalleDeCuentas> detalledeCuentasSocio) {
-		this.detalledeCuentasSocio = detalledeCuentasSocio;
+	public void setDetalledeCuentasGarante(List<DetalleDeCuentas> detalledeCuentasGarante) {
+		this.detalledeCuentasGarante = detalledeCuentasGarante;
 	}
 
 	/**
@@ -1002,6 +992,10 @@ public class Respuesta {
 	 */
 	public void setDireccion(String value) {
 		this.direccion = value;
+	}
+
+	public void setDetalledeCuentasSocio(List<DetalleDeCuentas> detalledeCuentasSocio) {
+		this.detalledeCuentasSocio = detalledeCuentasSocio;
 	}
 
 	/**
@@ -1223,60 +1217,60 @@ public class Respuesta {
 	/**
 	 * Gets the value of the fechaApertura property.
 	 * 
-	 * @return possible object is {@link XMLGregorianCalendar }
+	 * @return possible object is {@link String }
 	 * 
 	 */
-	public XMLGregorianCalendar getFechaApertura() {
+	public String getFechaApertura() {
 		return fechaApertura;
 	}
 
 	/**
 	 * Sets the value of the fechaApertura property.
 	 * 
-	 * @param value allowed object is {@link XMLGregorianCalendar }
+	 * @param value allowed object is {@link String }
 	 * 
 	 */
-	public void setFechaApertura(XMLGregorianCalendar value) {
+	public void setFechaApertura(String value) {
 		this.fechaApertura = value;
 	}
 
 	/**
 	 * Gets the value of the fechaNacimiento property.
 	 * 
-	 * @return possible object is {@link XMLGregorianCalendar }
+	 * @return possible object is {@link String }
 	 * 
 	 */
-	public XMLGregorianCalendar getFechaNacimiento() {
+	public String getFechaNacimiento() {
 		return fechaNacimiento;
 	}
 
 	/**
 	 * Sets the value of the fechaNacimiento property.
 	 * 
-	 * @param value allowed object is {@link XMLGregorianCalendar }
+	 * @param value allowed object is {@link String }
 	 * 
 	 */
-	public void setFechaNacimiento(XMLGregorianCalendar value) {
+	public void setFechaNacimiento(String value) {
 		this.fechaNacimiento = value;
 	}
 
 	/**
 	 * Gets the value of the fechaSolicitud property.
 	 * 
-	 * @return possible object is {@link XMLGregorianCalendar }
+	 * @return possible object is {@link String }
 	 * 
 	 */
-	public XMLGregorianCalendar getFechaSolicitud() {
+	public String getFechaSolicitud() {
 		return fechaSolicitud;
 	}
 
 	/**
 	 * Sets the value of the fechaSolicitud property.
 	 * 
-	 * @param value allowed object is {@link XMLGregorianCalendar }
+	 * @param value allowed object is {@link String }
 	 * 
 	 */
-	public void setFechaSolicitud(XMLGregorianCalendar value) {
+	public void setFechaSolicitud(String value) {
 		this.fechaSolicitud = value;
 	}
 
@@ -1519,20 +1513,20 @@ public class Respuesta {
 	/**
 	 * Gets the value of the ingreso property.
 	 * 
-	 * @return possible object is {@link XMLGregorianCalendar }
+	 * @return possible object is {@link String }
 	 * 
 	 */
-	public XMLGregorianCalendar getIngreso() {
+	public String getIngreso() {
 		return ingreso;
 	}
 
 	/**
 	 * Sets the value of the ingreso property.
 	 * 
-	 * @param value allowed object is {@link XMLGregorianCalendar }
+	 * @param value allowed object is {@link String }
 	 * 
 	 */
-	public void setIngreso(XMLGregorianCalendar value) {
+	public void setIngreso(String value) {
 		this.ingreso = value;
 	}
 
@@ -1887,20 +1881,16 @@ public class Respuesta {
 	/**
 	 * Gets the value of the numeroCarga property.
 	 * 
-	 * @return possible object is {@link Short }
-	 * 
 	 */
-	public Short getNumeroCarga() {
+	public int getNumeroCarga() {
 		return numeroCarga;
 	}
 
 	/**
 	 * Sets the value of the numeroCarga property.
 	 * 
-	 * @param value allowed object is {@link Short }
-	 * 
 	 */
-	public void setNumeroCarga(Short value) {
+	public void setNumeroCarga(int value) {
 		this.numeroCarga = value;
 	}
 
@@ -2063,20 +2053,16 @@ public class Respuesta {
 	/**
 	 * Gets the value of the periodoGracia property.
 	 * 
-	 * @return possible object is {@link Integer }
-	 * 
 	 */
-	public Integer getPeriodoGracia() {
+	public int getPeriodoGracia() {
 		return periodoGracia;
 	}
 
 	/**
 	 * Sets the value of the periodoGracia property.
 	 * 
-	 * @param value allowed object is {@link Integer }
-	 * 
 	 */
-	public void setPeriodoGracia(Integer value) {
+	public void setPeriodoGracia(int value) {
 		this.periodoGracia = value;
 	}
 
@@ -2267,19 +2253,8 @@ public class Respuesta {
 	 * 
 	 * 
 	 */
-//	public List<ReferenciasComerciales> getReferenciasComerciales() {
-//		if (referenciasComerciales == null) {
-//			referenciasComerciales = new ArrayList<ReferenciasComerciales>();
-//		}
-//		return this.referenciasComerciales;
-//	}
-
 	public ReferenciasComerciales[] getReferenciasComerciales() {
 		return referenciasComerciales;
-	}
-
-	public void setReferenciasComerciales(ReferenciasComerciales[] referenciasComerciales) {
-		this.referenciasComerciales = referenciasComerciales;
 	}
 
 	/**
@@ -2305,13 +2280,8 @@ public class Respuesta {
 	 * 
 	 * 
 	 */
-
 	public ReferenciasPersonales[] getReferenciasPersonales() {
 		return this.referenciasPersonales;
-	}
-
-	public void setReferenciasPersonales(ReferenciasPersonales[] referenciasPersonales) {
-		this.referenciasPersonales = referenciasPersonales;
 	}
 
 	/**
@@ -2344,10 +2314,6 @@ public class Respuesta {
 		return this.referenciasPersonales2;
 	}
 
-	public void setReferenciasPersonales2(List<ReferenciasPersonales> referenciasPersonales2) {
-		this.referenciasPersonales2 = referenciasPersonales2;
-	}
-
 	/**
 	 * Gets the value of the relacionCOD property.
 	 * 
@@ -2376,6 +2342,10 @@ public class Respuesta {
 	 */
 	public String getRespuestaCOD() {
 		return respuestaCOD;
+	}
+
+	public void setReferenciasComerciales(ReferenciasComerciales[] referenciasComerciales) {
+		this.referenciasComerciales = referenciasComerciales;
 	}
 
 	/**
@@ -2408,6 +2378,10 @@ public class Respuesta {
 		this.sectorEconomicoCOD = value;
 	}
 
+	public void setReferenciasPersonales(ReferenciasPersonales[] referenciasPersonales) {
+		this.referenciasPersonales = referenciasPersonales;
+	}
+
 	/**
 	 * Gets the value of the segmento property.
 	 * 
@@ -2426,6 +2400,10 @@ public class Respuesta {
 	 */
 	public void setSegmento(String value) {
 		this.segmento = value;
+	}
+
+	public void setReferenciasPersonales2(List<ReferenciasPersonales> referenciasPersonales2) {
+		this.referenciasPersonales2 = referenciasPersonales2;
 	}
 
 	/**
@@ -2659,20 +2637,16 @@ public class Respuesta {
 	/**
 	 * Gets the value of the tiempoViviendaActual property.
 	 * 
-	 * @return possible object is {@link Short }
-	 * 
 	 */
-	public Short getTiempoViviendaActual() {
+	public int getTiempoViviendaActual() {
 		return tiempoViviendaActual;
 	}
 
 	/**
 	 * Sets the value of the tiempoViviendaActual property.
 	 * 
-	 * @param value allowed object is {@link Short }
-	 * 
 	 */
-	public void setTiempoViviendaActual(Short value) {
+	public void setTiempoViviendaActual(int value) {
 		this.tiempoViviendaActual = value;
 	}
 
