@@ -5,8 +5,8 @@
 
 package com.fitbank.solicitude.maintenance;
 
+import java.math.BigDecimal;
 import java.sql.Timestamp;
-
 import com.fitbank.common.ApplicationDates;
 import com.fitbank.common.Helper;
 import com.fitbank.common.hb.UtilHB;
@@ -22,12 +22,16 @@ import com.fitbank.hb.persistence.person.Tpersonalreferenceperson;
 import com.fitbank.hb.persistence.person.TpersonalreferencepersonKey;
 import com.fitbank.hb.persistence.person.Ttelephoneperson;
 import com.fitbank.hb.persistence.person.TtelephonepersonKey;
+import com.fitbank.hb.persistence.person.juri.Tgeneralbalancejuridical;
+import com.fitbank.hb.persistence.person.juri.TgeneralbalancejuridicalKey;
 import com.fitbank.hb.persistence.person.natural.Tadditionalinformationnatural;
 import com.fitbank.hb.persistence.person.natural.TadditionalinformationnaturalKey;
 import com.fitbank.hb.persistence.person.natural.Tbasicinformationnatural;
 import com.fitbank.hb.persistence.person.natural.TbasicinformationnaturalKey;
 import com.fitbank.hb.persistence.person.natural.Tcomercialreferencenatural;
 import com.fitbank.hb.persistence.person.natural.TcomercialreferencenaturalKey;
+import com.fitbank.hb.persistence.person.natural.Texpendituresrevenuesnatural;
+import com.fitbank.hb.persistence.person.natural.TexpendituresrevenuesnaturalKey;
 import com.fitbank.hb.persistence.person.natural.Tlifelevelnatural;
 import com.fitbank.hb.persistence.person.natural.TlifelevelnaturalKey;
 
@@ -44,6 +48,18 @@ public class UpdateInformationMicroScore extends MaintenanceCommand {
 
 	public static final String HQL_PERSONALREFMAX = "SELECT max(t.pk.sreferenciapersonal) FROM Tpersonalreferenceperson t "
 			+ "WHERE t.pk.cpersona = :cpersona";
+
+	public static final String HQL_INGRESOMAX = "SELECT max(t.pk.singresoegreso) FROM Texpendituresrevenuesnatural t "
+			+ "WHERE t.pk.cpersona = :cpersona and t.pk.ingresoegreso = 'I'";
+
+	public static final String HQL_EGRESOMAX = "SELECT max(t.pk.singresoegreso) FROM Texpendituresrevenuesnatural t "
+			+ "WHERE t.pk.cpersona = :cpersona and t.pk.ingresoegreso = 'E'";
+
+	public static final String HQL_ACTIVOMAX = "SELECT max(t.pk.singresoegreso) FROM Texpendituresrevenuesnatural t "
+			+ "WHERE t.pk.cpersona = :cpersona and t.pk.ingresoegreso = 'A'";
+
+	public static final String HQL_PASIVOMAX = "SELECT max(t.pk.singresoegreso) FROM Texpendituresrevenuesnatural t "
+			+ "WHERE t.pk.cpersona = :cpersona and t.pk.ingresoegreso = 'P'";
 
 	public static final String HQL_DIRECCIONESCE = " FROM Taddressperson t "
 			+ " WHERE t.pk.cpersona = :cpersona and t.pk.fhasta =:fhasta and t.ctipodireccion='CE' and "
@@ -70,6 +86,12 @@ public class UpdateInformationMicroScore extends MaintenanceCommand {
 
 	public static final String HQL_REFRENCIASPERSONALES = " FROM Tpersonalreferenceperson t "
 			+ " WHERE t.pk.cpersona = :cpersona and t.pk.fhasta =:fhasta ";
+
+	public static final String HQL_INGRESOEGRESO = " FROM Texpendituresrevenuesnatural t "
+			+ " WHERE t.pk.cpersona = :cpersona and t.pk.fhasta =:fhasta and t.pk.ingresoegreso in ('I','E') ";
+
+	public static final String HQL_ACTIVOPASIVO = " FROM Texpendituresrevenuesnatural t "
+			+ " WHERE t.pk.cpersona = :cpersona and t.pk.fhasta =:fhasta and t.pk.ingresoegreso in ('A','P') ";
 
 	@Override
 	public Detail executeNormal(Detail pDetail) throws Exception {
@@ -114,9 +136,10 @@ public class UpdateInformationMicroScore extends MaintenanceCommand {
 			}
 		}
 
+		Integer cpersona = pDetail.findFieldByNameCreate("CPERSONA").getIntegerValue();
+		// Actualización de referencias personales
 		Table trefCom = pDetail.findTableByName("TPERSONAREFERENCIASCOMERCIALES");
 		if (trefCom != null && trefCom.getRecordCount() > 0) {
-			Integer cpersona = pDetail.findFieldByNameCreate("CPERSONA").getIntegerValue();
 			this.expirecomercialrefere(cpersona);
 			Integer secuencia = this.getComercialrefereSeq(cpersona);
 			for (Record r : trefCom.getRecords()) {
@@ -133,9 +156,9 @@ public class UpdateInformationMicroScore extends MaintenanceCommand {
 			}
 		}
 
+		// Actualización de referencias comerciales
 		Table trefPer = pDetail.findTableByName("TPERSONAREFERENCIASPERSONALES");
 		if (trefPer != null && trefPer.getRecordCount() > 0) {
-			Integer cpersona = pDetail.findFieldByNameCreate("CPERSONA").getIntegerValue();
 			this.expirePersonalrefere(cpersona);
 			Integer secuencia = this.getPersonalRefereSeq(cpersona);
 			for (Record r : trefPer.getRecords()) {
@@ -149,6 +172,79 @@ public class UpdateInformationMicroScore extends MaintenanceCommand {
 				Helper.saveOrUpdate(refPer);
 				secuencia = secuencia + 1;
 			}
+		}
+		// Actualización de ingresos y egresos
+		Table tnatIngEg = pDetail.findTableByName("TNATURALINGRESOSEGRESOS");
+		if (tnatIngEg != null && tnatIngEg.getRecordCount() > 0) {
+			this.expireIncomeEgress(cpersona);
+			Integer secuenciaIng = this.getIngresoSequence(cpersona);
+			Integer secuenciaEgr = this.getEgresoSequence(cpersona);
+			for (Record r : tnatIngEg.getRecords()) {
+				String ingresoEgreso = r.findFieldByNameCreate("GRUPOCUENTACODE").getStringValue();
+				Integer cuentaId = r.findFieldByNameCreate("CUENTAID").getIntegerValue();
+				BigDecimal valor = r.findFieldByNameCreate("VALORDETALLECUENTAS").getBigDecimalValue();
+				if (ingresoEgreso == null) {
+					continue;
+				}
+				if ("INGRESO".compareTo(ingresoEgreso) == 0) {
+					TexpendituresrevenuesnaturalKey keyIngEgr = new TexpendituresrevenuesnaturalKey(cpersona, "I",
+							secuenciaIng, ApplicationDates.DEFAULT_EXPIRY_TIMESTAMP);
+					Texpendituresrevenuesnatural tnatInEg = new Texpendituresrevenuesnatural(keyIngEgr,
+							new Timestamp(System.currentTimeMillis()), cuentaId, "USD", valor, "0");
+					Helper.saveOrUpdate(tnatInEg);
+					secuenciaIng = secuenciaIng + 1;
+				} else if ("EGRESO".compareTo(ingresoEgreso) == 0) {
+					TexpendituresrevenuesnaturalKey keyIngEgr = new TexpendituresrevenuesnaturalKey(cpersona, "E",
+							secuenciaEgr, ApplicationDates.DEFAULT_EXPIRY_TIMESTAMP);
+					Texpendituresrevenuesnatural tnatInEg = new Texpendituresrevenuesnatural(keyIngEgr,
+							new Timestamp(System.currentTimeMillis()), cuentaId, "USD", valor, "0");
+					Helper.saveOrUpdate(tnatInEg);
+					secuenciaEgr = secuenciaEgr + 1;
+				}
+			}
+		}
+		// Actualización de activos y pasivos
+		Table tnatActPas = pDetail.findTableByName("TNATURALACTIVOSPASIVOS");
+		if (tnatActPas != null && tnatActPas.getRecordCount() > 0) {
+			this.expireActivePassive(cpersona);
+			Integer secuenciaAct = this.getActiveSequence(cpersona);
+			Integer secuenciaPas = this.getPasiveSequence(cpersona);
+			for (Record r : tnatActPas.getRecords()) {
+				String ingresoEgreso = r.findFieldByNameCreate("GRUPOCUENTACODEDETALLEPATRIMONIAL").getStringValue();
+				Integer cuentaId = r.findFieldByNameCreate("CUENTAIDDETALLEPATRIMONIAL").getIntegerValue();
+				BigDecimal valor = r.findFieldByNameCreate("VALORDETALLEPATRIMONIAL").getBigDecimalValue();
+				if (ingresoEgreso == null) {
+					continue;
+				}
+				if ("ACTIVO".compareTo(ingresoEgreso) == 0) {
+					TexpendituresrevenuesnaturalKey keyIngEgr = new TexpendituresrevenuesnaturalKey(cpersona, "A",
+							secuenciaAct, ApplicationDates.DEFAULT_EXPIRY_TIMESTAMP);
+					Texpendituresrevenuesnatural tnatInEg = new Texpendituresrevenuesnatural(keyIngEgr,
+							new Timestamp(System.currentTimeMillis()), cuentaId, "USD", valor, "0");
+					Helper.saveOrUpdate(tnatInEg);
+					secuenciaAct = secuenciaAct + 1;
+				} else if ("PASIVO".compareTo(ingresoEgreso) == 0) {
+					TexpendituresrevenuesnaturalKey keyIngEgr = new TexpendituresrevenuesnaturalKey(cpersona, "P",
+							secuenciaPas, ApplicationDates.DEFAULT_EXPIRY_TIMESTAMP);
+					Texpendituresrevenuesnatural tnatInEg = new Texpendituresrevenuesnatural(keyIngEgr,
+							new Timestamp(System.currentTimeMillis()), cuentaId, "USD", valor, "0");
+					Helper.saveOrUpdate(tnatInEg);
+					secuenciaPas = secuenciaPas + 1;
+				}
+			}
+		}
+		// Actualización de ventas montos
+		BigDecimal ventasMontos = pDetail.findFieldByNameCreate("VENTASMONTOS").getBigDecimalValue();
+
+		if (ventasMontos != null) {
+			TgeneralbalancejuridicalKey keyBal = new TgeneralbalancejuridicalKey(cpersona, pDetail.getAccountingDate(),
+					"USD", ApplicationDates.DEFAULT_EXPIRY_TIMESTAMP);
+			Tgeneralbalancejuridical bean = Helper.getBean(Tgeneralbalancejuridical.class, keyBal);
+			if (bean == null) {
+				bean = new Tgeneralbalancejuridical(keyBal, new Timestamp(System.currentTimeMillis()));
+			}
+			bean.setVentasnetas(ventasMontos);
+			Helper.saveOrUpdate(bean);
 		}
 
 		return pDetail;
@@ -174,11 +270,12 @@ public class UpdateInformationMicroScore extends MaintenanceCommand {
 			TlinkingpersonKey tlinkPerKey = new TlinkingpersonKey(pCpersona, pCpersonaCon, "31",
 					ApplicationDates.DEFAULT_EXPIRY_TIMESTAMP);
 			Tlinkingperson tlinkPer = Helper.getBean(Tlinkingperson.class, tlinkPerKey);
-			if (tlinkPer != null) {
-				tlinkPer.setSeparacionbienes(pSeparacionBienes == true ? "1" : "0");
-				tlinkPer.setCusuario_modificacion(pUser);
-				Helper.saveOrUpdate(tlinkPer);
+			if (tlinkPer == null) {
+				tlinkPer = new Tlinkingperson(tlinkPerKey, new Timestamp(System.currentTimeMillis()));
 			}
+			tlinkPer.setSeparacionbienes(pSeparacionBienes == true ? "1" : "0");
+			tlinkPer.setCusuario_modificacion(pUser);
+			Helper.saveOrUpdate(tlinkPer);
 		}
 	}
 
@@ -455,6 +552,84 @@ public class UpdateInformationMicroScore extends MaintenanceCommand {
 		Integer numero = 1;
 		UtilHB utilHB = new UtilHB();
 		utilHB.setSentence(HQL_PERSONALREFMAX);
+		utilHB.setInteger("cpersona", pCpersona);
+		utilHB.setReadonly(true);
+		Object secuencia = utilHB.getObject() == null ? 0 : utilHB.getObject();
+		numero = (Integer) secuencia;
+		numero = numero + 1;
+		return numero;
+	}
+
+	public void expireIncomeEgress(Integer pCpersona) throws Exception {
+		UtilHB utilHB = new UtilHB();
+		utilHB.setSentence(HQL_INGRESOEGRESO);
+		utilHB.setInteger("cpersona", pCpersona);
+		utilHB.setTimestamp("fhasta", ApplicationDates.DEFAULT_EXPIRY_TIMESTAMP);
+		utilHB.setReadonly(true);
+		utilHB.getResults();
+		if (!utilHB.getResults().isEmpty()) {
+			for (Object obj : utilHB.getResults()) {
+				Texpendituresrevenuesnatural bean = (Texpendituresrevenuesnatural) obj;
+				Helper.expire(bean);
+			}
+		}
+	}
+
+	public void expireActivePassive(Integer pCpersona) throws Exception {
+		UtilHB utilHB = new UtilHB();
+		utilHB.setSentence(HQL_ACTIVOPASIVO);
+		utilHB.setInteger("cpersona", pCpersona);
+		utilHB.setTimestamp("fhasta", ApplicationDates.DEFAULT_EXPIRY_TIMESTAMP);
+		utilHB.setReadonly(true);
+		utilHB.getResults();
+		if (!utilHB.getResults().isEmpty()) {
+			for (Object obj : utilHB.getResults()) {
+				Texpendituresrevenuesnatural bean = (Texpendituresrevenuesnatural) obj;
+				Helper.expire(bean);
+			}
+		}
+	}
+
+	public Integer getIngresoSequence(Integer pCpersona) throws Exception {
+		Integer numero = 1;
+		UtilHB utilHB = new UtilHB();
+		utilHB.setSentence(HQL_INGRESOMAX);
+		utilHB.setInteger("cpersona", pCpersona);
+		utilHB.setReadonly(true);
+		Object secuencia = utilHB.getObject() == null ? 0 : utilHB.getObject();
+		numero = (Integer) secuencia;
+		numero = numero + 1;
+		return numero;
+	}
+
+	public Integer getEgresoSequence(Integer pCpersona) throws Exception {
+		Integer numero = 1;
+		UtilHB utilHB = new UtilHB();
+		utilHB.setSentence(HQL_EGRESOMAX);
+		utilHB.setInteger("cpersona", pCpersona);
+		utilHB.setReadonly(true);
+		Object secuencia = utilHB.getObject() == null ? 0 : utilHB.getObject();
+		numero = (Integer) secuencia;
+		numero = numero + 1;
+		return numero;
+	}
+
+	public Integer getActiveSequence(Integer pCpersona) throws Exception {
+		Integer numero = 1;
+		UtilHB utilHB = new UtilHB();
+		utilHB.setSentence(HQL_ACTIVOMAX);
+		utilHB.setInteger("cpersona", pCpersona);
+		utilHB.setReadonly(true);
+		Object secuencia = utilHB.getObject() == null ? 0 : utilHB.getObject();
+		numero = (Integer) secuencia;
+		numero = numero + 1;
+		return numero;
+	}
+
+	public Integer getPasiveSequence(Integer pCpersona) throws Exception {
+		Integer numero = 1;
+		UtilHB utilHB = new UtilHB();
+		utilHB.setSentence(HQL_PASIVOMAX);
 		utilHB.setInteger("cpersona", pCpersona);
 		utilHB.setReadonly(true);
 		Object secuencia = utilHB.getObject() == null ? 0 : utilHB.getObject();

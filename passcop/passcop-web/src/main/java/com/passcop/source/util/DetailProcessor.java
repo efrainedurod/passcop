@@ -204,7 +204,8 @@ public class DetailProcessor implements Serializable {
 			}
 		}
 		// Setea el varlor de ventas
-		inDetail.findFieldByNameCreate("VENTASMONTOS").setValue(operacion.getVentasMontos());
+		inDetail.findFieldByNameCreate("VENTASMONTOS").setValue(
+				operacion.getVentasMontos() > 0 ? operacion.getVentasMontos() * 12 : operacion.getVentasMontos());
 
 		// Se envía el Detail al UCI
 		String request = (String) UCIClient.send(inDetail.toErrorXml(), "127.0.0.1", 20091, 30);
@@ -226,7 +227,7 @@ public class DetailProcessor implements Serializable {
 
 	public String getIdentificacion(String pIdentificacion) throws Exception {
 		String cpersona = null;
-		
+
 		String message = FileHelper.readFile("/home/fitbank/FitBank/score/4-lv-identificacion.xml");
 		Detail inDetail = Detail.valueOf(message);
 		Table tpro = inDetail.findTableByName("TPERSONA");
